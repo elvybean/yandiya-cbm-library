@@ -5,7 +5,7 @@ Last Edited by: Elvis Obero-Atkins
 This py script is NOT REQUIRED for yandiya-cbm-library to function
 
 It is CLI python application designed to interact 
-with the yandiya-cbm-library.
+with the yandiya-cbm-library
 
 """
 import cbmcalculator

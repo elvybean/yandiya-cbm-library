@@ -1,10 +1,10 @@
 # Yandiya CBM Library
 
-#### Current Version Version 0.1
+#### Current Version Version 0.1.1
 
 - a python library written for Yandiya Technologies Ltd during my T Level Industry Placement.
 - currently meets 2 out of 5 of the milestones listed in the proposal
-  - almost meets a 3rd milestone - 50% the way there 
+  - almost meets a 3rd milestone - 50% the way there
 
 ## Description
 
@@ -72,6 +72,13 @@ Contributors names and contact info
 - Elvis Obero-Atkins [GitHub](https://github.com/elvybean) | [LinkedIn](www.linkedin.com/in/elvisoberoatkins)
 
 ## Version History
+
+### Version 0.1.1
+
+- Fixed various spelling errors
+- Reorganised file structure
+- Minimal python logic changes
+- started development of multiple item types on cbm [see commit](https://github.com/elvybean/yandiya-cbm-library/commit/b73434699832051913fc05ad7161e206b8854f66)
 
 ### Version 0.1
 
