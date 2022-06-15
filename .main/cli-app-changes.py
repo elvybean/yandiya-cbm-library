@@ -14,28 +14,35 @@ Script has ERRORS
 import cbmcalculator
 
 
-def main-logic():
-
-
-parameters = input("Whats the product number, barcode or sku of the item? ")
-productQuantity = int(input(
-    "\nWhat's the quantity of the items that you need? "))
-
 cbmStore = []
 search = True
 while search == True:
+    parameters = input(
+        "\n\nWhats the product number, barcode or sku of the item? ")
+    productQuantity = int(input(
+        "\nWhat's the quantity of the items that you need? "))
+
     inWarehouse = cbmcalculator.searching_product(parameters)
+
     if inWarehouse == 0:
         print("error. either incorrect input or item does not exist")
+
     else:
+        print("\n\n", inWarehouse, "\n\n")
         cbm = cbmcalculator.calculate(inWarehouse, productQuantity)
 
     input("Do you want to search for another item? y/n").capitalize()
     if input == "Y" and inWarehouse != 0:
         cbmStore[0] = cbm[0]
         cbmStore[1] = cbm[1]
+
     elif input == "N":
         search = False
+        # while loop not working using break as temporary fix
+        break
+
+    else:
+        search = True
 
 print("The Total  CBM is ", cbmStore[0], ", the total weight is ",
       cbmStore[1])
