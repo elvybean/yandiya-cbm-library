@@ -14,15 +14,17 @@ The library takes user input of which of Yandiya's products they are packaging a
 
 ## Getting Started
 
-### Knowledge Requirements
+### Knowledge Prerequisites
 
-The following knowledge is required to effectively contribute to this repo
+The following knowledge is required to effectively contribute to this repo: 
 
 - Python basics and fundamentals
 - Array manipulation in python
 - openpyxl basics and fundamentals
   - OR csv library basics and fundamentals - as syntax between the two libraries are similar
 - Git and Github basics (obviously)
+
+###### If you lack any knowledge in these areas it is recommended you read up on them
 
 ### Dependencies
 
@@ -72,16 +74,20 @@ This README.md section is unfinshed
 Contributors names and contact info
 
 - Elvis Obero-Atkins [GitHub](https://github.com/elvybean) | [LinkedIn](www.linkedin.com/in/elvisoberoatkins)
+- Ethan Cooksley [GitHub](https://github.com/eocooksley535) | [LinkedIn](https://www.linkedin.com/in/ethan-cooksley-a0666b238/)
+- Jack Macguire [GitHub](#) | [LinkedIn](#)
 
 ## Version History
 
 ### Version 0.2
+#### Contributers: Elvis Obero-Atkins
 
 ```
 In Development
 ```
 
 ### Version 0.1.1
+#### Contributers: Elvis Obero-Atkins
 
 - Fixed various spelling errors
 - Reorganised file structure
@@ -89,6 +95,7 @@ In Development
 - started development of multiple item types on cbm [see commit](https://github.com/elvybean/yandiya-cbm-library/commit/b73434699832051913fc05ad7161e206b8854f66)
 
 ### Version 0.1
+#### Contributers: Elvis Obero-Atkins
 
 - Accesses Yandiya's product data from yandiya-db.xlsx
 - Library takes user input for PartNo, sku or barcode
@@ -96,6 +103,13 @@ In Development
 - Calculates CBM for the product based on it's dimensions and quantity of the product
 - Calculates based on the total weight weather to send products via pallets or parcel
 - Has basic error messages in the event the search returns no values
+
+## Repo Fork(s)
+
+### [Excell Postcode Sheet & Additional Development](https://github.com/eocooksley535/yandiya-cbm-library) 
+#### Contributers: Ethan Cooksley | Developers: Ethan Cooksley & Jack Macguire
+
+- Repo forked from [this commit](https://github.com/elvybean/yandiya-cbm-library/commit/4db2e7c4f7daca418048e6472bedf502df0fd242) 
 
 ## License
 
