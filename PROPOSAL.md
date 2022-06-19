@@ -11,6 +11,8 @@
 - It will consider pallet or package, how many products per pallet and whether products should be left in their inner carton or outer carton.
 - The calculator needs to be able to accept input from the Odoo warehouse management program.
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ## Outline of my proposed solution
 
 - My proposed solution for the project is to implement the CBM calculator in python.
@@ -19,6 +21,8 @@
 - My reasoning for this is that it would allow for the reusability of the code as if Yandiya in the future changes warehouse management software's most of the code can be reused.
 - Another reason for implementing it as a library is that it would make it easier for the development of other programs that would need the CBM calculator
 - Such as a Web interface that would allow warehouse employees to get an estimate and a 3D visualization of the CBM.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Stored Data Required by my proposed solution
 - Product Details:
@@ -35,17 +39,23 @@ The solution will require the following in some form of a storable format (CSV /
   - The dimensions of each pallet type and its maximum weight and height
   - Full Product list; with each product ‘s inner carton and outer carton dimensions and weight.
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ## Potential issues and how they will be mitigated
 
 - The only potential issues I can currently foresee is that if the Odoo inventory management store’s the product details data in a different format to how the Odoo module does, there could be conflict when trying to get input from the inventory management to the Odoo module.
 
 This could be mitigated by storing product details data in the Odoo module in the same format as the inventory management does.
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ## What are the phases of the solution
 
 - The first phase of the project will be the development of the CBM calculator and the development of the CBM library, which will hold all the logic for the calculations that would work out the values of the CBM. This phase will also include a simplistic CLI or basic GUI program that would be developed for the purpose of testing the usability of the library.
 - The second phase of the project will be the development of the Odoo module that integrates with the warehouse inventory management system and uses the CBM calculator library.
 - The third / future phase(s) of the project could include the development of a WebUI version to allow warehouse management employees to draft/test what products would fit onto a pallet; future phases could also include 3D visualization of the CBM either as a standalone or as part of the WebUI.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Project Deliverables and Success Criteria – measuring the success of the solution via “milestones”
 
@@ -56,6 +66,8 @@ The milestones refer to the success of the project regardless of phases, this al
 - The third milestone would be getting the solution to correctly decide what is the appropriate pallet type or size to use
 - The fourth milestone would be getting the solution to correctly decide whether or not to send the products via parcel force which requires additional logic – weight consideration
 - The fifth milestone would be getting the solution to correctly calculate the price of sending the products based on pallet / parcel and postcode
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Potential Tech Stack
 
@@ -73,6 +85,8 @@ Some potential libraries to be used for the future phases (web UI and 3D visuali
 - Three.js 3D for 3D visualization for web UI
 - Pandas3D for 3D visualization for web UI but is python-based alternative
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ## How the solution will be documented
 
 The Project will be documented in the following ways:
@@ -80,7 +94,11 @@ The Project will be documented in the following ways:
 - DocStrings will be used in all code to explain the purpose of each function
 - Upon the completion of Phase 1 the readme file in the git repository will contain a long description of the project
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ## Plan of how solution should be tested
 
 - After Phase 1 is finished a CLI or basic GUI python program will be created to interact with the library so a user can input variables to see if the calculations are correct.
 - In future phases the solution will be tested on usability and ease of use rather than functionality as all core logic and functionality will be completed before any further development starts in future phases
+
+<p align="right">(<a href="#top">back to top</a>)</p>
