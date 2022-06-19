@@ -9,14 +9,11 @@ with the yandiya-cbm-library.
 
 CHANGED untest versions of cli-app
 file was created as cli-app needed to be rolled back in order to test chnanges of cbmcalculator
-Script has ERRORS
 """
 import cbmcalculator
 
 
-cbmStore = []
-search = True
-while search == True:
+def testFunc(IterateStore: list, ErrorDetect: list):
     parameters = input(
         "\n\nWhats the product number, barcode or sku of the item? ")
     productQuantity = int(input(
@@ -26,25 +23,37 @@ while search == True:
 
     if inWarehouse == 0:
         print("error. either incorrect input or item does not exist")
+        ErrorDetect[0] += 1
 
     else:
-        print("\n\n", inWarehouse, "\n\n")
+        # print("\n\n", inWarehouse, "\n\n")
         cbm = cbmcalculator.calculate(inWarehouse, productQuantity)
 
+        IterateStore[0] += cbm[0]
+        IterateStore[1] += cbm[1]
+
     input("Do you want to search for another item? y/n").capitalize()
-    if input == "Y" and inWarehouse != 0:
-        cbmStore[0] = cbm[0]
-        cbmStore[1] = cbm[1]
+    if input == "Y":
+        ErrorDetect[1] += 1
+        testFunc()
 
     elif input == "N":
-        search = False
-        # while loop not working using break as temporary fix
-        break
+        if ErrorDetect[1] == ErrorDetect[0]:
+            return 0
+        else:
+            return IterateStore
 
     else:
-        search = True
+        ErrorDetect[1] += 1
+        testFunc()
 
-print("The Total  CBM is ", cbmStore[0], ", the total weight is ",
-      cbmStore[1])
 
-# " the items will be sent in a ", cbmStore[2]) #fix parcel or package logic
+cbm = testFunc(list, list)
+
+if cbm != 0:
+    print("The Total  CBM is ", cbm[0], ", the total weight is ",
+          cbm[1])
+    # " the items will be sent in a ", cbm[2]) #fix parcel or package logic
+
+else:
+    print("There are no values to output")
