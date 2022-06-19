@@ -37,11 +37,12 @@ def testFunc():
         IterateStore[0] += cbm[0]
         IterateStore[1] += cbm[1]
 
-    input("\nDo you want to search for another item? y/n  ")
-    if input == "Y" or input == "y" or input == "Yes" or input == "yes":
+    response = input(
+        "\nDo you want to search for another item? y/n  ").capitalize()
+    if response == "Y" or response == "Yes":
         testFunc()
 
-    elif input == "N" or input == "n" or input == "No" or input == "no":
+    elif response == "N" or response == "No":
         if ErrorDetect[1] == ErrorDetect[0]:
             return 0
 
@@ -50,11 +51,11 @@ def testFunc():
 
     else:
         testFunc()
-        print("else")
 
 
 def main():
     cbm = testFunc()
+    print("Function exited")
 
     if cbm != 0:
         print("The Total  CBM is ", cbm[0], ", the total weight is ",
