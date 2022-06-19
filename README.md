@@ -12,6 +12,8 @@ This Python library is being written for Yandiya Technologies Ltd. Its purpose i
 
 The library takes user input of which of Yandiya's products they are packaging and it calculates the CBM, whether to use a pallet or parcel, if appicable which type of pallet would be best to use and the cost of delivery.
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ## Getting Started
 
 ### Knowledge Prerequisites
@@ -26,12 +28,16 @@ The following knowledge is required to effectively contribute to this repo:
 
 ###### If you lack any knowledge in these areas it is recommended you read up on them
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ### Dependencies
 
 #### Prerequisites
 
 - [Python 3.10](https://www.python.org/downloads/) - older versions are likely to work as the code base doesn't utalize any python 3.10 specific features but this can't be ensured as no previous versions have been tested
 - [yandiya-db.xlsx](https://github.com/elvybean/yandiya-cbm-library/blob/main/.main/yandiya-db.xlsx) - excel file that contains all the data required for the cbm library to function, this is located in the .main folder of the repo
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 #### Libraries
 
@@ -46,6 +52,7 @@ OR if the py global variable is enabled the following line can be used as an alt
 ```
 py -m pip install openpyxl
 ```
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 #### OS version
 
@@ -57,17 +64,23 @@ Developed and tested on Windows 10 Pro 21H1 - has not been tested on other versi
 This README.md section is unfinshed
 ```
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ### Executing program
 
 ```
 This README.md section is unfinshed
 ```
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ## Potential Future Adddions
 
 - Odoo Module to interact with the python library
 - Web UI to interact with the python library - using pyscript
 - pip package to simlify instillation of library
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Authors
 
@@ -76,6 +89,8 @@ Contributors names and contact info
 - Elvis Obero-Atkins [GitHub](https://github.com/elvybean) | [LinkedIn](www.linkedin.com/in/elvisoberoatkins)
 - Ethan Cooksley [GitHub](https://github.com/eocooksley535) | [LinkedIn](https://www.linkedin.com/in/ethan-cooksley-a0666b238/)
 - Jack Macguire [GitHub](#) | [LinkedIn](#)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Version History
 
@@ -104,16 +119,22 @@ In Development
 - Calculates based on the total weight weather to send products via pallets or parcel
 - Has basic error messages in the event the search returns no values
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ## Repo Fork(s)
 
-### [Excell Postcode Sheet & Additional Development](https://github.com/eocooksley535/yandiya-cbm-library) 
+### [Excel Postcode Sheet & Additional Development](https://github.com/eocooksley535/yandiya-cbm-library) 
 #### Contributers: Ethan Cooksley | Developers: Ethan Cooksley & Jack Macguire
 
-- Repo forked from [this commit](https://github.com/elvybean/yandiya-cbm-library/commit/4db2e7c4f7daca418048e6472bedf502df0fd242) 
+- Repo forked from [this commit](https://github.com/elvybean/yandiya-cbm-library/commit/4db2e7c4f7daca418048e6472bedf502df0fd242
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## License
 
 This project is licensed under the [MIT Lisence](https://choosealicense.com/licenses/mit/)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Acknowledgments
 
@@ -121,3 +142,5 @@ Inspiration, code snippets, etc.
 
 - [cbmcalculator.com for the Web UI inspiration](https://www.cbmcalculator.com/)
 - [Dominique Pizzie&#39;s Gist for the README.md Template](https://gist.github.com/DomPizzie/7a5ff55ffa9081f2de27c315f5018afc)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
