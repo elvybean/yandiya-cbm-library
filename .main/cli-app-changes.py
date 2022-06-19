@@ -7,17 +7,21 @@ This py script is NOT REQUIRED for yandiya-cbm-library to function
 It is CLI python application designed to interact 
 with the yandiya-cbm-library.
 
-CHANGED untest versions of cli-app
-file was created as cli-app needed to be rolled back in order to test chnanges of cbmcalculator
+Adding calculate cbm of multiple items
 """
 import cbmcalculator
 
 
-def testFunc():
-    IterateStore = [0, 0]  # List that contains 2 integers;
-    # the first int stores the cbm & the second int stores the weight
-    ErrorDetect = [0, 0]  # List that contains 2 integers;
-    # the first int counts the errors & the second int counts the number of iterations
+def testFunc(IterateStore: list, ErrorDetect: list):
+    """Holds the main logic that accesses the cbmcalculator library
+
+    Args:
+        IterateStore (list): list of ints; the first int stores the cbm & the second int stores the weight
+        ErrorDetect (list): list of ints; the first int counts the errors & the second int counts the number of iterations
+
+    Returns:
+        list: stores the calculated cbm and the total weight OR 0 values
+    """
 
     ErrorDetect[1] += 1
 
@@ -40,30 +44,31 @@ def testFunc():
     response = input(
         "\nDo you want to search for another item? y/n  ").capitalize()
     if response == "Y" or response == "Yes":
-        testFunc()
+        if ErrorDetect[1] == ErrorDetect[0]:
+            testFunc([0, 0], ErrorDetect)
+
+        else:
+            testFunc(IterateStore, ErrorDetect)
 
     elif response == "N" or response == "No":
         if ErrorDetect[1] == ErrorDetect[0]:
-            return 0
+            return [0, 0]
 
         else:
-            return IterateStore
+            return [IterateStore[0], IterateStore[1]]
 
     else:
-        testFunc()
+        testFunc(IterateStore, ErrorDetect)
 
 
 def main():
-    cbm = testFunc()
-    print("Function exited")
+    emptyList = [0, 0]
+    cbm = testFunc(emptyList, emptyList)
 
-    if cbm != 0:
-        print("The Total  CBM is ", cbm[0], ", the total weight is ",
-              cbm[1])
-        # " the items will be sent in a ", cbm[2]) #fix parcel or package logic
+    print(cbm)
 
-    else:
-        print("There are no values to output")
+    #print("The Total  CBM is ", cbm[0], ", the total weight is ", cbm[1])
+    # " the items will be sent in a ", cbm[2]) #fix parcel or package logic
 
 
 main()

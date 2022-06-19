@@ -5,11 +5,11 @@ Last Edited by: Elvis Obero-Atkins
 This py script is main component of the yandiya-cbm-library
 As well as this py script the yandiya-db.xslx (excel file) is required
 
-This is V0.1 of the yandiya-cbm-library
+This is V0.1.1 of the yandiya-cbm-library
 It meets three milestones outlined in the proposal
 
 To Do:
-- logic for height considerations
+- logic for height considerations for pallet
 - maximum length for parcels which is 3 meters
 - Postcode logic - 2832 to consider
 """
@@ -64,7 +64,7 @@ def calculate(parameters: list, itemQuantity: int):
             used in calculations
 
     Returns:
-        list: stores the calculated cbm, total weight
+        list: stores the calculated cbm and the total weight
     """
     if itemQuantity >= (float(parameters[16]) / 2):
 
@@ -100,7 +100,7 @@ def weight_logic(weight: float):
         weight (float): _description_
 
     Returns:
-        string: value of parcel or pallet depending on outcome of logic
+        string: value of parcel or pallet, depending on outcome of logic
     """
     if weight <= 30:
         return "Parcel"
