@@ -19,38 +19,38 @@ def testFunc():
     ErrorDetect = [0, 0]  # List that contains 2 integers;
     # the first int counts the errors & the second int counts the number of iterations
 
+    ErrorDetect[1] += 1
+
     parameters = input(
         "\n\nWhats the product number, barcode or sku of the item?  ")
     productQuantity = int(input(
         "\nWhat's the quantity of the items that you need?  "))
 
     inWarehouse = cbmcalculator.searching_product(parameters)
-
     if inWarehouse == 0:
-        print("\nerror. either incorrect input or item does not exist  ")
         ErrorDetect[0] += 1
+        print("\nerror. either incorrect input or item does not exist  ")
 
     else:
-        # print("\n\n", inWarehouse, "\n\n")
         cbm = cbmcalculator.calculate(inWarehouse, productQuantity)
 
         IterateStore[0] += cbm[0]
         IterateStore[1] += cbm[1]
 
-    input("\nDo you want to search for another item? y/n  ").capitalize()
-    if input == "Y" or input == "y":
-        ErrorDetect[1] += 1
+    input("\nDo you want to search for another item? y/n  ")
+    if input == "Y" or input == "y" or input == "Yes" or input == "yes":
         testFunc()
 
-    elif input == "N" or input == "n":
+    elif input == "N" or input == "n" or input == "No" or input == "no":
         if ErrorDetect[1] == ErrorDetect[0]:
             return 0
+
         else:
             return IterateStore
 
     else:
-        ErrorDetect[1] += 1
         testFunc()
+        print("else")
 
 
 def main():
