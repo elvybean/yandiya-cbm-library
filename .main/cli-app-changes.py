@@ -13,16 +13,21 @@ file was created as cli-app needed to be rolled back in order to test chnanges o
 import cbmcalculator
 
 
-def testFunc(IterateStore: list, ErrorDetect: list):
+def testFunc():
+    IterateStore = [0, 0]  # List that contains 2 integers;
+    # the first int stores the cbm & the second int stores the weight
+    ErrorDetect = [0, 0]  # List that contains 2 integers;
+    # the first int counts the errors & the second int counts the number of iterations
+
     parameters = input(
-        "\n\nWhats the product number, barcode or sku of the item? ")
+        "\n\nWhats the product number, barcode or sku of the item?  ")
     productQuantity = int(input(
-        "\nWhat's the quantity of the items that you need? "))
+        "\nWhat's the quantity of the items that you need?  "))
 
     inWarehouse = cbmcalculator.searching_product(parameters)
 
     if inWarehouse == 0:
-        print("error. either incorrect input or item does not exist")
+        print("\nerror. either incorrect input or item does not exist  ")
         ErrorDetect[0] += 1
 
     else:
@@ -32,12 +37,12 @@ def testFunc(IterateStore: list, ErrorDetect: list):
         IterateStore[0] += cbm[0]
         IterateStore[1] += cbm[1]
 
-    input("Do you want to search for another item? y/n").capitalize()
-    if input == "Y":
+    input("\nDo you want to search for another item? y/n  ").capitalize()
+    if input == "Y" or input == "y":
         ErrorDetect[1] += 1
         testFunc()
 
-    elif input == "N":
+    elif input == "N" or input == "n":
         if ErrorDetect[1] == ErrorDetect[0]:
             return 0
         else:
@@ -48,12 +53,16 @@ def testFunc(IterateStore: list, ErrorDetect: list):
         testFunc()
 
 
-cbm = testFunc(list, list)
+def main():
+    cbm = testFunc()
 
-if cbm != 0:
-    print("The Total  CBM is ", cbm[0], ", the total weight is ",
-          cbm[1])
-    # " the items will be sent in a ", cbm[2]) #fix parcel or package logic
+    if cbm != 0:
+        print("The Total  CBM is ", cbm[0], ", the total weight is ",
+              cbm[1])
+        # " the items will be sent in a ", cbm[2]) #fix parcel or package logic
 
-else:
-    print("There are no values to output")
+    else:
+        print("There are no values to output")
+
+
+main()
