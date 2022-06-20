@@ -41,7 +41,7 @@ The following knowledge is required to effectively contribute to this repo:
 
 #### Libraries
 
-[openpyxl](https://pypi.org/project/openpyxl/) - which can be installled via pip once in the same directory python
+[openpyxl](https://pypi.org/project/openpyxl/) - which can be installled via pip once in the python install directory
 
 ```
 pip install openpyxl
