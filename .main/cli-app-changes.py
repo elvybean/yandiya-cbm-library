@@ -62,6 +62,13 @@ def testFunc(IterateStore: list, ErrorDetect: list):
 
 
 def main():
+    """holds the main code of the py file
+    Args: 
+        none
+
+    Returns: 
+        none
+    """
     emptyList = [0, 0]
     cbm = testFunc(emptyList, emptyList)
 
