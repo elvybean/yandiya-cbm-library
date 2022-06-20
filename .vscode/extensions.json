@@ -1,11 +1,14 @@
 {
-    "recommendations": [
-        "esbenp.prettier-vscode",
-        "cweijan.vscode-office",
-        "njpwerner.autodocstring",
-        "ms-python.python",
-        "ms-python.vscode-pylance",
-        "ms-vscode.vs-keybindings",
-        "GitHub.vscode-pull-request-github"
-    ]
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "cweijan.vscode-office",
+    "njpwerner.autodocstring",
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-vscode.vs-keybindings",
+    "github.vscode-pull-request-github",
+    "searking.preview-vscode",
+    "ecmel.vscode-html-css",
+    "GitHub.github-vscode-theme"
+  ]
 }

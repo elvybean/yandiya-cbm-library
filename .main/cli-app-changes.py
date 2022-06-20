@@ -46,14 +46,12 @@ def testFunc(IterateStore: list, ErrorDetect: list):
     if response == "Y" or response == "Yes":
         if ErrorDetect[1] == ErrorDetect[0]:
             testFunc([0, 0], ErrorDetect)
-
         else:
             testFunc(IterateStore, ErrorDetect)
 
     elif response == "N" or response == "No":
         if ErrorDetect[1] == ErrorDetect[0]:
             return [0, 0]
-
         else:
             return [IterateStore[0], IterateStore[1]]
 
@@ -73,9 +71,6 @@ def main():
     cbm = testFunc(emptyList, emptyList)
 
     print(cbm)
-
-    #print("The Total  CBM is ", cbm[0], ", the total weight is ", cbm[1])
-    # " the items will be sent in a ", cbm[2]) #fix parcel or package logic
 
 
 main()
