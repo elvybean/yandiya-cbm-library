@@ -18,7 +18,7 @@ The library takes user input of which of Yandiya's products they are packaging a
 
 ### Knowledge Prerequisites
 
-The following knowledge is required to effectively contribute to this repo: 
+The following knowledge is required to effectively contribute to this repo:
 
 - Python basics and fundamentals
 - Array manipulation in python
@@ -52,6 +52,7 @@ OR if the py global variable is enabled the following line can be used as an alt
 ```
 py -m pip install openpyxl
 ```
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 #### OS version
@@ -74,11 +75,20 @@ This README.md section is unfinshed
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## Potential Future Adddions
+## Milestones
 
-- Odoo Module to interact with the python library
-- Web UI to interact with the python library - using pyscript
-- pip package to simlify instillation of library
+- [x] [Access Database (Excel Spreadsheet)](https://github.com/elvybean/yandiya-cbm-library/milestone/12)
+- [x] [Search for Product in Database (Excel)](https://github.com/elvybean/yandiya-cbm-library/milestone/13)
+- [x] [CBM Calculations - singular product types](https://github.com/elvybean/yandiya-cbm-library/milestone/1)
+- [ ] [CBM Calculations - multiple product types](https://github.com/elvybean/yandiya-cbm-library/milestone/3)
+- [x] [Packaging Logic](https://github.com/elvybean/yandiya-cbm-library/milestone/2)
+- [ ] [Parcelforce logic](https://github.com/elvybean/yandiya-cbm-library/milestone/10)
+- [ ] [Pallet Selection Logic](https://github.com/elvybean/yandiya-cbm-library/milestone/4)
+- [ ] [Price Calculation Logic](https://github.com/elvybean/yandiya-cbm-library/milestone/5)
+- [ ] [Three Dimensional Calculations](https://github.com/elvybean/yandiya-cbm-library/milestone/6)
+- [ ] [Web Interface](https://github.com/elvybean/yandiya-cbm-library/milestone/9)
+- [ ] [Python Package](https://github.com/elvybean/yandiya-cbm-library/milestone/7)
+- [ ] [Odoo Module](https://github.com/elvybean/yandiya-cbm-library/milestone/8)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -95,6 +105,7 @@ Contributors names and contact info
 ## Version History
 
 ### Version 0.2
+
 #### Contributers: Elvis Obero-Atkins
 
 ```
@@ -102,6 +113,7 @@ In Development
 ```
 
 ### Version 0.1.1
+
 #### Contributers: Elvis Obero-Atkins
 
 - Fixed various spelling errors
@@ -110,6 +122,7 @@ In Development
 - started development of multiple item types on cbm [see commit](https://github.com/elvybean/yandiya-cbm-library/commit/b73434699832051913fc05ad7161e206b8854f66)
 
 ### Version 0.1
+
 #### Contributers: Elvis Obero-Atkins
 
 - Accesses Yandiya's product data from yandiya-db.xlsx
@@ -123,7 +136,8 @@ In Development
 
 ## Repo Fork(s)
 
-### [Excel Postcode Sheet & Additional Development](https://github.com/eocooksley535/yandiya-cbm-library) 
+### [Excel Postcode Sheet & Additional Development](https://github.com/eocooksley535/yandiya-cbm-library)
+
 #### Contributers: Ethan Cooksley | Developers: Ethan Cooksley & Jack Macguire
 
 - Repo forked from [this commit](https://github.com/elvybean/yandiya-cbm-library/commit/4db2e7c4f7daca418048e6472bedf502df0fd242)
