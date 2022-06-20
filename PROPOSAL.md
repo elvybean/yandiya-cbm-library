@@ -25,6 +25,7 @@
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Stored Data Required by my proposed solution
+These will be in a appropriate file format such as CSV / Excel, JSON, SQL (MySQL, SQL Server, postgresql or SQLLite) or Database files etc
 - Product Details:
     - Full product list
     - Each product‘s inner carton, outer carton dimensions and weight.
@@ -34,10 +35,6 @@
   - Pricing per Postcode for each pallet type
 - Parcel Details:
   - Pricing per Postcode
-
-The solution will require the following in some form of a storable format (CSV / SQL / Database files etc.):
-  - The dimensions of each pallet type and its maximum weight and height
-  - Full Product list; with each product ‘s inner carton and outer carton dimensions and weight.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
