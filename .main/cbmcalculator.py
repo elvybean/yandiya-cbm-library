@@ -31,20 +31,20 @@ def searching_product(parameters):
     else:
         search_column = records_table['A']  # partNo
 
-    reqData = 0
+    requiredData = 0
     for cell in search_column:
         if cell.value == parameters:
-            reqData = records_table[cell.row]
+            requiredData = records_table[cell.row]
             break
 
-    if reqData == 0:
+    if requiredData == 0:
         return 0
 
-    output = []
-    for cell in reqData:
-        output.append(cell.value)
+    returnValue = []
+    for cell in requiredData:
+        returnValue.append(cell.value)
 
-    return output
+    return returnValue
 
 
 def calculate(parameters: list, itemQuantity: int):
@@ -74,24 +74,33 @@ def calculate(parameters: list, itemQuantity: int):
     return [cbm, weight]
 
 
-def calculate_multiple(parameters: dict):
-    """searches a list variable for specific values and then calculates and returns cbm and total weight
+def calculate_multiple(parameters: list):
+    """n/a
     Args:
-        parameters (dict): contains pairs of stored extracted excel rows and user inputted item quanities to be 
-            used in calculations
+        parameters (list): is a list of lists that containa stored extracted excel rows as a list and user inputted integer quanities 
+        (3 Dimensional List)
 
     Returns:
-        list: stores the calculated cbm and the total weight of all the items
+        list: stores the calculated total cbm, the total weight and how the item will be shipped.
     """
+    # Main List = [ [Secondary List = [Third List(Excel Row), Integer] ] , [ y ], [ z ] ]
     cbm = 0
     weight = 0
 
-    # iterate over number of key value pairs in dictioary
-    # feed the pairs into calculate() as it's parameters
-    # add returned values to cbm and weight respectively
+    # iterate over number of lists in list of lists
+    # feed the smaller lists into calculate() as it's parameters
+    # adds returned values to cbm and weight respectively
     # return total values of cbm and weight
 
-    return [cbm, weight]
+    for i in range(len(parameters)):
+        tempStore = parameters[i]
+        calculations = calculate(tempStore[0], tempStore[1])
+        cbm += calculations[0]
+        weight += calculations[1]
+
+    shipping = weight_logic(weight)
+
+    return [cbm, weight, shipping]
 
 
 def weight_logic(weight: float):
