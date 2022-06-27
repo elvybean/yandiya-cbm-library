@@ -89,6 +89,7 @@ This README.md section is unfinshed
 - [ ] [Web Interface](https://github.com/elvybean/yandiya-cbm-library/milestone/9)
 - [ ] [Python Package](https://github.com/elvybean/yandiya-cbm-library/milestone/7)
 - [ ] [Odoo Module](https://github.com/elvybean/yandiya-cbm-library/milestone/8)
+- [ ] [PostgreSQL support](https://github.com/elvybean/yandiya-cbm-library/milestone/14)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -140,7 +141,7 @@ In Development
 
 #### Contributers: Ethan Cooksley | Developers: Ethan Cooksley & Jack Macguire
 
-- Repo forked from [this commit](https://github.com/elvybean/yandiya-cbm-library/commit/4db2e7c4f7daca418048e6472bedf502df0fd242)
+- Repo forked from V0.1.1 specifically [commit 51](https://github.com/elvybean/yandiya-cbm-library/commit/4db2e7c4f7daca418048e6472bedf502df0fd242)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

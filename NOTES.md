@@ -1,6 +1,10 @@
-# Development Notes
+# Development Notes & To Do list
 
 ### By Elvis Obero-Atkins
+
+## To Do
+
+- Add new milestones to README.md
 
 ## Web Resources
 
