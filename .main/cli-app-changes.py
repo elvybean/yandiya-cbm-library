@@ -31,46 +31,54 @@ def testFunc(IterateStore: list, ErrorDetect: list):
         "\nWhat's the quantity of the items that you need?  "))
 
     inWarehouse = cbmcalculator.searching_product(parameters)
+
     if inWarehouse == 0:
         ErrorDetect[0] += 1
+        cbm = [0, 0]
         print("\nerror. either incorrect input or item does not exist  ")
 
     else:
         cbm = cbmcalculator.calculate(inWarehouse, productQuantity)
 
-        IterateStore[0] += cbm[0]
-        IterateStore[1] += cbm[1]
+    for i in range(len(cbm)):
+        IterateStore[i] += cbm[i]
+
+    print(cbm)  # for testing purposes
+    print(IterateStore)  # for testing purposes
 
     response = input(
-        "\nDo you want to search for another item? y/n  ").capitalize()
-    if response == "Y" or response == "Yes":
-        if ErrorDetect[1] == ErrorDetect[0]:
-            testFunc([0, 0], ErrorDetect)
-        else:
-            testFunc(IterateStore, ErrorDetect)
+        "\nDo you want to search for another item? y/n  ")
+    response = response.capitalize()
+    # if response == "Y":
+    # if these values are the same it means there have been an error at every iteration.
+    # if ErrorDetect[1] == ErrorDetect[0]:
+    #    testFunc([0, 0], ErrorDetect)
+    # else:
+    #testFunc(IterateStore, ErrorDetect)
 
-    elif response == "N" or response == "No":
-        if ErrorDetect[1] == ErrorDetect[0]:
-            return [0, 0]
-        else:
-            return [IterateStore[0], IterateStore[1]]
+    if response == "N":
+        # elif response == "N":
+        # if ErrorDetect[1] == ErrorDetect[0]:
+        #    return "No Values to return"
+        # else:
+        return IterateStore
 
     else:
         testFunc(IterateStore, ErrorDetect)
 
 
 def main():
-    """holds the main code of the py file
+    """holds the main code of this py file
     Args: 
         none
 
     Returns: 
         none
     """
-    emptyList = [0, 0]
-    cbm = testFunc(emptyList, emptyList)
+    #cbm = testFunc([0, 0], [0, 0])
 
-    print(cbm)
+    # print(cbm)
+    print(testFunc([0, 0], [0, 0]))
 
 
 main()

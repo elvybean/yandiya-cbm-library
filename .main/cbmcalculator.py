@@ -5,9 +5,6 @@ Last Edited by: Elvis Obero-Atkins
 This py script is main component of the yandiya-cbm-library
 As well as this py script the yandiya-db.xslx (excel file) is required
 
-This is V0.1.1 of the yandiya-cbm-library
-It meets three milestones outlined in the proposal
-
 """
 import openpyxl
 from openpyxl import Workbook
@@ -97,4 +94,4 @@ def productdetails_headings():
         list: stores all the headings for each of the columns
     """
     return ['partNo', 'barcode', 'sku', 'productTitle', 'pWidth', 'pHeight', 'pDepth', 'icWidth', 'icHeight',
-            'icDepth', 'icWeight', 'icQty', 'ocWidth', 'ocHeight', 'ocDepth', 'ocWeight', 'ocQty']  # 17 (0 -16) Items in list
+            'icDepth', 'icWeight', 'icQty', 'ocWidth', 'ocHeight', 'ocDepth', 'ocWeight', 'ocQty']  # 17 (0-16) Items in list
