@@ -74,6 +74,26 @@ def calculate(parameters: list, itemQuantity: int):
     return [cbm, weight]
 
 
+def calculate_multiple(parameters: dict):
+    """searches a list variable for specific values and then calculates and returns cbm and total weight
+    Args:
+        parameters (dict): contains pairs of stored extracted excel rows and user inputted item quanities to be 
+            used in calculations
+
+    Returns:
+        list: stores the calculated cbm and the total weight of all the items
+    """
+    cbm = 0
+    weight = 0
+
+    # iterate over number of key value pairs in dictioary
+    # feed the pairs into calculate() as it's parameters
+    # add returned values to cbm and weight respectively
+    # return total values of cbm and weight
+
+    return [cbm, weight]
+
+
 def weight_logic(weight: float):
     """calculates using simple logic whether or not a item needs to be send via parcel or package
     Args:
