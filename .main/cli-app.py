@@ -4,23 +4,21 @@ Last Edited by: Elvis Obero-Atkins
 
 This py script is NOT REQUIRED for yandiya-cbm-library to function
 
-It is CLI python application designed to interact
-with the yandiya-cbm-library.
+It is CLI python application designed to interact with the yandiya-cbm-library.
 """
 import cbmcalculator
 
 
 def listCreate(IterateStore: list, ErrorDetect: list):
-    """Creates a list that contains the extacted excel rows of selected products + item quanities
+    """Creates a list that contains the extacted excel rows of selected products + item quantities
 
     Args:
-        IterateStore (list)(2D): (is orginally empty when called from main) stores the extacted excel rows of selected products 
-            + item quanities in a 2 Dimensional list
-        ErrorDetect (list): list of ints; the first int counts the errors & the second int counts the number of iterations
+        IterateStore (list): (is orginally empty when called from main) stores the extacted excel rows of selected products 
+            + item quantities in a 2 Dimensional list
+        ErrorDetect (list): list of integer; the first int counts the errors & the second int counts the number of iterations
 
     Returns:
-        IterateStore (list)(2D): (is orginally empty when called from main) stores the extacted excel rows of selected products 
-            + item quanities in a 2 Dimensional list
+        IterateStore (list): stores the extacted excel rows of selected products + item quantities in a 2 Dimensional list
     """
 
     ErrorDetect[1] += 1

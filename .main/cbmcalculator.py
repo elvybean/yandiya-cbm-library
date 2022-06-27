@@ -87,11 +87,6 @@ def calculate_multiple(parameters: list):
     cbm = 0
     weight = 0
 
-    # iterate over number of lists in list of lists
-    # feed the smaller lists into calculate() as it's parameters
-    # adds returned values to cbm and weight respectively
-    # return total values of cbm and weight
-
     for i in range(len(parameters)):
         tempStore = parameters[i]
         calculations = calculate(tempStore[0], tempStore[1])

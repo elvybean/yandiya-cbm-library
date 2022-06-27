@@ -1,6 +1,6 @@
 # Yandiya CBM Library
 
-## Current: Version 0.1.1 | In Development: Version 0.2
+## Current: Version 0.2
 
 - a python library written for Yandiya Technologies Ltd during my T Level Industry Placement.
 
@@ -78,16 +78,15 @@ This README.md section is unfinshed
 - [x] [Access Database (Excel Spreadsheet)](https://github.com/elvybean/yandiya-cbm-library/milestone/12)
 - [x] [Search for Product in Database (Excel)](https://github.com/elvybean/yandiya-cbm-library/milestone/13)
 - [x] [CBM Calculations - singular product types](https://github.com/elvybean/yandiya-cbm-library/milestone/1)
-- [ ] [CBM Calculations - multiple product types](https://github.com/elvybean/yandiya-cbm-library/milestone/3)
+- [x] [CBM Calculations - multiple product types](https://github.com/elvybean/yandiya-cbm-library/milestone/3)
 - [x] [Packaging Logic](https://github.com/elvybean/yandiya-cbm-library/milestone/2)
-- [ ] [Parcelforce logic](https://github.com/elvybean/yandiya-cbm-library/milestone/10)
-- [ ] [Pallet Selection Logic](https://github.com/elvybean/yandiya-cbm-library/milestone/4)
+- [ ] [Parcelforce & Pallet Selection Logic](https://github.com/elvybean/yandiya-cbm-library/milestone/10)
 - [ ] [Price Calculation Logic](https://github.com/elvybean/yandiya-cbm-library/milestone/5)
 - [ ] [Three Dimensional Calculations](https://github.com/elvybean/yandiya-cbm-library/milestone/6)
+- [ ] [PostgreSQL](https://github.com/elvybean/yandiya-cbm-library/milestone/14)
 - [ ] [Web Interface](https://github.com/elvybean/yandiya-cbm-library/milestone/9)
 - [ ] [Python Package](https://github.com/elvybean/yandiya-cbm-library/milestone/7)
 - [ ] [Odoo Module](https://github.com/elvybean/yandiya-cbm-library/milestone/8)
-- [ ] [PostgreSQL support](https://github.com/elvybean/yandiya-cbm-library/milestone/14)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -103,24 +102,24 @@ Contributors names and contact info
 
 ## Version History
 
-### Version 0.2
+### Version 0.2 [go to commit](https://github.com/elvybean/yandiya-cbm-library/commit/97004b07e1b46a9749e38e4dadcf2a5f44a1c9f9)
 
 #### Contributers: Elvis Obero-Atkins
 
-```
-In Development
-```
+- Added fucntion that calculates CBM of multiple product types
+- Completely refactored cli-app
+- cli-app creates 2D arrays for input for cbmcalculator
 
-### Version 0.1.1
+### Version 0.1.1 [go to commit](https://github.com/elvybean/yandiya-cbm-library/commit/db9bcbaa384f233411c3a0b2e108904e21bd056c)
 
 #### Contributers: Elvis Obero-Atkins
 
 - Fixed various spelling errors
 - Reorganised file structure
 - Minimal python logic changes
-- started development of multiple item types on cbm [see commit](https://github.com/elvybean/yandiya-cbm-library/commit/b73434699832051913fc05ad7161e206b8854f66)
+- started development of multiple item types on cbm
 
-### Version 0.1
+### Version 0.1 [go to commit](https://github.com/elvybean/yandiya-cbm-library/commit/c6076c3a13dfb1bab704bc005549391a104953a6)
 
 #### Contributers: Elvis Obero-Atkins
 
