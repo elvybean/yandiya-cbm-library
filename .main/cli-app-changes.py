@@ -46,6 +46,9 @@ def testFunc(IterateStore: list, ErrorDetect: list):
         "\nDo you want to search for another item? y/n  ").capitalize()
 
     if response == "N":
+
+        IterateStore.append(cbmcalculator.weight_logic(IterateStore[1]))
+
         return IterateStore
     else:
         return testFunc(IterateStore, ErrorDetect)
@@ -61,7 +64,9 @@ def main():
     """
 
     multipleCBM = testFunc([0, 0], [0, 0])
-    print(multipleCBM)
+
+    print("The Total  CBM is ", multipleCBM[0], ", the total weight is ",
+          multipleCBM[1], " the items will be sent in a ", multipleCBM[2])
 
 
 main()
