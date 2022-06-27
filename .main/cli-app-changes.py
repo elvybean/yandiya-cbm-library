@@ -4,7 +4,7 @@ Last Edited by: Elvis Obero-Atkins
 
 This py script is NOT REQUIRED for yandiya-cbm-library to function
 
-It is CLI python application designed to interact 
+It is CLI python application designed to interact
 with the yandiya-cbm-library.
 
 Adding calculate cbm of multiple items
@@ -36,36 +36,32 @@ def testFunc(IterateStore: list, ErrorDetect: list):
         ErrorDetect[0] += 1
         cbm = [0, 0]
         print("\nerror. either incorrect input or item does not exist  ")
-
     else:
         cbm = cbmcalculator.calculate(inWarehouse, productQuantity)
 
     for i in range(len(cbm)):
         IterateStore[i] += cbm[i]
 
-    print(cbm)  # for testing purposes
-    print(IterateStore)  # for testing purposes
-
     response = input(
         "\nDo you want to search for another item? y/n  ").capitalize()
 
     if response == "N":
         return IterateStore
-
     else:
-        testFunc(IterateStore, ErrorDetect)
+        return testFunc(IterateStore, ErrorDetect)
 
 
 def main():
     """holds the main code of this py file
-    Args: 
+    Args:
         none
 
-    Returns: 
+    Returns:
         none
     """
 
-    print(testFunc([0, 0], [0, 0]))
+    multipleCBM = testFunc([0, 0], [0, 0])
+    print(multipleCBM)
 
 
 main()
