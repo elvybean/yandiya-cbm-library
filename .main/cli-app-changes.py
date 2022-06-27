@@ -47,20 +47,9 @@ def testFunc(IterateStore: list, ErrorDetect: list):
     print(IterateStore)  # for testing purposes
 
     response = input(
-        "\nDo you want to search for another item? y/n  ")
-    response = response.capitalize()
-    # if response == "Y":
-    # if these values are the same it means there have been an error at every iteration.
-    # if ErrorDetect[1] == ErrorDetect[0]:
-    #    testFunc([0, 0], ErrorDetect)
-    # else:
-    #testFunc(IterateStore, ErrorDetect)
+        "\nDo you want to search for another item? y/n  ").capitalize()
 
     if response == "N":
-        # elif response == "N":
-        # if ErrorDetect[1] == ErrorDetect[0]:
-        #    return "No Values to return"
-        # else:
         return IterateStore
 
     else:
@@ -75,9 +64,7 @@ def main():
     Returns: 
         none
     """
-    #cbm = testFunc([0, 0], [0, 0])
 
-    # print(cbm)
     print(testFunc([0, 0], [0, 0]))
 
 
