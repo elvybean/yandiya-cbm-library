@@ -59,10 +59,13 @@ def calculate(parameters: list, itemQuantity: int):
     Returns:
         list: stores the calculated cbm and the total weight
     """
-    if itemQuantity >= (int(parameters[16]) / 2):
-        # checks if item quanity is >= half of the maximum amount
-        # of items that can go inside a outer carton
+    cbm = 0
+    weight = 0
 
+    if itemQuantity >= (int(parameters[16]) / 2):
+        # checks if item quanity is >= half of the maximum amount of items that can go inside a outer carton
+
+        # creates a multiplier for amount of outer cartons
         if itemQuantity > int(parameters[16]):
             remainderItems = itemQuantity % int(parameters[16])
             ocDividable = itemQuantity - remainderItems
@@ -71,16 +74,20 @@ def calculate(parameters: list, itemQuantity: int):
             if remainderItems >= (int(parameters[16]) / 2):
                 ocMultiply += 1
 
+            else:
+                # the remainder of items are packaged in inner cartons
+                cbm += ((int(parameters[7]) * int(parameters[8]) *
+                        int(parameters[9]) / 1000000) * remainderItems)
+
+                weight += (float(parameters[10]) * remainderItems)
+
         else:
             ocMultiply = 1
 
-        cbm = (int(parameters[12]) * int(parameters[13])
-               * int(parameters[14]) / 1000000)
+        cbm += (int(parameters[12]) * int(parameters[13])
+                * int(parameters[14]) / 1000000) * ocMultiply
 
-        weight = float(parameters[15])
-
-        cbm *= ocMultiply
-        weight *= ocMultiply
+        weight += float(parameters[15]) * ocMultiply
 
     else:
 
@@ -129,28 +136,28 @@ def shipping_logic(cbm: float, weight: float):
 
     # MVP: this is a basic implementation of the fucntion, just using strings and set values
     # instead of some form of database (.xlsx or SQL)
-    match weight:
-        case _ if weight <= 30:
-            return ["parcel-force", round(float(weight/30))]
 
-        case _ if not weight <= 30 and weight <= 300:
-            if cbm <= 0.768:
-                return ["euro-quarter", round(float(cbm/0.768))]
-            else:  # (cbm > 0.768 and cbm <= 1.152):
-                return ["standard-quarter", round(float(cbm/1.152))]
+    if weight in range(0, 31):
+        return ["parcel-force", round(float(weight/30))]
 
-        case _ if not weight <= 300 and weight <= 600:
-            if (cbm <= 1.152):
-                return ["euro-half", round(float(cbm/1.152))]
-            else:  # (cbm > 1.152 and cbm <= 1.728):
-                type = "standard-half"
-                return ["standard-half", round(float(cbm/1.728))]
+    if weight in range(32, 301):
+        if cbm <= 0.768:
+            return ["euro-quarter", round(float(cbm/0.768))]
+        else:  # (cbm > 0.768 and cbm <= 1.152):
+            return ["standard-quarter", round(float(cbm/1.152))]
 
-        case _ if not weight <= 600 and weight <= 1200:
-            if (cbm <= 2.112):
-                return ["euro-full", round(float(cbm/2.112))]
-            else:  # (cbm > 2.112 and cbm <= 3.168):
-                return ["standard-full", round(float(cbm/3.168))]
+    if weight in range(302, 601):
+        if (cbm <= 1.152):
+            return ["euro-half", round(float(cbm/1.152))]
+        else:  # (cbm > 1.152 and cbm <= 1.728):
+            type = "standard-half"
+            return ["standard-half", round(float(cbm/1.728))]
+
+    if weight in range(602, 1201):
+        if (cbm <= 2.112):
+            return ["euro-full", round(float(cbm/2.112))]
+        else:  # (cbm > 2.112 and cbm <= 3.168):
+            return ["standard-full", round(float(cbm/3.168))]
 
 
 def productdetails_headings():
