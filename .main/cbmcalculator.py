@@ -13,7 +13,7 @@ from openpyxl import Workbook
 def searching_product(parameters):
     """searches an excel document based on user input of a product number, barcode or sku
     Args:
-        parameters (string): a product number, barcode or sku that the 
+        parameters (string): a product number, barcode or sku that the
                             user is using to search the excel for
 
     Returns:
@@ -51,13 +51,15 @@ def calculate(parameters: list, itemQuantity: int):
     """searches a list variable for specific values and then calculates and returns cbm and total weight
     Args:
         parameters (list): stored extracted excel row
-        itemQuantity (int): user inputted item quanitiy to be 
+        itemQuantity (int): user inputted item quanitiy to be
             used in calculations
 
     Returns:
         list: stores the calculated cbm and the total weight
     """
     if itemQuantity >= (float(parameters[16]) / 2):
+        # checks if item quanity is >= half of the maximum amount
+        # of items that can go inside a outer carton
 
         cbm = (int(parameters[12]) * int(parameters[13])
                * int(parameters[14]) / 1000000)
@@ -77,7 +79,7 @@ def calculate(parameters: list, itemQuantity: int):
 def calculate_multiple(parameters: list):
     """n/a
     Args:
-        parameters (list): is a list of lists that containa stored extracted excel rows as a list and user inputted integer quanities 
+        parameters (list): is a list of lists that containa stored extracted excel rows as a list and user inputted integer quanities
         (3 Dimensional List)
 
     Returns:
@@ -93,12 +95,13 @@ def calculate_multiple(parameters: list):
         cbm += calculations[0]
         weight += calculations[1]
 
-    shipping = weight_logic(weight)
+    shipping = shipping_logic(cbm, weight)
 
     return [cbm, weight, shipping]
 
 
-def weight_logic(weight: float):
+def shipping_logic(cbm: float, weight: float):
+    # renamed weight_logic to shipping_logic
     """calculates using simple logic whether or not a item needs to be send via parcel or package
     Args:
         weight (float): _description_
@@ -106,10 +109,32 @@ def weight_logic(weight: float):
     Returns:
         string: value of parcel or pallet, depending on outcome of logic
     """
-    if weight <= 30:
-        return "Parcel"
-    else:
-        return "Pallet"
+    # compares cbm & weight of products to cbm & weight of pallet and finds the most appropriate
+
+    # MVP: this is a basic implementation of the fucntion, just using strings and set values
+    # instead of some form of database (.xlsx or SQL)
+    match weight:
+        case _ if weight <= 30:
+            type = "parcel-force"
+
+        case _ if not weight <= 30 and weight <= 300:
+            if cbm <= 0.768:
+                return ["euro-quarter", round(float(cbm/0.768))]
+            elif (cbm > 0.768 and cbm <= 1.152):
+                return ["standard-quarter", round(float(cbm/1.152))]
+
+        case _ if not weight <= 300 and weight <= 600:
+            if (cbm <= 1.152):
+                return ["euro-half", round(float(cbm/1.152))]
+            elif (cbm > 1.152 and cbm <= 1.728):
+                type = "standard-half"
+                return ["standard-half", round(float(cbm/1.728))]
+
+        case _ if not weight <= 600 and weight <= 1200:
+            if (cbm <= 2.112):
+                return ["euro-full", round(float(cbm/2.112))]
+            elif (cbm > 2.112 and cbm <= 3.168):
+                return ["standard-full", round(float(cbm/3.168))]
 
 
 def productdetails_headings():
@@ -119,3 +144,11 @@ def productdetails_headings():
     """
     return ['partNo', 'barcode', 'sku', 'productTitle', 'pWidth', 'pHeight', 'pDepth', 'icWidth', 'icHeight',
             'icDepth', 'icWeight', 'icQty', 'ocWidth', 'ocHeight', 'ocDepth', 'ocWeight', 'ocQty']  # 17 (0-16) Items in list
+
+
+def shippingdetails_headings():
+    """returns the headings of the pallet-shipping sheet
+    Returns:
+        list: stores all the headings for each of the columns
+    """
+    return ['name', 'length', 'width', 'height', 'cbm', 'maxWeight', 'price']  # 7 (0-6) Items in list
