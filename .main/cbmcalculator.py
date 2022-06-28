@@ -159,6 +159,10 @@ def shipping_logic(cbm: float, weight: float):
         else:  # (cbm > 2.112 and cbm <= 3.168):
             return ["standard-full", round(float(cbm/3.168))]
 
+    # next revision: checks every possible option and uses basic price checking (just for LE postcode) for the best option
+    # so it will equally consider weight, cbm and price (just le postcode)
+    # will also return additonal variable premium or economy - this needs to be disscused
+
 
 def productdetails_headings():
     """returns the headings of the product-details sheet
