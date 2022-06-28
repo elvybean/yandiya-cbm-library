@@ -66,8 +66,7 @@ def main():
 
     multipleCBM = cbmcalculator.calculate_multiple(listParameter)
 
-    print("The Total  CBM is ", multipleCBM[0], ", the total weight is ",
-          multipleCBM[1], " the items will be sent in a ", multipleCBM[2])
-
+    #print("The Total  CBM is ", multipleCBM[0], ", the total weight is ", multipleCBM[1], " the items will be sent in a ", multipleCBM[2])
+    print(multipleCBM)
 
 main()

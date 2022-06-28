@@ -115,7 +115,7 @@ def shipping_logic(cbm: float, weight: float):
     # instead of some form of database (.xlsx or SQL)
     match weight:
         case _ if weight <= 30:
-            type = "parcel-force"
+            return ["parcel-force", round(float(weight/30))]
 
         case _ if not weight <= 30 and weight <= 300:
             if cbm <= 0.768:
