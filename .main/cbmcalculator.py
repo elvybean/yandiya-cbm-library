@@ -120,20 +120,20 @@ def shipping_logic(cbm: float, weight: float):
         case _ if not weight <= 30 and weight <= 300:
             if cbm <= 0.768:
                 return ["euro-quarter", round(float(cbm/0.768))]
-            elif (cbm > 0.768 and cbm <= 1.152):
+            else:  # (cbm > 0.768 and cbm <= 1.152):
                 return ["standard-quarter", round(float(cbm/1.152))]
 
         case _ if not weight <= 300 and weight <= 600:
             if (cbm <= 1.152):
                 return ["euro-half", round(float(cbm/1.152))]
-            elif (cbm > 1.152 and cbm <= 1.728):
+            else:  # (cbm > 1.152 and cbm <= 1.728):
                 type = "standard-half"
                 return ["standard-half", round(float(cbm/1.728))]
 
         case _ if not weight <= 600 and weight <= 1200:
             if (cbm <= 2.112):
                 return ["euro-full", round(float(cbm/2.112))]
-            elif (cbm > 2.112 and cbm <= 3.168):
+            else:  # (cbm > 2.112 and cbm <= 3.168):
                 return ["standard-full", round(float(cbm/3.168))]
 
 
