@@ -24,7 +24,7 @@ def listCreate(IterateStore: list, ErrorDetect: list):
     ErrorDetect[1] += 1
 
     parameters = input(
-        "\n\nWhats the product number, barcode or sku of the item?  ")
+        "\nWhats the product number, barcode or sku of the item?  ")
     productQuantity = int(input(
         "\nWhat's the quantity of the items that you need?  "))
 
@@ -56,6 +56,11 @@ def main():
     Returns:
         none
     """
+
+    # this is unnecessary but cool
+    f = open(".main\welcome.txt", "r")
+    print(f.read())
+    f.close()
 
     listParameter = listCreate([], [0, 0])
 
