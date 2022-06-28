@@ -6,6 +6,8 @@ This py script is main component of the yandiya-cbm-library
 As well as this py script the yandiya-db.xslx (excel file) is required
 
 """
+from math import remainder
+from tkinter import Y
 import openpyxl
 from openpyxl import Workbook
 
@@ -57,14 +59,28 @@ def calculate(parameters: list, itemQuantity: int):
     Returns:
         list: stores the calculated cbm and the total weight
     """
-    if itemQuantity >= (float(parameters[16]) / 2):
+    if itemQuantity >= (int(parameters[16]) / 2):
         # checks if item quanity is >= half of the maximum amount
         # of items that can go inside a outer carton
+
+        if itemQuantity > int(parameters[16]):
+            remainderItems = itemQuantity % int(parameters[16])
+            ocDividable = itemQuantity - remainderItems
+            ocMultiply = ocDividable / int(parameters[16])
+
+            if remainderItems >= (int(parameters[16]) / 2):
+                ocMultiply += 1
+
+        else:
+            ocMultiply = 1
 
         cbm = (int(parameters[12]) * int(parameters[13])
                * int(parameters[14]) / 1000000)
 
         weight = float(parameters[15])
+
+        cbm *= ocMultiply
+        weight *= ocMultiply
 
     else:
 
