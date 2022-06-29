@@ -109,26 +109,6 @@ def shipping_logic(cbm: float, weight: float):
     # MVP: this is a basic implementation of the fucntion, just using strings and set values
     # instead of some form of database (.xlsx or SQL)
 
-    """
-    if weight >= 30:
-     return ["parcel-force", round(float(weight/30))]
-
-    elif cbm <= 0.768 and weight <= 300:
-        return ["euro-quarter", 1]
-    elif cbm <= 1.152 and weight <= 300:
-        return ["standard-quarter", 1]
-
-    elif cbm <= 1.152 and weight <= 600:
-        return ["euro-half", 1]
-    elif cbm <= 1.728 and weight <= 600:
-        return ["standard-half", 1]
-
-    elif cbm <= 2.112 and weight <= 1200:
-        return ["euro-full", 1]
-    elif cbm <= 3.168 and weight <= 1200:
-        return ["standard-full", 1]
-    """
-
     # if weight >= 30:
     if weight >= 300:
         if cbm >= 0.768:
@@ -158,6 +138,8 @@ def shipping_logic(cbm: float, weight: float):
 
     # next revision: checks every possible option and uses basic price checking (just for LE postcode) for the best option
     # possible revision?: code that reads spreadsheet and writes itself
+    # modify calculate function for additional information, such as IC and OC quanity + dimensions
+    # refactor calculate.
 
 
 def main(parameters: list):
