@@ -5,6 +5,9 @@ Last Edited by: Elvis Obero-Atkins
 This py script is main component of the yandiya-cbm-library
 As well as this py script the yandiya-db.xslx (excel file) is required
 
+modify calculate function for additional information, such as IC and OC quanity + dimensions
+refactor calculate fucntion. (3D Calculations)
+
 """
 import openpyxl
 from openpyxl import Workbook
@@ -127,7 +130,6 @@ def shipping_logic(cbm: float, weight: float):
     # MVP: this is a basic implementation of the fucntion, just using strings and set values
     # instead of some form of database (.xlsx or SQL)
 
-    # if weight >= 30:
     if weight <= 300:
         if cbm <= 0.768:
             return ["euro-quarter", 1]
@@ -156,12 +158,7 @@ def shipping_logic(cbm: float, weight: float):
             multipliers = multiplierCreate(cbm, 3.168, 2.112)
             if (multipliers[0] + multipliers[1]) < weight_multiplier:
                 multipliers[1] += 1
-
             return ["standard-full", multipliers[0], "euro-full", multipliers[1]]
-
-    # possible revision?: code that reads spreadsheet and writes itself
-    # modify calculate function for additional information, such as IC and OC quanity + dimensions
-    # refactor calculate fucntion. (3D Calculations)
 
 
 def main(parameters: list):
