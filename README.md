@@ -163,7 +163,7 @@ Contributors names and contact info
 In Development
 ```
 
-### Version 0.2.1 [go to commit](https://github.com/elvybean/yandiya-cbm-library/commit/ca7f8e6baa9b47d2457774e9d7687951e8e05005)
+### Version 0.2.1 [go to commit](https://github.com/elvybean/yandiya-cbm-library/commit/d8ded715bbd3137efe298f2535ac7914d84e1874)
 
 #### Contributers: Elvis Obero-Atkins
 
@@ -171,7 +171,7 @@ In Development
 - calculates whether to send products via parcel or pallet (types) based on weight and CBM
 - created test_shipping_logic.py to test the new shipping_logic function
 
-### Version 0.2 [go to commit](https://github.com/elvybean/yandiya-cbm-library/commit/97004b07e1b46a9749e38e4dadcf2a5f44a1c9f9)
+### Version 0.2 [go to commit](https://github.com/elvybean/yandiya-cbm-library/commit/b95ea9a8c05951ad5e4707492b4af880fae2cf64)
 
 #### Contributers: Elvis Obero-Atkins
 
