@@ -28,7 +28,7 @@ def listCreate(IterateStore: list, ErrorDetect: list):
     productQuantity = int(input(
         "\nWhat's the quantity of the items that you need?  "))
 
-    inWarehouse = cbmcalculator.searching_product(parameters)
+    inWarehouse = cbmcalculator.search_product(parameters)
 
     if inWarehouse == 0:
         ErrorDetect[0] += 1
@@ -64,9 +64,11 @@ def main():
 
     listParameter = listCreate([], [0, 0])
 
-    multipleCBM = cbmcalculator.calculate_multiple(listParameter)
+    multipleCBM = cbmcalculator.main(listParameter)
 
+    # tabulate table?? + pandas??
     #print("The Total  CBM is ", multipleCBM[0], ", the total weight is ", multipleCBM[1], " the items will be sent in a ", multipleCBM[2])
     print(multipleCBM)
+
 
 main()

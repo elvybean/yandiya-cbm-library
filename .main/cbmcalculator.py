@@ -10,7 +10,7 @@ import openpyxl
 from openpyxl import Workbook
 
 
-def searching_product(parameters):
+def search_product(parameters):
     """searches an excel document based on user input of a product number, barcode or sku
     Args:
         parameters (string): a product number, barcode or sku that the
@@ -97,7 +97,70 @@ def calculate(parameters: list, itemQuantity: int):
     return [cbm, weight]
 
 
-def calculate_multiple(parameters: list):
+def shipping_logic(cbm: float, weight: float):
+    # renamed weight_logic to shipping_logic
+    """calculates using simple logic whether or not a item needs to be send via parcel or package
+    Args:
+        weight (float): _description_
+
+    Returns:
+        string: value of parcel or pallet, depending on outcome of logic
+    """
+    # MVP: this is a basic implementation of the fucntion, just using strings and set values
+    # instead of some form of database (.xlsx or SQL)
+
+    """
+    if weight >= 30:
+     return ["parcel-force", round(float(weight/30))]
+
+    elif cbm <= 0.768 and weight <= 300:
+        return ["euro-quarter", 1]
+    elif cbm <= 1.152 and weight <= 300:
+        return ["standard-quarter", 1]
+
+    elif cbm <= 1.152 and weight <= 600:
+        return ["euro-half", 1]
+    elif cbm <= 1.728 and weight <= 600:
+        return ["standard-half", 1]
+
+    elif cbm <= 2.112 and weight <= 1200:
+        return ["euro-full", 1]
+    elif cbm <= 3.168 and weight <= 1200:
+        return ["standard-full", 1]
+    """
+
+    # if weight >= 30:
+    if weight >= 300:
+        if cbm >= 0.768:
+            return ["euro-quarter", 1]
+        elif cbm >= 1.152:
+            return ["standard-quarter", 1]
+        else:
+            return 0  # maths checks
+
+    elif weight >= 600:
+        if cbm >= 1.152:
+            return ["euro-full", 1]
+        elif cbm >= 1.728:
+            return ["standard-half", 1]
+        else:
+            return 0  # maths checks
+
+    elif weight >= 1200:
+        if cbm >= 2.112:
+            return ["euro-full", 1]
+        elif cbm >= 3.168:
+            return ["standard-full", 1]
+        else:
+            return 0  # maths checks
+    else:
+        return 0  # maths checks
+
+    # next revision: checks every possible option and uses basic price checking (just for LE postcode) for the best option
+    # possible revision?: code that reads spreadsheet and writes itself
+
+
+def main(parameters: list):
     """n/a
     Args:
         parameters (list): is a list of lists that containa stored extracted excel rows as a list and user inputted integer quanities
@@ -106,7 +169,7 @@ def calculate_multiple(parameters: list):
     Returns:
         list: stores the calculated total cbm, the total weight and how the item will be shipped.
     """
-    # Main List = [ [Secondary List = [Third List(Excel Row), Integer] ] , [ y ], [ z ] ]
+    # Main List = [ [ [Excel Row], Integer ] , [ [Excel Row], Integer ], [ [Excel Row], Integer ] ]
     cbm = 0
     weight = 0
 
@@ -119,43 +182,6 @@ def calculate_multiple(parameters: list):
     shipping = shipping_logic(cbm, weight)
 
     return [cbm, weight, shipping]
-
-
-def shipping_logic(cbm: float, weight: float):
-    # renamed weight_logic to shipping_logic
-    """calculates using simple logic whether or not a item needs to be send via parcel or package
-    Args:
-        weight (float): _description_
-
-    Returns:
-        string: value of parcel or pallet, depending on outcome of logic
-    """
-    # compares cbm & weight of products to cbm & weight of pallet and finds the most appropriate
-
-    # MVP: this is a basic implementation of the fucntion, just using strings and set values
-    # instead of some form of database (.xlsx or SQL)
-
-    # if weight >= 30:
-    # return ["parcel-force", round(float(weight/30))]
-
-    if cbm <= 0.768 and weight <= 300:
-        return ["euro-quarter", round(float(cbm/0.768))]
-    elif cbm <= 1.152 and weight <= 300:
-        return ["standard-quarter", round(float(cbm/1.152))]
-
-    elif cbm <= 1.152 and weight <= 600:
-        return ["euro-half", round(float(cbm/1.152))]
-    elif cbm <= 1.728 and weight <= 600:
-        return ["standard-half", round(float(cbm/1.728))]
-
-    elif cbm <= 2.112 and weight <= 1200:
-        return ["euro-full", round(float(cbm/2.112))]
-    elif cbm <= 3.168 and weight <= 1200:
-        return ["standard-full", round(float(cbm/3.168))]
-
-    # next revision: checks every possible option and uses basic price checking (just for LE postcode) for the best option
-    # so it will equally consider weight, cbm and price (just le postcode)
-    # will also return additonal variable premium or economy - this needs to be disscused
 
 
 def productdetails_headings():
