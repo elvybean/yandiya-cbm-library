@@ -130,7 +130,14 @@ def shipping_logic(cbm: float, weight: float):
     # MVP: this is a basic implementation of the fucntion, just using strings and set values
     # instead of some form of database (.xlsx or SQL)
 
-    if weight <= 300:
+    if weight <= 30:
+        if cbm <= 0.2:  # this is a placeholder value as I currently don't know maxmimum CBM for parcels
+            return ["parcel-force", 1]
+        else:
+            multiplier = round(cbm/0.2)
+            return ["parcel-force", multiplier]
+
+    elif weight <= 300:
         if cbm <= 0.768:
             return ["euro-quarter", 1]
         elif cbm <= 1.152:
