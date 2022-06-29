@@ -5,8 +5,11 @@ Last Edited by: Elvis Obero-Atkins
 This py script is main component of the yandiya-cbm-library
 As well as this py script the yandiya-db.xslx (excel file) is required
 
+Notes:
 modify calculate function for additional information, such as IC and OC quanity + dimensions
 refactor calculate fucntion. (3D Calculations)
+Shipping_Logic is just a MVP, a  basic implementation of the fucntion, 
+uses strings and set int values instead of some form of database (.xlsx or SQL)
 
 """
 import openpyxl
@@ -64,9 +67,7 @@ def calculate(parameters: list, itemQuantity: int):
     weight = 0
 
     if itemQuantity >= (int(parameters[16]) / 2):
-        # checks if item quanity is >= half of the maximum amount of items that can go inside a outer carton
 
-        # creates a multiplier for amount of outer cartons
         if itemQuantity > int(parameters[16]):
             remainderItems = itemQuantity % int(parameters[16])
             ocDividable = itemQuantity - remainderItems
@@ -76,10 +77,8 @@ def calculate(parameters: list, itemQuantity: int):
                 ocMultiply += 1
 
             else:
-                # the remainder of items are packaged in inner cartons
                 cbm += ((int(parameters[7]) * int(parameters[8]) *
                         int(parameters[9]) / 1000000) * remainderItems)
-
                 weight += (float(parameters[10]) * remainderItems)
 
         else:
@@ -87,22 +86,19 @@ def calculate(parameters: list, itemQuantity: int):
 
         cbm += (int(parameters[12]) * int(parameters[13])
                 * int(parameters[14]) / 1000000) * ocMultiply
-
         weight += float(parameters[15]) * ocMultiply
 
     else:
 
         cbm = ((int(parameters[7]) * int(parameters[8]) *
                 int(parameters[9]) / 1000000) * itemQuantity)
-
         weight = (float(parameters[10]) * itemQuantity)
 
     return [cbm, weight]
 
 
 def multiplierCreate(inValue: float, L_value: float, S_value: float):
-    # used in shipping logic fucntion multiple time,
-    # made sense to make into a seperate function to reuse
+    # recursive code from shipping_logic
     L_remainder = inValue % L_value
     L_dividable = inValue - L_remainder
     L_multiplier = L_dividable / L_value
@@ -119,7 +115,6 @@ def multiplierCreate(inValue: float, L_value: float, S_value: float):
 
 
 def shipping_logic(cbm: float, weight: float):
-    # renamed weight_logic to shipping_logic
     """calculates using simple logic whether or not a item needs to be send via parcel or package
     Args:
         weight (float): _description_
@@ -127,8 +122,6 @@ def shipping_logic(cbm: float, weight: float):
     Returns:
         string: value of parcel or pallet, depending on outcome of logic
     """
-    # MVP: this is a basic implementation of the fucntion, just using strings and set values
-    # instead of some form of database (.xlsx or SQL)
 
     if weight <= 30:
         if cbm <= 0.2:  # this is a placeholder value as I currently don't know maxmimum CBM for parcels
@@ -155,7 +148,7 @@ def shipping_logic(cbm: float, weight: float):
             multipliers = multiplierCreate(cbm, 1.728, 1.152)
             return ["standard-half", multipliers[0], "euro-half", multipliers[1]]
 
-    else:  # weight > 600 and weight < 1200:
+    else:
         if cbm <= 2.112 and weight < 1200:
             return ["euro-full", 1]
         elif cbm <= 3.168 and weight < 1200:
@@ -169,7 +162,7 @@ def shipping_logic(cbm: float, weight: float):
 
 
 def main(parameters: list):
-    """n/a
+    """main function of the py script
     Args:
         parameters (list): is a list of lists that containa stored extracted excel rows as a list and user inputted integer quanities
         (3 Dimensional List)

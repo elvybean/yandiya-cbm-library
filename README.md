@@ -20,7 +20,7 @@
   </a>
 
 <h3 align="center">Yandiya CBM Library</h3>
-<h4 align="center">Current: Version 0.2 | In Development Version 0.2.1</h4>
+<h4 align="center">Current: Version 0.2.1 | In Development Version 0.2.2</h4>
 <p> a python library written for Yandiya Technologies Ltd during my T Level Industry Placement. </p<
 
 </div> 
@@ -131,7 +131,7 @@ This README.md section is unfinshed
 - [x] [CBM Calculations - singular product types](https://github.com/elvybean/yandiya-cbm-library/milestone/1)
 - [x] [CBM Calculations - multiple product types](https://github.com/elvybean/yandiya-cbm-library/milestone/3)
 - [x] [Packaging Logic](https://github.com/elvybean/yandiya-cbm-library/milestone/2)
-- [ ] [Parcelforce & Pallet Selection Logic](https://github.com/elvybean/yandiya-cbm-library/milestone/10)
+- [x] [Parcelforce & Pallet Selection Logic](https://github.com/elvybean/yandiya-cbm-library/milestone/10)
 - [ ] [Price Calculation Logic](https://github.com/elvybean/yandiya-cbm-library/milestone/5)
 - [ ] [Three Dimensional Calculations](https://github.com/elvybean/yandiya-cbm-library/milestone/6)
 - [ ] [PostgreSQL](https://github.com/elvybean/yandiya-cbm-library/milestone/14)
@@ -155,13 +155,21 @@ Contributors names and contact info
 
 ## Version History
 
-### Version 0.2.1
+### Version 0.2.2
 
 #### Contributers: Elvis Obero-Atkins
 
 ```
-In  Development
+In Development
 ```
+
+### Version 0.2.1 [go to commit](https://github.com/elvybean/yandiya-cbm-library/commit/ca7f8e6baa9b47d2457774e9d7687951e8e05005)
+
+#### Contributers: Elvis Obero-Atkins
+
+- refactored packaging logic as it created errors in certain edge cases
+- calculates whether to send products via parcel or pallet (types) based on weight and CBM
+- created test_shipping_logic.py to test the new shipping_logic function
 
 ### Version 0.2 [go to commit](https://github.com/elvybean/yandiya-cbm-library/commit/97004b07e1b46a9749e38e4dadcf2a5f44a1c9f9)
 
