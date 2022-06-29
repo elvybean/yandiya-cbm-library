@@ -24,11 +24,11 @@ def listCreate(IterateStore: list, ErrorDetect: list):
     ErrorDetect[1] += 1
 
     parameters = input(
-        "\n\nWhats the product number, barcode or sku of the item?  ")
+        "\nWhats the product number, barcode or sku of the item?  ")
     productQuantity = int(input(
         "\nWhat's the quantity of the items that you need?  "))
 
-    inWarehouse = cbmcalculator.searching_product(parameters)
+    inWarehouse = cbmcalculator.search_product(parameters)
 
     if inWarehouse == 0:
         ErrorDetect[0] += 1
@@ -57,12 +57,18 @@ def main():
         none
     """
 
+    # this is unnecessary but cool
+    f = open(".main\welcome.txt", "r")
+    print(f.read())
+    f.close()
+
     listParameter = listCreate([], [0, 0])
 
-    multipleCBM = cbmcalculator.calculate_multiple(listParameter)
+    multipleCBM = cbmcalculator.main(listParameter)
 
-    print("The Total  CBM is ", multipleCBM[0], ", the total weight is ",
-          multipleCBM[1], " the items will be sent in a ", multipleCBM[2])
+    # tabulate table?? + pandas??
+    #print("The Total  CBM is ", multipleCBM[0], ", the total weight is ", multipleCBM[1], " the items will be sent in a ", multipleCBM[2])
+    print(multipleCBM)
 
 
 main()

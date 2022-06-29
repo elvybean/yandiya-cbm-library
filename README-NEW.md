@@ -26,23 +26,26 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
+  <a href="https://github.com/elvybean/yandiya-cbm-library">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">Yandiya CBM Library</h3>
 
   <p align="center">
-    project_description
-    <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    This Python library is being written for Yandiya Technologies Ltd. Its purpose is to allow their employees to easily calculate the CBM (Cubic Meter) of their products.
+
+The library takes user input of which of Yandiya's products they are packaging and it calculates the CBM, whether to use a pallet or parcel, if appicable which type of pallet would be best to use and the cost of delivery.
+<br />
+<a href="https://github.com/elvybean/yandiya-cbm-library"><strong>Explore the docs »</strong></a>
+<br />
+<br />
+<a href="https://github.com/elvybean/yandiya-cbm-library">View Demo</a>
+·
+<a href="https://github.com/elvybean/yandiya-cbm-library/issues">Report Bug</a>
+·
+<a href="https://github.com/elvybean/yandiya-cbm-library/issues">Request Feature</a>
+
   </p>
 </div>
 
@@ -77,8 +80,6 @@
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -116,7 +117,7 @@ This is an example of how to list things you need to use the software and how to
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/elvybean/yandiya-cbm-library.git
    ```
 3. Install NPM packages
    ```sh
@@ -148,7 +149,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [ ] Feature 3
   - [ ] Nested Feature
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/elvybean/yandiya-cbm-library/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -181,9 +182,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Your Name - [@elvybean](https://twitter.com/elvybean) - elvisoberoatkins.dev@gmail.com@elvisoberoatkins.dev@gmail.com_client.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/elvybean/yandiya-cbm-library](https://github.com/elvybean/yandiya-cbm-library)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -200,16 +201,16 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/elvybean/yandiya-cbm-library.svg?style=for-the-badge
+[contributors-url]: https://github.com/elvybean/yandiya-cbm-library/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/elvybean/yandiya-cbm-library.svg?style=for-the-badge
+[forks-url]: https://github.com/elvybean/yandiya-cbm-library/network/members
+[stars-shield]: https://img.shields.io/github/stars/elvybean/yandiya-cbm-library.svg?style=for-the-badge
+[stars-url]: https://github.com/elvybean/yandiya-cbm-library/stargazers
+[issues-shield]: https://img.shields.io/github/issues/elvybean/yandiya-cbm-library.svg?style=for-the-badge
+[issues-url]: https://github.com/elvybean/yandiya-cbm-library/issues
+[license-shield]: https://img.shields.io/github/license/elvybean/yandiya-cbm-library.svg?style=for-the-badge
+[license-url]: https://github.com/elvybean/yandiya-cbm-library/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
+[linkedin-url]: https://linkedin.com/in/elvisoberoatkins
 [product-screenshot]: images/screenshot.pngs
