@@ -97,6 +97,24 @@ def calculate(parameters: list, itemQuantity: int):
     return [cbm, weight]
 
 
+def multiplierCreate(inValue: float, L_value: float, S_value: float):
+    # used in shipping logic fucntion multiple time,
+    # made sense to make into a seperate function to reuse
+    L_remainder = inValue % L_value
+    L_dividable = inValue - L_remainder
+    L_multiplier = L_dividable / L_value
+
+    if L_remainder > S_value:
+        S_remainder = L_remainder % S_value
+        S_dividable = L_remainder - S_remainder
+        S_multiplier = S_dividable / S_value
+        S_multiplier += 1
+    else:
+        S_multiplier = 1
+
+    return [round(L_multiplier), round(S_multiplier)]
+
+
 def shipping_logic(cbm: float, weight: float):
     # renamed weight_logic to shipping_logic
     """calculates using simple logic whether or not a item needs to be send via parcel or package
@@ -110,36 +128,40 @@ def shipping_logic(cbm: float, weight: float):
     # instead of some form of database (.xlsx or SQL)
 
     # if weight >= 30:
-    if weight >= 300:
-        if cbm >= 0.768:
+    if weight <= 300:
+        if cbm <= 0.768:
             return ["euro-quarter", 1]
-        elif cbm >= 1.152:
+        elif cbm <= 1.152:
             return ["standard-quarter", 1]
         else:
-            return 0  # maths checks
+            multipliers = multiplierCreate(cbm, 1.152, 0.768)
+            return ["standard-quarter", multipliers[0], "euro-quarter", multipliers[1]]
 
-    elif weight >= 600:
-        if cbm >= 1.152:
-            return ["euro-full", 1]
-        elif cbm >= 1.728:
+    elif weight <= 600:
+        if cbm <= 1.152:
+            return ["euro-half", 1]
+        elif cbm <= 1.728:
             return ["standard-half", 1]
         else:
-            return 0  # maths checks
+            multipliers = multiplierCreate(cbm, 1.728, 1.152)
+            return ["standard-half", multipliers[0], "euro-half", multipliers[1]]
 
-    elif weight >= 1200:
-        if cbm >= 2.112:
+    else:  # weight > 600 and weight < 1200:
+        if cbm <= 2.112 and weight < 1200:
             return ["euro-full", 1]
-        elif cbm >= 3.168:
+        elif cbm <= 3.168 and weight < 1200:
             return ["standard-full", 1]
         else:
-            return 0  # maths checks
-    else:
-        return 0  # maths checks
+            weight_multiplier = round(weight / 1200)
+            multipliers = multiplierCreate(cbm, 3.168, 2.112)
+            if (multipliers[0] + multipliers[1]) < weight_multiplier:
+                multipliers[1] += 1
 
-    # next revision: checks every possible option and uses basic price checking (just for LE postcode) for the best option
+            return ["standard-full", multipliers[0], "euro-full", multipliers[1]]
+
     # possible revision?: code that reads spreadsheet and writes itself
     # modify calculate function for additional information, such as IC and OC quanity + dimensions
-    # refactor calculate.
+    # refactor calculate fucntion. (3D Calculations)
 
 
 def main(parameters: list):
