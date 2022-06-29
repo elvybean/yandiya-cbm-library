@@ -6,8 +6,6 @@ This py script is main component of the yandiya-cbm-library
 As well as this py script the yandiya-db.xslx (excel file) is required
 
 """
-from math import remainder
-from tkinter import Y
 import openpyxl
 from openpyxl import Workbook
 
@@ -137,27 +135,23 @@ def shipping_logic(cbm: float, weight: float):
     # MVP: this is a basic implementation of the fucntion, just using strings and set values
     # instead of some form of database (.xlsx or SQL)
 
-    if weight in range(0, 31):
-        return ["parcel-force", round(float(weight/30))]
+    # if weight >= 30:
+    # return ["parcel-force", round(float(weight/30))]
 
-    if weight in range(32, 301):
-        if cbm <= 0.768:
-            return ["euro-quarter", round(float(cbm/0.768))]
-        else:  # (cbm > 0.768 and cbm <= 1.152):
-            return ["standard-quarter", round(float(cbm/1.152))]
+    if cbm <= 0.768 and weight <= 300:
+        return ["euro-quarter", round(float(cbm/0.768))]
+    elif cbm <= 1.152 and weight <= 300:
+        return ["standard-quarter", round(float(cbm/1.152))]
 
-    if weight in range(302, 601):
-        if (cbm <= 1.152):
-            return ["euro-half", round(float(cbm/1.152))]
-        else:  # (cbm > 1.152 and cbm <= 1.728):
-            type = "standard-half"
-            return ["standard-half", round(float(cbm/1.728))]
+    elif cbm <= 1.152 and weight <= 600:
+        return ["euro-half", round(float(cbm/1.152))]
+    elif cbm <= 1.728 and weight <= 600:
+        return ["standard-half", round(float(cbm/1.728))]
 
-    if weight in range(602, 1201):
-        if (cbm <= 2.112):
-            return ["euro-full", round(float(cbm/2.112))]
-        else:  # (cbm > 2.112 and cbm <= 3.168):
-            return ["standard-full", round(float(cbm/3.168))]
+    elif cbm <= 2.112 and weight <= 1200:
+        return ["euro-full", round(float(cbm/2.112))]
+    elif cbm <= 3.168 and weight <= 1200:
+        return ["standard-full", round(float(cbm/3.168))]
 
     # next revision: checks every possible option and uses basic price checking (just for LE postcode) for the best option
     # so it will equally consider weight, cbm and price (just le postcode)
