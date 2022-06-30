@@ -12,8 +12,8 @@ from openpyxl import Workbook
 # TODO:
 # - Shipping_Logic is just a basic implementation of the fucntion, Implement excel functionality
 # - Refactor calculate function to output additional information, product dimensions
-# - Implement Knapsack / Bin Packing Problem algorithms for pallet selection that considers,
-#   weight, dimensions and quanity of items
+# - Implement Knapsack / Bin Packing Problem algorithms for pallet selection to allow it to consider;
+#       dimensions as well as weight and cbm & so it doesn't assume the products are malluable.
 # - Implement use of PostgresSQL instead of excel
 
 
@@ -116,6 +116,7 @@ def multiplierCreate(inValue: float, L_value: float, S_value: float):
 
 
 def shipping_logic(cbm: float, weight: float):
+    # FIXME: Get accurate values for Parcel Force: Dimensions so you know the maximum weight
     """calculates using simple logic whether or not a item needs to be send via parcel or package
     Args:
         weight (float): _description_
@@ -125,10 +126,10 @@ def shipping_logic(cbm: float, weight: float):
     """
 
     if weight <= 30:
-        if cbm <= 0.2:  # this is a placeholder value as I currently don't know maxmimum CBM for parcels
+        if cbm <= 3:  # this is a placeholder value as I currently don't know maxmimum CBM for parcels
             return ["parcel-force", 1]
         else:
-            multiplier = round(cbm/0.2)
+            multiplier = round(cbm/3)
             return ["parcel-force", multiplier]
 
     elif weight <= 300:
