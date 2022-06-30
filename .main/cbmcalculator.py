@@ -5,15 +5,16 @@ Last Edited by: Elvis Obero-Atkins
 This py script is main component of the yandiya-cbm-library
 As well as this py script the yandiya-db.xslx (excel file) is required
 
-Notes:
-modify calculate function for additional information, such as IC and OC quanity + dimensions
-refactor calculate fucntion. (3D Calculations)
-Shipping_Logic is just a MVP, a  basic implementation of the fucntion, 
-uses strings and set int values instead of some form of database (.xlsx or SQL)
-
 """
 import openpyxl
 from openpyxl import Workbook
+
+# TODO:
+# - Shipping_Logic is just a basic implementation of the fucntion, Implement excel functionality
+# - Refactor calculate function to output additional information, product dimensions
+# - Implement Knapsack / Bin Packing Problem algorithms for pallet selection that considers,
+#   weight, dimensions and quanity of items
+# - Implement use of PostgresSQL instead of excel
 
 
 def search_product(parameters):
