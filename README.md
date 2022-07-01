@@ -126,7 +126,7 @@ This README.md section is unfinshed
 
 ## Milestones and Roadmap
 
-- [x] [Access Database (Excel Spreadsheet)](https://github.com/elvybean/yandiya-cbm-library/milestone/12)
+- [x] [Access Database (Excel)](https://github.com/elvybean/yandiya-cbm-library/milestone/12)
 - [x] [Search for Product in Database (Excel)](https://github.com/elvybean/yandiya-cbm-library/milestone/13)
 - [x] [CBM Calculations - singular product types](https://github.com/elvybean/yandiya-cbm-library/milestone/1)
 - [x] [CBM Calculations - multiple product types](https://github.com/elvybean/yandiya-cbm-library/milestone/3)
