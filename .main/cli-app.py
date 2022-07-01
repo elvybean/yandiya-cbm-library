@@ -6,7 +6,7 @@ This py script is NOT REQUIRED for yandiya-cbm-library to function
 
 It is CLI python application designed to interact with the yandiya-cbm-library.
 """
-import cbmcalculator
+import cbmcalculator as cbm
 
 
 def listCreate(IterateStore: list, ErrorDetect: list):
@@ -28,7 +28,7 @@ def listCreate(IterateStore: list, ErrorDetect: list):
     productQuantity = int(input(
         "\nWhat's the quantity of the items that you need?  "))
 
-    inWarehouse = cbmcalculator.search_product(parameters)
+    inWarehouse = cbm.search_product(parameters)
 
     if inWarehouse == 0:
         ErrorDetect[0] += 1
@@ -64,7 +64,7 @@ def main():
 
     listParameter = listCreate([], [0, 0])
 
-    multipleCBM = cbmcalculator.main(listParameter)
+    multipleCBM = cbm.main(listParameter)
 
     # tabulate table?? + pandas??
     #print("The Total  CBM is ", multipleCBM[0], ", the total weight is ", multipleCBM[1], " the items will be sent in a ", multipleCBM[2])
