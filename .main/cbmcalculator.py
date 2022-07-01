@@ -116,7 +116,7 @@ def multiplierCreate(inValue: float, L_value: float, S_value: float):
 
 
 def shipping_logic(cbm: float, weight: float):
-    # FIXME: Get accurate values for Parcel Force: Dimensions so you know the maximum weight
+    # FIXME: Get accurate values for Parcel Force: Dimensions so you know the maximum cbm
     """calculates using simple logic whether or not a item needs to be send via parcel or package
     Args:
         weight (float): _description_
@@ -125,14 +125,17 @@ def shipping_logic(cbm: float, weight: float):
         string: value of parcel or pallet, depending on outcome of logic
     """
 
+    """
     if weight <= 30:
         if cbm <= 3:  # this is a placeholder value as I currently don't know maxmimum CBM for parcels
             return ["parcel-force", 1]
         else:
             multiplier = round(cbm/3)
             return ["parcel-force", multiplier]
+        
+    """
 
-    elif weight <= 300:
+    if weight <= 300:
         if cbm <= 0.768:
             return ["euro-quarter", 1]
         elif cbm <= 1.152:

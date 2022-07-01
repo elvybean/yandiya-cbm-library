@@ -8,7 +8,7 @@
     "ms-vscode.vs-keybindings",
     "github.vscode-pull-request-github",
     "searking.preview-vscode",
-    "ecmel.vscode-html-css",
-    "GitHub.github-vscode-theme"
+    "github.github-vscode-theme",
+    "wayou.vscode-todo-highlight"
   ]
 }
