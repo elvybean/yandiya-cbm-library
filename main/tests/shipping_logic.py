@@ -6,11 +6,11 @@ This py script is NOT REQUIRED for yandiya-cbm-library to function
 
 It is CLI python application designed to test the shipping_logic fucntion
 """
-import cbmcalculator
+from package.cbmcalculator import cbmcalculator
 
 
 def main():
-    f = open(".main\welcome2.txt", "r")
+    f = open("main/tests/shipping_logic.txt", "r")
     print(f.read())
     f.close()
 
