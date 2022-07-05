@@ -71,7 +71,7 @@ def main():
     """
 
     # this is unnecessary but cool
-    f = open("main/cli-app.txt", "r")
+    f = open("main/cli-app/cli-app.txt", "r")
     print(f.read())
     f.close()
 

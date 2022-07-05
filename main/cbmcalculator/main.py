@@ -2,8 +2,8 @@
 Author: Elvis Obero-Atkins
 Last Edited by: Elvis Obero-Atkins
 """
-from __init__ import calculate as cal
-from __init__ import shipping_logic as shl
+from . import calculate as cal
+from . import shipping_logic as shl
 
 
 def main(parameters: list):
@@ -21,10 +21,10 @@ def main(parameters: list):
 
     for i in range(len(parameters)):
         tempStore = parameters[i]
-        calculations = cal(tempStore[0], tempStore[1])
+        calculations = cal.calculate(tempStore[0], tempStore[1])
         cbm += calculations[0]
         weight += calculations[1]
 
-    shipping = shl(cbm, weight)
+    shipping = shl.shipping_logic(cbm, weight)
 
     return [cbm, weight, shipping]
