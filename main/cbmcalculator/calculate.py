@@ -45,10 +45,6 @@ def calculate(parameters: list, itemQuantity: int):
                 dimensions = ["Both", float(parameters[4]), float(parameters[5]), float(parameters[6]), icMultiply, float(
                     parameters[9]), float(parameters[10]), float(parameters[11]), ocMultiply]
 
-                # cbm += ((float(parameters[4]) * float(parameters[5]) *
-                #        float(parameters[6]) / 1000000) * remainderItems)
-                #weight += (float(parameters[7]) * remainderItems)
-
         else:
             ocMultiply = 1
             icMultiply = 0
@@ -63,15 +59,8 @@ def calculate(parameters: list, itemQuantity: int):
         dimensions = ["IC", float(parameters[4]), float(
             parameters[5]), float(parameters[6]), itemQuantity]
 
-        # cbm = ((float(parameters[4]) * float(parameters[5]) *
-        #        float(parameters[6]) / 1000000) * itemQuantity)
-        #weight = (float(parameters[7]) * itemQuantity)
-
     cbm += ((float(parameters[4]) * float(parameters[5]) *
              float(parameters[6]) / 1000000) * icMultiply)
     weight += (float(parameters[7]) * icMultiply)
 
-    #dimensions = []
-
-    return [cbm, weight]
-    # return [cbm, weight, dimensions] #returns CBM, weight and dimesnions in a list (W x H x D)
+    return [cbm, weight, dimensions] #returns CBM, weight and dimesnions in a list (W x H x D)
