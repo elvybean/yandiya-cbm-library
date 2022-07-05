@@ -7,8 +7,8 @@ def productdetails_headings():
     Returns:
         list: stores all the headings for each of the columns
     """
-    return ['partNo', 'barcode', 'sku', 'productTitle', 'pWidth', 'pHeight', 'pDepth', 'icWidth', 'icHeight',
-            'icDepth', 'icWeight', 'icQty', 'ocWidth', 'ocHeight', 'ocDepth', 'ocWeight', 'ocQty']  # 17 (0-16) Items in list
+    return ['partNo', 'barcode', 'sku', 'productTitle', 'icWidth', 'icHeight',
+            'icDepth', 'icWeight', 'icQty', 'ocWidth', 'ocHeight', 'ocDepth', 'ocWeight', 'ocQty']  # 14 (0-13) Items in list
 
 
 def shippingdetails_headings():

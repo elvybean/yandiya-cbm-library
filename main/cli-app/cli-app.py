@@ -20,8 +20,7 @@ sys.path.append(PROJECT_ROOT)
 #the line "import cbmcalculator as cbm" ALWAYS needs to be below the above lines ####
 import cbmcalculator as cbm #########################################################
 #####################################################################################
-import numpy as np ##################################################################
-#####################################################################################
+
 
 def listCreate(iterateStore: list, ErrorDetect: list):
     """Creates a list that contains the extacted excel rows of selected products + item quantities
@@ -48,7 +47,7 @@ def listCreate(iterateStore: list, ErrorDetect: list):
         ErrorDetect[0] += 1
         print("\nerror. either incorrect input or item does not exist  ")
     else:
-        listCreate.append([inWarehouse, productQuantity])
+        iterateStore.append([inWarehouse, productQuantity])
 
     response = input(
         "\nDo you want to search for another item? y/n  ").capitalize()

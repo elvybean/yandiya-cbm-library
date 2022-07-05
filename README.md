@@ -136,7 +136,7 @@ This README.md section is unfinshed
 - [ ] [Three Dimensional Calculations](https://github.com/elvybean/yandiya-cbm-library/milestone/6)
 - [ ] [PostgreSQL](https://github.com/elvybean/yandiya-cbm-library/milestone/14)
 - [ ] [Web Interface](https://github.com/elvybean/yandiya-cbm-library/milestone/9)
-- [x] [Python Package](https://github.com/elvybean/yandiya-cbm-library/milestone/7)
+- [ ] [Python Package](https://github.com/elvybean/yandiya-cbm-library/milestone/7)
 - [ ] [Odoo Module](https://github.com/elvybean/yandiya-cbm-library/milestone/8)
 
 See the [open issues](https://github.com/elvybean/yandiya-cbm-library/issues) for a full list of proposed features (and known issues).
