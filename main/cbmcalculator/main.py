@@ -5,6 +5,13 @@ Last Edited by: Elvis Obero-Atkins
 from . import calculate as cal
 from . import shipping_logic as shl
 
+# TODO:
+# - Shipping_Logic is just a basic implementation of the fucntion, Implement excel functionality
+# - Refactor calculate function to output additional information, product dimensions
+# - Implement Knapsack / Bin Packing Problem algorithms for pallet selection to allow it to consider;
+#       dimensions as well as weight and cbm & so it doesn't assume the products are malluable.
+# - Implement use of PostgresSQL instead of excel
+
 
 def main(parameters: list):
     """main function of the py script
@@ -15,16 +22,18 @@ def main(parameters: list):
     Returns:
         list: stores the calculated total cbm, the total weight and how the item will be shipped.
     """
-    # Main List = [ [ [Excel Row], Integer ] , [ [Excel Row], Integer ], [ [Excel Row], Integer ] ]
-    cbm = 0
-    weight = 0
+    # parameters = [ [ [Excel Row List], Item Quantity Integer ] , ... ]
+    totalCBM = 0
+    totalWeight = 0
+    bin_pack_parameters = []
 
     for i in range(len(parameters)):
-        tempStore = parameters[i]
-        calculations = cal.calculate(tempStore[0], tempStore[1])
-        cbm += calculations[0]
-        weight += calculations[1]
+        j = parameters[i]
+        k = cal.calculate(j[0], j[1])
+        totalCBM += k[0]
+        totalWeight += k[1]
+        bin_pack_parameters.append([k[2],k[3]])
 
-    shipping = shl.shipping_logic(cbm, weight)
+    stack_layout = shl.shipping_logic(totalCBM, totalWeight, bin_pack_parameters)
 
-    return [cbm, weight, shipping]
+    return [totalCBM, totalWeight, bin_pack_parameters, stack_layout]

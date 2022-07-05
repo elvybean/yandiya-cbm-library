@@ -1,6 +1,0 @@
-# TODO:
-# - Shipping_Logic is just a basic implementation of the fucntion, Implement excel functionality
-# - Refactor calculate function to output additional information, product dimensions
-# - Implement Knapsack / Bin Packing Problem algorithms for pallet selection to allow it to consider;
-#       dimensions as well as weight and cbm & so it doesn't assume the products are malluable.
-# - Implement use of PostgresSQL instead of excel
