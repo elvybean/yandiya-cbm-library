@@ -2,8 +2,8 @@
 Author: Elvis Obero-Atkins
 Last Edited by: Elvis Obero-Atkins
 """
-import calculate as cal
-import shipping_logic as shl
+from __init__ import calculate as cal
+from __init__ import shipping_logic as shl
 
 
 def main(parameters: list):
