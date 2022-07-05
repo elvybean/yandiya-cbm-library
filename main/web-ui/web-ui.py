@@ -9,9 +9,9 @@ from datetime import date
 today = date.today()
 print("Today's date:", today)
 
-####################################################################################
-#"import cbmcalculator as cbm" should not be up here! if it is move to other comment
-####################################################################################
+#####################################################################################
+#"import cbmcalculator as cbm" should not be up here! if it is move to other comment#
+#####################################################################################
 import os
 import sys
 PROJECT_ROOT = os.path.abspath(os.path.join(
@@ -19,11 +19,15 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
     os.pardir)
 )
 sys.path.append(PROJECT_ROOT)
-####################################################################################
-#the line "import cbmcalculator as cbm" ALWAYS needs to be below the above lines ###
-import cbmcalculator as cbm
-####################################################################################
+#####################################################################################
+#the line "import cbmcalculator as cbm" ALWAYS needs to be below the above lines ####
+import cbmcalculator as cbm #########################################################
+#####################################################################################
 
 modulename = "cbmcalculator"
 if modulename not in sys.modules:
-    print ("You have not imported the {} module").format(modulename)
+    print ("You have not imported the cbmcalculator module")
+elif modulename in sys.modules:
+    print ("You have imported the cbmcalculator module")
+else:
+    print("error?")

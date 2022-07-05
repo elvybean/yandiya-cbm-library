@@ -6,9 +6,9 @@ This py script is NOT REQUIRED for yandiya-cbm-library to function
 
 It is CLI python application designed to interact with the yandiya-cbm-library.
 """
-####################################################################################
-#"import cbmcalculator as cbm" should not be up here! if it is move to other comment
-####################################################################################
+#####################################################################################
+#"import cbmcalculator as cbm" should not be up here! if it is move to other comment#
+#####################################################################################
 import os
 import sys
 PROJECT_ROOT = os.path.abspath(os.path.join(
@@ -16,13 +16,14 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
     os.pardir)
 )
 sys.path.append(PROJECT_ROOT)
-####################################################################################
-#the line "import cbmcalculator as cbm" ALWAYS needs to be below the above lines ###
-import cbmcalculator as cbm
-####################################################################################
+#####################################################################################
+#the line "import cbmcalculator as cbm" ALWAYS needs to be below the above lines ####
+import cbmcalculator as cbm #########################################################
+#####################################################################################
+import numpy as np ##################################################################
+#####################################################################################
 
-
-def listCreate(IterateStore: list, ErrorDetect: list):
+def listCreate(iterateStore: list, ErrorDetect: list):
     """Creates a list that contains the extacted excel rows of selected products + item quantities
 
     Args:
@@ -47,18 +48,18 @@ def listCreate(IterateStore: list, ErrorDetect: list):
         ErrorDetect[0] += 1
         print("\nerror. either incorrect input or item does not exist  ")
     else:
-        IterateStore.append([inWarehouse, productQuantity])
+        listCreate.append([inWarehouse, productQuantity])
 
     response = input(
         "\nDo you want to search for another item? y/n  ").capitalize()
 
     if response == "N":
         if not ErrorDetect[0] > ErrorDetect[1]:
-            return IterateStore
+            return iterateStore 
         else:
             return 0
     else:
-        return listCreate(IterateStore, ErrorDetect)
+        return listCreate(iterateStore, ErrorDetect)
 
 
 def main():
@@ -83,5 +84,6 @@ def main():
     #print("The Total  CBM is ", multipleCBM[0], ", the total weight is ", multipleCBM[1], " the items will be sent in a ", multipleCBM[2])
     print(multipleCBM)
 
+    
 
 main()

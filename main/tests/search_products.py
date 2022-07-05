@@ -4,7 +4,7 @@ Last Edited by: Elvis Obero-Atkins
 
 This py script is NOT REQUIRED for yandiya-cbm-library to function
 
-It is CLI python application designed to test the shipping_logic fucntion
+It is CLI python application designed to test the search_product fucntion
 """
 
 #####################################################################################
@@ -22,28 +22,29 @@ sys.path.append(PROJECT_ROOT)
 import cbmcalculator as cbm #########################################################
 #####################################################################################
 
-
 def main():
     f = open("main/tests/tests.txt", "r")
     print(f.read())
     f.close()
 
-    cbm = float(input(
-        "\nWhats the product's CBM?  "))
-    productQuantity = float(input(
-        "\nWhat's the product's weight?  "))
+    parameters = input(
+        "\nWhats the product number, barcode or sku of the item?  ")
+    productQuantity = int(input(
+        "\nWhat's the quantity of the items that you need?  "))
 
-    out = cbm.shipping_logic(cbm, productQuantity)
+    inWarehouse = cbm.search_product(parameters)
 
-    print(out)
+    if inWarehouse == 0:
+        print("\nerror. either incorrect input or item does not exist  ")
+    else:
+        print(inWarehouse)
 
     response = input(
         "\nDo you want to test function again? y/n  ").capitalize()
 
     if response == "N":
-        return 0
+            return 0
     else:
         return main()
-
 
 main()
