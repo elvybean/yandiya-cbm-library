@@ -4,10 +4,6 @@ Last Edited by: Elvis Obero-Atkins
 """
 
 
-def icCBM():
-    return 0
-
-
 def calculate(parameters: list, itemQuantity: int):
     """searches a list variable for specific values and then calculates and returns cbm and total weight
     Args:
@@ -63,4 +59,5 @@ def calculate(parameters: list, itemQuantity: int):
              float(parameters[6]) / 1000000) * icMultiply)
     weight += (float(parameters[7]) * icMultiply)
 
-    return [cbm, weight, dimensions] #returns CBM, weight and dimesnions in a list (W x H x D)
+    # returns CBM, weight and dimesnions in a list (W x H x D)
+    return [cbm, weight, dimensions]
