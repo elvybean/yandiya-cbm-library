@@ -9,4 +9,4 @@
 from yandiyacbm.search_product import search_product
 from yandiyacbm.headings import productdetails_headings, palletdetails_headings
 from yandiyacbm.parameters import parameters
-from yandiyacbm.bin_packing import bin_packing
+from yandiyacbm.bin_packing import shipping
