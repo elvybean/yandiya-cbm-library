@@ -32,13 +32,13 @@ def calculate(parameters: list, itemQuantity: int):
                 ocMultiply += 1
                 icMultiply = 0
 
-                bin_pack = ["OC", float(parameters[9]), float(
+                binPack = ["OC", float(parameters[9]), float(
                     parameters[10]), float(parameters[11]), ocMultiply]
 
             else:  # x of Oyter Cartons AND x of Inner Cartons
                 icMultiply = remainderItems
 
-                bin_pack = ["Both", float(parameters[4]), float(parameters[5]), float(parameters[6]), icMultiply, float(
+                binPack = ["Both", float(parameters[4]), float(parameters[5]), float(parameters[6]), icMultiply, float(
                     parameters[9]), float(parameters[10]), float(parameters[11]), ocMultiply]
 
         else:
@@ -52,7 +52,7 @@ def calculate(parameters: list, itemQuantity: int):
     else:  # x of Inner Cartons
         icMultiply = itemQuantity
 
-        bin_pack = ["IC", float(parameters[4]), float(
+        binPack = ["IC", float(parameters[4]), float(
             parameters[5]), float(parameters[6]), itemQuantity]
 
     cbm += ((float(parameters[4]) * float(parameters[5]) *
@@ -60,4 +60,4 @@ def calculate(parameters: list, itemQuantity: int):
     weight += (float(parameters[7]) * icMultiply)
 
     # returns CBM, weight and dimesnions in a list (W x H x D)
-    return [cbm, weight, parameters[0], bin_pack]
+    return [cbm, weight, parameters[0], binPack]

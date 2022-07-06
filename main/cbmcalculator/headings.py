@@ -11,7 +11,7 @@ def productdetails_headings():
             'icDepth', 'icWeight', 'icQty', 'ocWidth', 'ocHeight', 'ocDepth', 'ocWeight', 'ocQty']  # 14 (0-13) Items in list
 
 
-def shippingdetails_headings():
+def palletdetails_headings():
     """returns the headings of the pallet-shipping sheet
     Returns:
         list: stores all the headings for each of the columns

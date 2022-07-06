@@ -18,7 +18,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 sys.path.append(PROJECT_ROOT)
 #####################################################################################
 #the line "import cbmcalculator as cbm" ALWAYS needs to be below the above lines ####
-import cbmcalculator as cbm #########################################################
+import cbmcalculator as cbmcalc #########################################################
 #####################################################################################
 
 
@@ -41,7 +41,7 @@ def listCreate(iterateStore: list, ErrorDetect: list):
     productQuantity = int(input(
         "\nWhat's the quantity of the items that you need?  "))
 
-    inWarehouse = cbm.search_product(parameters)
+    inWarehouse = cbmcalc.search_product(parameters)
 
     if inWarehouse == 0:
         ErrorDetect[0] += 1
@@ -77,11 +77,20 @@ def main():
 
     listParameter = listCreate([], [0, 0])
 
-    multipleCBM = cbm.main(listParameter)
+    cbm = 0
+    weight = 0
+    binpackParams= []
 
-    # tabulate table?? + pandas??
-    #print("The Total  CBM is ", multipleCBM[0], ", the total weight is ", multipleCBM[1], " the items will be sent in a ", multipleCBM[2])
-    print(multipleCBM)
+    for i in range(len(listParameter)):
+        j = listParameter[i]
+        k = cbmcalc.calculate(j[0], j[1])
+        cbm += k[0]
+        weight += k[1]
+        binpackParams.append([k[2],k[3]])
+
+    shipping = cbmcalc.bin_packing(cbm, weight, binpackParams)
+
+    print(cbm, weight, binpackParams, shipping)
 
     
 

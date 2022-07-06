@@ -21,7 +21,7 @@ def multiplierCreate(inValue: float, L_value: float, S_value: float):
     return [round(L_multiplier), round(S_multiplier)]
 
 
-def shipping_logic(cbm: float, weight: float):
+def bin_packing(cbm: float, weight: float, binpackParams: list):
     # FIXME: Get accurate values for Parcel Force: Dimensions so you know the maximum cbm
     """calculates using simple logic whether or not a item needs to be send via parcel or package
     Args:
