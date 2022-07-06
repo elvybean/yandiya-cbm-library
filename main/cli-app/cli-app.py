@@ -16,10 +16,10 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
     os.pardir)
 )
 sys.path.append(PROJECT_ROOT)
-#####################################################################################
-#the line "import cbmcalculator as cbm" ALWAYS needs to be below os and sys imports #
-import cbmcalculator as cbmcalc #####################################################
-#####################################################################################
+################################################################################
+#the line "yandiyacbm as yandiya" ALWAYS needs to be below os and sys imports ##
+import yandiyacbm as yandiya ###################################################
+################################################################################
 
 
 def main():
@@ -48,7 +48,7 @@ def main():
         productQuantity = int(input(
             "\nWhat's the quantity of the items that you need?  "))
 
-        productrow = cbmcalc.search_product(parameters)
+        productrow = yandiya.search_product(parameters)
 
         if productrow == 0:
             errorDetect[0] += 1
@@ -71,7 +71,7 @@ def main():
     for i in range(len(extractedRows)):
         j = extractedRows[i]
         
-        k = cbmcalc.parameters(j[0], j[1])
+        k = yandiya.parameters(j[0], j[1])
         binpackParams.append(k)
 
     for n in range(len(binpackParams)):

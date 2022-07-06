@@ -19,10 +19,10 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
     os.pardir)
 )
 sys.path.append(PROJECT_ROOT)
-#####################################################################################
-#the line "import cbmcalculator as cbm" ALWAYS needs to be below the above lines ####
-import cbmcalculator as cbm #########################################################
-#####################################################################################
+################################################################################
+#the line "yandiyacbm as yandiya" ALWAYS needs to be below os and sys imports ##
+import yandiyacbm as yandiya ###################################################
+################################################################################
 
 modulename = "cbmcalculator"
 if modulename not in sys.modules:

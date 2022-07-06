@@ -17,10 +17,10 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
     os.pardir)
 )
 sys.path.append(PROJECT_ROOT)
-#####################################################################################
-#the line "import cbmcalculator as cbm" ALWAYS needs to be below the above lines ####
-import cbmcalculator as cbm #########################################################
-#####################################################################################
+################################################################################
+#the line "yandiyacbm as yandiya" ALWAYS needs to be below os and sys imports ##
+import yandiyacbm as yandiya ###################################################
+################################################################################
 
 
 def main():
@@ -33,7 +33,7 @@ def main():
     productQuantity = float(input(
         "\nWhat's the product's weight?  "))
 
-    out = cbm.shipping_logic(cbm, productQuantity)
+    out = yandiya.shipping_logic(cbm, productQuantity)
 
     print(out)
 

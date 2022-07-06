@@ -17,10 +17,10 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
     os.pardir)
 )
 sys.path.append(PROJECT_ROOT)
-#####################################################################################
-#the line "import cbmcalculator as cbm" ALWAYS needs to be below the above lines ####
-import cbmcalculator as cbm #########################################################
-#####################################################################################
+################################################################################
+#the line "yandiyacbm as yandiya" ALWAYS needs to be below os and sys imports ##
+import yandiyacbm as yandiya ###################################################
+################################################################################
 
 def main():
     f = open("main/tests/tests.txt", "r")
@@ -32,7 +32,7 @@ def main():
     productQuantity = int(input(
         "\nWhat's the quantity of the items that you need?  "))
 
-    inWarehouse = cbm.search_product(parameters)
+    inWarehouse = yandiya.search_product(parameters)
 
     if inWarehouse == 0:
         print("\nerror. either incorrect input or item does not exist  ")
