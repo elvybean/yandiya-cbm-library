@@ -9,6 +9,7 @@ It is CLI python application designed to interact with the yandiya-cbm-library.
 #####################################################################################
 #"import cbmcalculator as cbm" should not be up here! if it is move to other comment#
 #####################################################################################
+from asyncio.windows_events import NULL
 import os
 import sys
 PROJECT_ROOT = os.path.abspath(os.path.join(
@@ -21,62 +22,59 @@ sys.path.append(PROJECT_ROOT)
 import yandiyacbm as yandiya ###################################################
 ################################################################################
 
+def userInput(iterateStore: list, errorDetect: list):
+    errorDetect[1] += 1
+
+    parameters = input(
+        "\nWhats the product number, barcode or sku of the item?  ")
+    productQuantity = int(input(
+        "\nWhat's the quantity of the items that you need?  "))
+
+    productrow = yandiya.search_product(parameters)
+
+    if productrow == 0:
+        errorDetect[0] += 1
+        print("\nerror. either incorrect input or item does not exist  ")
+    else:
+        iterateStore.append([productrow, productQuantity])
+
+    repeat = input(
+        "\nDo you want to search for another item? y/n  ").capitalize()
+
+    if repeat == "N":
+        if not errorDetect[0] > errorDetect[1]:
+            return iterateStore
+        else:
+            return 0
+    else:
+        return userInput(iterateStore, errorDetect)
+
+def initiateParams(params: list):
+    iterateStore = []
+
+    for i in range(len(params)):
+        j = params[i]
+        
+        k = yandiya.parameters(j[0], j[1])
+        iterateStore.append(k)
+
+    return iterateStore
+
+def displaySelectedRows(params: list):
+    for n in range(len(params)):
+        print(params[n])
+        print(yandiya.shipping(params[n]))
 
 def main():
-    """holds the main code of this py file
-    Args:
-        none
-
-    Returns:
-        none
-    """
 
     # this is unnecessary but cool
     f = open("main/cli-app/cli-app.txt", "r")
     print(f.read())
     f.close()
 
-    extractedRows = []
-    errorDetect = [0, 0]
-    repeat = "Yes"
-
-    while repeat != "N":
-        errorDetect[1] += 1
-
-        parameters = input(
-            "\nWhats the product number, barcode or sku of the item?  ")
-        productQuantity = int(input(
-            "\nWhat's the quantity of the items that you need?  "))
-
-        productrow = yandiya.search_product(parameters)
-
-        if productrow == 0:
-            errorDetect[0] += 1
-            print("\nerror. either incorrect input or item does not exist  ")
-        else:
-            extractedRows.append([productrow, productQuantity])
-
-        repeat = input(
-            "\nDo you want to search for another item? y/n  ").capitalize()
-
-        if repeat == "N":
-            break
-
-    if extractedRows == []:
-        print("\nerror.")
-        return 0
-
-    binpackParams = []
-
-    for i in range(len(extractedRows)):
-        j = extractedRows[i]
-        
-        k = yandiya.parameters(j[0], j[1])
-        binpackParams.append(k)
-
-    for n in range(len(binpackParams)):
-        print(binpackParams[n])
-        print(yandiya.shipping(binpackParams[n]))
+    extractedRows = userInput([], [0, 0])
+    binpackInput = initiateParams(extractedRows, [])
+    displaySelectedRows(binpackInput)
 
 
 main()
