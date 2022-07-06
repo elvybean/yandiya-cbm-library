@@ -6,7 +6,7 @@ import openpyxl
 from openpyxl import Workbook
 
 
-def search_product(parameters):
+def search_product(parameters: str):
     """searches an excel document based on user input of a product number, barcode or sku
     Args:
         parameters (string): a product number, barcode or sku that the

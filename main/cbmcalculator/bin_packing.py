@@ -3,6 +3,13 @@ Author: Elvis Obero-Atkins
 Last Edited by: Elvis Obero-Atkins
 """
 
+# takes params
+
+
+def bin_packing():
+    # combine elements of shipping logic + bin backing algorthim
+    return 0
+
 
 def multiplierCreate(inValue: float, L_value: float, S_value: float):
     # recursive code from shipping_logic
@@ -21,7 +28,7 @@ def multiplierCreate(inValue: float, L_value: float, S_value: float):
     return [round(L_multiplier), round(S_multiplier)]
 
 
-def bin_packing(cbm: float, weight: float, binpackParams: list):
+def shipping(cbm: float, weight: float, binpackParams: list):
     # FIXME: Get accurate values for Parcel Force: Dimensions so you know the maximum cbm
     """calculates using simple logic whether or not a item needs to be send via parcel or package
     Args:
