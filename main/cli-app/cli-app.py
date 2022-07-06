@@ -75,9 +75,8 @@ def main():
         binpackParams.append(k)
 
     for n in range(len(binpackParams)):
-        #for o in range(len(binpackParams[n])):
-            #print(binpackParams[n][o])
         print(binpackParams[n])
+        print(yandiya.shipping(binpackParams[n]))
 
 
 main()
