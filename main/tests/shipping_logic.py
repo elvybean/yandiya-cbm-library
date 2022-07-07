@@ -23,28 +23,22 @@ sys.path.append(PROJECT_ROOT)
 import yandiyacbm as yandiya ##########################################################
 #######################################################################################
 
-modulename = "yandiya"
-if modulename not in sys.modules:
-    print ("You have not imported the yandiya module")
-elif modulename in sys.modules:
-    print ("You have imported the yandiya module")
-else:
-    print("error?")
-
+def startup(): # this is unnecessary but cool
+    f = open("main/tests/tests.txt", "r")
+    value = (f.read())
+    f.close()
+    return value
 
 def main():
-    f = open("main/tests/tests.txt", "r")
-    print(f.read())
-    f.close()
+    
+    startup()
 
     cbm = float(input(
         "\nWhats the product's CBM?  "))
     productQuantity = float(input(
         "\nWhat's the product's weight?  "))
 
-    out = yandiya.shipping_logic(cbm, productQuantity)
-
-    print(out)
+    print(yandiya.shipping(cbm, productQuantity))
 
     response = input(
         "\nDo you want to test function again? y/n  ").capitalize()
