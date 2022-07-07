@@ -3,8 +3,6 @@ Author: Elvis Obero-Atkins
 Last Edited by: Elvis Obero-Atkins
 """
 
-# takes params
-
 def packing(): #takes bins and items as parameters
     # packing products into bins 
     return 0
@@ -22,30 +20,7 @@ def bin_select(products: list):
     #i.e instead of two 300kg pallets costs £33 each (£66) use 1 600kg pallet which costs £35
     return 0
 
-
-#no longer used below, its legacy code
-"""
-def multiplierCreate(inValue: float, L_value: float, S_value: float):
-    # recursive code from shipping_logic
-    L_remainder = inValue % L_value
-    L_dividable = inValue - L_remainder
-    L_multiplier = L_dividable / L_value
-
-    if L_remainder > S_value:
-        S_remainder = L_remainder % S_value
-        S_dividable = L_remainder - S_remainder
-        S_multiplier = S_dividable / S_value
-        S_multiplier += 1
-    else:
-        S_multiplier = 1
-
-    return [round(L_multiplier), round(S_multiplier)]
-"""
-
-
-def shipping(params: list): #legacy
-    # FIXME: Get accurate values for Parcel Force: Dimensions so you know the maximum cbm
-
+def shipping(params: list): 
     cbm = 0
     weight = 0
 
@@ -56,17 +31,8 @@ def shipping(params: list): #legacy
     if params[2] != "NULL":
         cbm += params[2][1]
         weight += params[2][2]
-
-    """
-    if weight <= 30:
-        if cbm <= 3:  # this is a placeholder value as I currently don't know maxmimum CBM for parcels
-            return ["parcel-force", 1]
-        else:
-            multiplier = round(cbm/3)
-            return ["parcel-force", multiplier]
         
-    """
-
+        
 
     if cbm <= 0.768 and weight <= 300:
         return ["euro-quarter", 1]
