@@ -2,8 +2,12 @@
 Author: Elvis Obero-Atkins
 Last Edited by: Elvis Obero-Atkins
 """
+
+
 def productdetails_headings():
     """returns the headings of the product-details sheet
+    Args:
+        (none)
     Returns:
         list: stores all the headings for each of the columns
     """
@@ -13,6 +17,8 @@ def productdetails_headings():
 
 def palletdetails_headings():
     """returns the headings of the pallet-shipping sheet
+    Args:
+        (none)
     Returns:
         list: stores all the headings for each of the columns
     """

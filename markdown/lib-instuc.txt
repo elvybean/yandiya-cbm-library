@@ -1,11 +1,9 @@
-"""
-Author: Elvis Obero-Atkins
-Last Edited by: Elvis Obero-Atkins
+How to use library (in it's current local form):
 
-This py script is NOT REQUIRED for yandiya-cbm-library to function
+1) place the yandiyacbm folder into your directory
 
-It is odoo module written in python designed to interact with the yandiya-cbm-library.
-"""
+2) paste the following code into the top of your py script: 
+
 #######################################################################################
 #import yandiyacbm as yandiya should not be up here! if it is move to other comment ###
 #######################################################################################
@@ -21,3 +19,12 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 import yandiyacbm as yandiya ##########################################################
 #######################################################################################
+
+3) Call the following functions in order to use the calculator effectively:
+
+a) search_product() and input a string
+
+b) parameters() and input the output from search_product() and a integer
+
+c) ...
+

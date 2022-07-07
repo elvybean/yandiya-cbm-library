@@ -1,2 +1,6 @@
-/__pycache__
+/yandiyacbm/__pycache__
+/tests/__pycache__
+/web-ui/__pycache__
+/odoo-module/__pycache__
+/cli-app/__pycache__
 *.pyc
