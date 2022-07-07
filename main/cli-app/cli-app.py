@@ -22,6 +22,14 @@ sys.path.append(PROJECT_ROOT)
 import yandiyacbm as yandiya ###################################################
 ################################################################################
 
+def startup():
+    # this is unnecessary but cool
+    f = open("main/cli-app/cli-app.txt", "r")
+    value = (f.read())
+    f.close()
+    return value
+
+
 def userInput(iterateStore: list, errorDetect: list):
     errorDetect[1] += 1
 
@@ -67,13 +75,9 @@ def displaySelectedRows(params: list):
 
 def main():
 
-    # this is unnecessary but cool
-    f = open("main/cli-app/cli-app.txt", "r")
-    print(f.read())
-    f.close()
-
+    print(startup())
     extractedRows = userInput([], [0, 0])
-    binpackInput = initiateParams(extractedRows, [])
+    binpackInput = initiateParams(extractedRows)
     displaySelectedRows(binpackInput)
 
 
