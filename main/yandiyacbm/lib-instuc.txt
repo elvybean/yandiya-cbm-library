@@ -1,8 +1,13 @@
-How to use library (in it's current local form):
+How to install the  library (in it's current local form):
 
 1) place the yandiyacbm folder into your directory
 
-2) paste the following code into the top of your py script: 
+2a) if py script is in the same directory but not in it's own folder:
+    paste the following code into the top of your py script: import yandiyacbm as yandiya
+
+
+2b) if py script is in the same directory is in it's own folder: 
+    paste the following code into the top of your py script: 
 
 #######################################################################################
 #import yandiyacbm as yandiya should not be up here! if it is move to other comment ###
@@ -20,11 +25,9 @@ sys.path.append(PROJECT_ROOT)
 import yandiyacbm as yandiya ##########################################################
 #######################################################################################
 
-3) Call the following functions in order to use the calculator effectively:
+How to use:
 
-a) search_product() and input a string
-
-b) parameters() and input the output from search_product() and a integer
-
-c) ...
-
+Call the following functions in order to use the calculator effectively (in it's current local form):
+- search_product() and input a string
+- parameters() and input the output from search_product() and a integer
+- ...
