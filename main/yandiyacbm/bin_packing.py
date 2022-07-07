@@ -24,7 +24,7 @@ def bin_select(products: list):
     return 0
 
 
-def shipping(parameters: list):
+def shipping(parameters: list): #legacy function
     """using the cbm and weight values of an item, calculates which pallet type would be most appropriate
     Args:
         params (list): contains the items name and dimensions, weight and cbm for inner and outer cartons (if applicable)

@@ -29,55 +29,72 @@ def startup(): # this is unnecessary but cool
     return value
 
 
-def userInput(iterateStore: list, errorDetect: list):
-    errorDetect[1] += 1
+def userInput(iterate: list, errors: list):
+    errors[1] += 1
 
     parameters = input(
         "\nWhats the product number, barcode or sku of the item?  ")
     productQuantity = int(input(
         "\nWhat's the quantity of the items that you need?  "))
 
+
     productrow = yandiya.search_product(parameters)
 
     if productrow == 0:
-        errorDetect[0] += 1
+        errors[0] += 1
         print("\nerror. either incorrect input or item does not exist  ")
     else:
-        iterateStore.append([productrow, productQuantity])
+        iterate.append([productrow, productQuantity])
 
     repeat = input(
         "\nDo you want to search for another item? y/n  ").capitalize()
 
     if repeat == "N":
-        if not errorDetect[0] > errorDetect[1]:
-            return iterateStore
+        if not errors[0] > errors[1]:
+            return iterate
         else:
             return 0
     else:
-        return userInput(iterateStore, errorDetect)
+        return userInput(iterate, errors)
 
-def initiateParams(params: list):
-    iterateStore = []
+def initiate(params: list):
+    iterate = []
 
     for i in range(len(params)):
         j = params[i]
         
         k = yandiya.parameters(j[0], j[1])
-        iterateStore.append(k)
+        iterate.append(k)
 
-    return iterateStore
+    return iterate
 
-def displaySelectedRows(params: list):
+def display(params: list):
     for n in range(len(params)):
         print(params[n])
         print(yandiya.shipping(params[n]))
 
 def main():
 
-    print(startup())
-    extractedRows = userInput([], [0, 0])
-    binpackInput = initiateParams(extractedRows)
-    displaySelectedRows(binpackInput)
+    try:
+        print(startup())
+    except:
+        print("\nerror. something went wrong")
+
+    try:
+        extractedRows = userInput([], [0, 0])
+    except:
+        print("\nerror. something went wrong")
+
+    try:
+        binpackInput = initiate(extractedRows)
+    except:
+        print("\nerror. something went wrong")
+
+    try:
+        display(binpackInput)
+    except:
+        print("\nerror. something went wrong")
+
 
 
 main()

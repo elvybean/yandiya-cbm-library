@@ -43,8 +43,6 @@ Call the following functions in order to use the calculator effectively (in it's
 - ...
 """
 
-# how to use: call search_product to access database, use parameters to create input-list then...
-
 from yandiyacbm.search_product import search_product
 from yandiyacbm.headings import productdetails_headings, palletdetails_headings
 from yandiyacbm.parameters import parameters
