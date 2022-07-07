@@ -1,0 +1,10 @@
+{
+    //the below two settings should be in the user settings as well it is good practice
+    "editor.formatOnSave": false,
+    "editor.formatOnPaste": false,
+    "folders": [
+        {
+            "path": "."
+        }
+    ]
+}
