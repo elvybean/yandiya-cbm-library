@@ -20,7 +20,7 @@
   </a>
 
 <h3 align="center">Yandiya CBM Library</h3>
-<h4 align="center">Current: Version 0.2.1 | In Development Version 0.2.2</h4>
+<h4 align="center">Current: Version 0.2.2 | In Development Version 0.2.3</h4>
 <p> a python library written for Yandiya Technologies Ltd during my T Level Industry Placement. </p<
 
 </div> 
@@ -155,13 +155,24 @@ Contributors names and contact info
 
 ## Version History
 
-### Version 0.2.2
+### Version 0.2.3
 
 #### Contributers: Elvis Obero-Atkins
 
 ```
 In Development
 ```
+
+### Version 0.2.2 [go to commit](https://github.com/elvybean/yandiya-cbm-library/commit/c584706fa8ddc95fc030d9194a03928fb823b1bc)
+
+#### Contributers: Elvis Obero-Atkins
+
+- Refactored the file structure
+- Refactored cbmcalculator.py into a local pyhton package called yandiyacbm
+- functions of cbmcalculator.py was split into modules for further decomposition
+- Refactored modules to make them more effiecent
+- Refactored cli-app.py to make it more efficent and better meet PEP8
+- added placeholder files and directories for odoo-module and web-ui
 
 ### Version 0.2.1 [go to commit](https://github.com/elvybean/yandiya-cbm-library/commit/d8ded715bbd3137efe298f2535ac7914d84e1874)
 

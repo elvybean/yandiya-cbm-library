@@ -7,9 +7,9 @@ This py script is NOT REQUIRED for yandiya-cbm-library to function
 It is CLI python application designed to test the search_product fucntion
 """
 
-#####################################################################################
-#"import cbmcalculator as cbm" should not be up here! if it is move to other comment#
-#####################################################################################
+#######################################################################################
+#import yandiyacbm as yandiya should not be up here! if it is move to other comment ###
+#######################################################################################
 import os
 import sys
 PROJECT_ROOT = os.path.abspath(os.path.join(
@@ -17,16 +17,22 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
     os.pardir)
 )
 sys.path.append(PROJECT_ROOT)
-################################################################################
-#the line "yandiyacbm as yandiya" ALWAYS needs to be below os and sys imports ##
-import yandiyacbm as yandiya ###################################################
-################################################################################
+#######################################################################################
+#import yandiyacbm as yandiya ALWAYS needs to be below import os and import sys #######
+#######################################################################################
+import yandiyacbm as yandiya ##########################################################
+#######################################################################################
+
+def startup(): # this is unnecessary but cool
+    f = open("main/tests/tests.txt", "r")
+    value = (f.read())
+    f.close()
+    return value
 
 def main():
-    f = open("main/tests/tests.txt", "r")
-    print(f.read())
-    f.close()
-
+    
+    startup()
+    
     parameters = input(
         "\nWhats the product number, barcode or sku of the item?  ")
     productQuantity = int(input(

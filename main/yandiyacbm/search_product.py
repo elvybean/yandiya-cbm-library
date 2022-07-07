@@ -7,14 +7,13 @@ from openpyxl import Workbook
 
 
 def search_product(parameters: str):
-    """searches an excel document based on user input of a product number, barcode or sku
+    """searches a database document based on user input of a product number, barcode or sku
     Args:
         parameters (string): a product number, barcode or sku that the
-                            user is using to search the excel for
-
-    Returns:
-        list: stores the extracted excell row (if found)
-        int: 0 (if row not found)
+                            user inputted for the purpose of using to search the database
+    Returns (conditional):
+        list: stores the extracted database row (if row can be found in database)
+        int: 0 (if row cannot be found in database)
     """
     yandiya_db = openpyxl.load_workbook(
         'main\database\yandiya-db.xlsx')

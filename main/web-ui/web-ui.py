@@ -9,9 +9,9 @@ from datetime import date
 today = date.today()
 print("Today's date:", today)
 
-#####################################################################################
-#"import cbmcalculator as cbm" should not be up here! if it is move to other comment#
-#####################################################################################
+#######################################################################################
+#import yandiyacbm as yandiya should not be up here! if it is move to other comment ###
+#######################################################################################
 import os
 import sys
 PROJECT_ROOT = os.path.abspath(os.path.join(
@@ -19,15 +19,16 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
     os.pardir)
 )
 sys.path.append(PROJECT_ROOT)
-################################################################################
-#the line "yandiyacbm as yandiya" ALWAYS needs to be below os and sys imports ##
-import yandiyacbm as yandiya ###################################################
-################################################################################
+#######################################################################################
+#import yandiyacbm as yandiya ALWAYS needs to be below import os and import sys #######
+#######################################################################################
+import yandiyacbm as yandiya ##########################################################
+#######################################################################################
 
-modulename = "cbmcalculator"
+modulename = "yandiya"
 if modulename not in sys.modules:
-    print ("You have not imported the cbmcalculator module")
+    print ("You have not imported the yandiya module")
 elif modulename in sys.modules:
-    print ("You have imported the cbmcalculator module")
+    print ("You have imported the yandiya module")
 else:
     print("error?")

@@ -4,12 +4,11 @@ Last Edited by: Elvis Obero-Atkins
 
 This py script is NOT REQUIRED for yandiya-cbm-library to function
 
-It is CLI python application designed to interact with the yandiya-cbm-library.
+This is a CLI python application designed to interact with the yandiyacbm library.
 """
-#####################################################################################
-#"import cbmcalculator as cbm" should not be up here! if it is move to other comment#
-#####################################################################################
-from asyncio.windows_events import NULL
+#######################################################################################
+#import yandiyacbm as yandiya should not be up here! if it is move to other comment ###
+#######################################################################################
 import os
 import sys
 PROJECT_ROOT = os.path.abspath(os.path.join(
@@ -17,10 +16,18 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
     os.pardir)
 )
 sys.path.append(PROJECT_ROOT)
-################################################################################
-#the line "yandiyacbm as yandiya" ALWAYS needs to be below os and sys imports ##
-import yandiyacbm as yandiya ###################################################
-################################################################################
+#######################################################################################
+#import yandiyacbm as yandiya ALWAYS needs to be below import os and import sys #######
+#######################################################################################
+import yandiyacbm as yandiya ##########################################################
+#######################################################################################
+
+def startup(): # this is unnecessary but cool
+    f = open("main/cli-app/cli-app.txt", "r")
+    value = (f.read())
+    f.close()
+    return value
+
 
 def userInput(iterateStore: list, errorDetect: list):
     errorDetect[1] += 1
@@ -67,13 +74,9 @@ def displaySelectedRows(params: list):
 
 def main():
 
-    # this is unnecessary but cool
-    f = open("main/cli-app/cli-app.txt", "r")
-    print(f.read())
-    f.close()
-
+    print(startup())
     extractedRows = userInput([], [0, 0])
-    binpackInput = initiateParams(extractedRows, [])
+    binpackInput = initiateParams(extractedRows)
     displaySelectedRows(binpackInput)
 
 
