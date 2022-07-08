@@ -4,7 +4,7 @@ Last Edited by: Elvis Obero-Atkins
 
 This py script is NOT REQUIRED for yandiya-cbm-library to function
 
-It is CLI python application designed to test the shipping_logic fucntion
+It is CLI python application designed to test the shipping_approx fucntion
 """
 
 #######################################################################################
@@ -20,14 +20,10 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 #import yandiyacbm as yandiya ALWAYS needs to be below import os and import sys #######
 #######################################################################################
-import yandiyacbm as yandiya ##########################################################
+from yandiyacbm import shipping_approx
 #######################################################################################
+from tests import startup
 
-def startup(): # this is unnecessary but cool
-    f = open("main/tests/tests.txt", "r")
-    value = (f.read())
-    f.close()
-    return value
 
 def main():
     
@@ -35,10 +31,10 @@ def main():
 
     cbm = float(input(
         "\nWhats the product's CBM?  "))
-    productQuantity = float(input(
+    weight = float(input(
         "\nWhat's the product's weight?  "))
 
-    print(yandiya.shipping(cbm, productQuantity))
+    print(shipping_approx(cbm, weight))
 
     response = input(
         "\nDo you want to test function again? y/n  ").capitalize()

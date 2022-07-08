@@ -22,12 +22,7 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 import yandiyacbm as yandiya ##########################################################
 #######################################################################################
-
-def startup(): # this is unnecessary but cool
-    f = open("main/tests/tests.txt", "r")
-    value = (f.read())
-    f.close()
-    return value
+from tests import startup
 
 def main():
     

@@ -17,15 +17,15 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 )
 sys.path.append(PROJECT_ROOT)
 #######################################################################################
-#import yandiyacbm as yandiya ALWAYS needs to be below import os and import sys #######
+#import yandiyacbm ALWAYS needs to be below import os and import sys ##################
 #######################################################################################
-import yandiyacbm as yandiya ##########################################################
+from yandiyacbm import search_product, parameters, shipping_approx, extract ###########
 #######################################################################################
 
 def startup(): # this is unnecessary but cool
-    f = open("main/cli-app/cli-app.txt", "r")
-    value = (f.read())
-    f.close()
+    e = open("main/cli-app/cli-app.txt", "r")
+    value = (e.read())
+    e.close()
     return value
 
 
@@ -38,7 +38,7 @@ def userInput(iterate: list, errors: list):
         "\nWhat's the quantity of the items that you need?  "))
 
 
-    productrow = yandiya.search_product(parameters)
+    productrow = search_product(parameters)
 
     if productrow == 0:
         errors[0] += 1
@@ -57,21 +57,22 @@ def userInput(iterate: list, errors: list):
     else:
         return userInput(iterate, errors)
 
-def initiate(params: list):
+def generate(params: list):
     iterate = []
 
-    for i in range(len(params)):
-        j = params[i]
+    for l in range(len(params)):
+        v = params[l]
         
-        k = yandiya.parameters(j[0], j[1])
-        iterate.append(k)
+        i = parameters(v[0], v[1])
+        iterate.append(i)
 
     return iterate
 
 def display(params: list):
-    for n in range(len(params)):
-        print(params[n])
-        print(yandiya.shipping(params[n]))
+    for s in range(len(params)):
+        print(params[s])
+        print(shipping_approx(extract(params[s])))
+        print("==========")
 
 def main():
 
@@ -86,7 +87,7 @@ def main():
         print("\nerror. something went wrong")
 
     try:
-        binpackInput = initiate(extractedRows)
+        binpackInput = generate(extractedRows)
     except:
         print("\nerror. something went wrong")
 

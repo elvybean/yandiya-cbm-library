@@ -44,12 +44,15 @@ Call the following functions in order to use the calculator effectively (in it's
 """
 
 from yandiyacbm.search_product import search_product
-from yandiyacbm.headings import productdetails_headings, palletdetails_headings
 from yandiyacbm.parameters import parameters
-from yandiyacbm.bin_packing import shipping, bin_select, bin_iniate, packing
+from yandiyacbm.miscellaneous import extract
+from yandiyacbm.shipping_approx import shipping_approx
+#from yandiyacbm.bin_packing
+#from yandiyacbm.headings
+
 
 # TODO:
-# - Shipping_Logic is just a basic implementation of the fucntion, Implement excel functionality
-# - refactor code in cli-app loop
-# - look at php 4d bin packing libarary and how it lays out functions
-# - creation of bins etc
+#- make output format of products in yandiyacbm equal to the input format of py4dbp
+#- further remove and refactor py4dbp so it contains only what is required.
+#- make py4dbp stop packing once it's found a compatible bin.
+#- further refactor yandiyacbm to make it more professional, object oriented?
