@@ -21,13 +21,7 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 from yandiyacbm import search_product, parameters, shipping_approx, extract ###########
 #######################################################################################
-
-def startup(): # this is unnecessary but cool
-    e = open("main/cli-app/cli-app.txt", "r")
-    value = (e.read())
-    e.close()
-    return value
-
+from utils import startup
 
 def userInput(iterate: list, errors: list):
     errors[1] += 1
