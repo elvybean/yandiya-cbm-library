@@ -2,7 +2,7 @@
 Author: Elvis Obero-Atkins
 Last Edited by: Elvis Obero-Atkins
 """
-from yandiyacbm.miscellaneous import extract
+from yandiyacbm.misc import extract
 
 def shipping_approx(values: list):  # legacy function
     """using the cbm and weight values of an item, calculates which pallet type would be most appropriate

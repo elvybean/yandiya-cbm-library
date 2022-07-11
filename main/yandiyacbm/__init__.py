@@ -45,8 +45,12 @@ Call the following functions in order to use the calculator effectively (in it's
 
 from yandiyacbm.search_product import search_product
 from yandiyacbm.parameters import parameters
-from yandiyacbm.miscellaneous import extract
+from yandiyacbm.misc import extract, select, orginal
 from yandiyacbm.shipping_approx import shipping_approx
+
+from yandiyacbm.packer import Packer
+from yandiyacbm.bin import Bin
+from yandiyacbm.item import Item
 
 
 
