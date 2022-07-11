@@ -47,8 +47,7 @@ from yandiyacbm.search_product import search_product
 from yandiyacbm.parameters import parameters
 from yandiyacbm.miscellaneous import extract
 from yandiyacbm.shipping_approx import shipping_approx
-#from yandiyacbm.bin_packing
-#from yandiyacbm.headings
+
 
 
 # TODO:

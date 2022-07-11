@@ -20,7 +20,7 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 #import yandiyacbm as yandiya ALWAYS needs to be below import os and import sys #######
 #######################################################################################
-import yandiyacbm as yandiya ##########################################################
+from yandiyacbm import search_product #################################################s
 #######################################################################################
 from tests import startup
 
@@ -33,7 +33,7 @@ def main():
     productQuantity = int(input(
         "\nWhat's the quantity of the items that you need?  "))
 
-    inWarehouse = yandiya.search_product(parameters)
+    inWarehouse = search_product(parameters)
 
     if inWarehouse == 0:
         print("\nerror. either incorrect input or item does not exist  ")
