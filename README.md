@@ -20,7 +20,7 @@
   </a>
 
 <h3 align="center">Yandiya CBM Library</h3>
-<h4 align="center">Current: Version 0.2.2 | In Development Version 0.2.3</h4>
+<h4 align="center">Current: Version 0.2.3 | In Development Version 0.2.4</h4>
 <p> a python library consisting of; a custom python package, odoo module and web user interface written for Yandiya Technologies Ltd during my T Level Industry Placement and further developed during my Summer Internship </p<
 
 </div> 
@@ -133,7 +133,7 @@ This README.md section is unfinshed
 - [x] [Packaging Logic](https://github.com/elvybean/yandiya-cbm-library/milestone/2)
 - [x] [Parcelforce & Pallet Selection Logic](https://github.com/elvybean/yandiya-cbm-library/milestone/10)
 - [ ] [Price Calculation Logic](https://github.com/elvybean/yandiya-cbm-library/milestone/5)
-- [ ] [Three Dimensional Calculations](https://github.com/elvybean/yandiya-cbm-library/milestone/6)
+- [x] [Three Dimensional Calculations](https://github.com/elvybean/yandiya-cbm-library/milestone/6)
 - [ ] [PostgreSQL](https://github.com/elvybean/yandiya-cbm-library/milestone/14)
 - [ ] [Web Interface](https://github.com/elvybean/yandiya-cbm-library/milestone/9)
 - [ ] [Python Package](https://github.com/elvybean/yandiya-cbm-library/milestone/7)
@@ -153,13 +153,22 @@ Contributors names and contact info
 
 ## Version History
 
-### Version 0.2.3
+### Version 0.2.4
 
 #### Contributers: Elvis Obero-Atkins
 
 ```
 In Development
 ```
+
+### Version 0.2.3 [go to commit]()
+
+#### Contributers: Elvis Obero-Atkins
+
+- Refactored file structure and module structure
+- fully integrated py4dbp which is a python bin packing implemetation
+  for the purpose of getting accurate 3 dimensional calculations
+- updated tests and cli-app to utilize these new features
 
 ### Version 0.2.2 [go to commit](https://github.com/elvybean/yandiya-cbm-library/commit/c584706fa8ddc95fc030d9194a03928fb823b1bc)
 
