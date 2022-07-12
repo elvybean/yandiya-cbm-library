@@ -161,7 +161,7 @@ Contributors names and contact info
 In Development
 ```
 
-### Version 0.2.3 [go to commit]()
+### Version 0.2.3 [go to commit](https://github.com/elvybean/yandiya-cbm-library/commit/7d413a05258696d2d9811bd1c6e6209ef59a967a)
 
 #### Contributers: Elvis Obero-Atkins
 
