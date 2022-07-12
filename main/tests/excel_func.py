@@ -4,7 +4,7 @@ Last Edited by: Elvis Obero-Atkins
 
 This py script is NOT REQUIRED for yandiya-cbm-library to function
 
-It is CLI python application designed to test the search_product fucntion
+It is CLI python application designed to test the fucntions in the excel_func module
 """
 
 #######################################################################################
@@ -20,30 +20,32 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 #import yandiyacbm as yandiya ALWAYS needs to be below import os and import sys #######
 #######################################################################################
-import yandiyacbm as yandiya ##########################################################
+from yandiyacbm import search_product, parameter_generate #############################
 #######################################################################################
-
-def startup(): # this is unnecessary but cool
-    f = open("main/tests/tests.txt", "r")
-    value = (f.read())
-    f.close()
-    return value
+from tests import startup
 
 def main():
     
-    startup()
+    print(startup())
     
-    parameters = input(
+    search = input(
         "\nWhats the product number, barcode or sku of the item?  ")
-    productQuantity = int(input(
+    quant = int(input(
         "\nWhat's the quantity of the items that you need?  "))
 
-    inWarehouse = yandiya.search_product(parameters)
+    row = search_product(search)
 
-    if inWarehouse == 0:
+    if row == 0:
         print("\nerror. either incorrect input or item does not exist  ")
     else:
-        print(inWarehouse)
+        out = parameter_generate(row, quant)
+        
+        for i in range(len(out)):
+            if i == 0:
+                 print(":::::::::::", out[i])
+            else:
+                print("====> ",out[i])
+
 
     response = input(
         "\nDo you want to test function again? y/n  ").capitalize()
@@ -53,4 +55,5 @@ def main():
     else:
         return main()
 
-main()
+if __name__ == "__main__":
+   main()

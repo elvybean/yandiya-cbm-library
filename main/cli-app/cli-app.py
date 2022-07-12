@@ -17,67 +17,105 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 )
 sys.path.append(PROJECT_ROOT)
 #######################################################################################
-#import yandiyacbm as yandiya ALWAYS needs to be below import os and import sys #######
+#import yandiyacbm ALWAYS needs to be below import os and import sys ##################
 #######################################################################################
-import yandiyacbm as yandiya ##########################################################
+from yandiyacbm import search_product, parameter_generate, Packer, Bin, Item, select, pre_pack
 #######################################################################################
 
-def startup(): # this is unnecessary but cool
-    f = open("main/cli-app/cli-app.txt", "r")
-    value = (f.read())
-    f.close()
-    return value
-
-
-def userInput(iterateStore: list, errorDetect: list):
-    errorDetect[1] += 1
+def userInput(iterate: list, errors: list):
+    errors[1] += 1
 
     parameters = input(
         "\nWhats the product number, barcode or sku of the item?  ")
     productQuantity = int(input(
         "\nWhat's the quantity of the items that you need?  "))
 
-    productrow = yandiya.search_product(parameters)
+
+    productrow = search_product(parameters)
 
     if productrow == 0:
-        errorDetect[0] += 1
+        errors[0] += 1
         print("\nerror. either incorrect input or item does not exist  ")
     else:
-        iterateStore.append([productrow, productQuantity])
+        iterate.append([productrow, productQuantity])
 
     repeat = input(
         "\nDo you want to search for another item? y/n  ").capitalize()
 
     if repeat == "N":
-        if not errorDetect[0] > errorDetect[1]:
-            return iterateStore
+        if not errors[0] > errors[1]:
+            return iterate
         else:
             return 0
     else:
-        return userInput(iterateStore, errorDetect)
+        return userInput(iterate, errors)
 
-def initiateParams(params: list):
-    iterateStore = []
+def generate(params: list):
+    iterate = []
 
     for i in range(len(params)):
-        j = params[i]
-        
-        k = yandiya.parameters(j[0], j[1])
-        iterateStore.append(k)
+        product = params[i]
+        formatted = parameter_generate(product[0], product[1])
+        iterate.append(formatted)
 
-    return iterateStore
+    return iterate
 
-def displaySelectedRows(params: list):
-    for n in range(len(params)):
-        print(params[n])
-        print(yandiya.shipping(params[n]))
+def display(params: list):
+
+    for i in range(len(params)):
+        item = params[i]
+        for j in range(len(item)):
+            if j == 0:
+                 print(":::::::::::", item[j])
+            else:
+                print("====> ",item[j])
+
+        print("\n\n")
+    print("===========================================")
+    return
 
 def main():
 
-    print(startup())
-    extractedRows = userInput([], [0, 0])
-    binpackInput = initiateParams(extractedRows)
-    displaySelectedRows(binpackInput)
+    # this is unnecessary but cool
+    e = open("main/cli-app/cli-app.txt", "r")
+    print(e.read())
+    e.close()
+
+    try:
+        extractedRows = userInput([], [0, 0])
+    except:
+        print("\nerror. something went wrong")
+
+    try:
+        params = generate(extractedRows)
+    except:
+        print("\nerror. something went wrong")
+
+    try:
+        display(params)
+    except:
+        print("\nerror. something went wrong")
+
+    try:
+
+        packer = Packer()
+
+        packer.add_bin(Bin("standard-quarter", 1200, 1200, 800, 300))
+        packer.add_bin(Bin("standard-half", 1200, 1200, 1200, 600))
+        packer.add_bin(Bin("standard", 1200, 1200, 2200, 1200))
+        packer.add_bin(Bin("euro-quarter", 800, 1200, 800, 300))
+        packer.add_bin(Bin("euro-half", 800, 1200, 1200, 600))
+        packer.add_bin(Bin("euro", 800, 1200, 2200, 1200))
+
+        pre_pack(packer, params)
+
+        packer.pack()
+    
+        select(packer)
+
+    except:
+        print("\nerror. something went wrong")
 
 
-main()
+if __name__ == "__main__":
+   main()

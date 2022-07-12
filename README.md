@@ -21,7 +21,7 @@
 
 <h3 align="center">Yandiya CBM Library</h3>
 <h4 align="center">Current: Version 0.2.2 | In Development Version 0.2.3</h4>
-<p> a python library written for Yandiya Technologies Ltd during my T Level Industry Placement. </p<
+<p> a python library consisting of; a custom python package, odoo module and web user interface written for Yandiya Technologies Ltd during my T Level Industry Placement and further developed during my Summer Internship </p<
 
 </div> 
 <div align="left">
@@ -148,8 +148,6 @@ See the [open issues](https://github.com/elvybean/yandiya-cbm-library/issues) fo
 Contributors names and contact info
 
 - Elvis Obero-Atkins [GitHub](https://github.com/elvybean) | [LinkedIn](www.linkedin.com/in/elvisoberoatkins)
-- Ethan Cooksley [GitHub](https://github.com/eocooksley535) | [LinkedIn](https://www.linkedin.com/in/ethan-cooksley-a0666b238/)
-- Jack Macguire [GitHub](#) | [LinkedIn](#)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -214,7 +212,7 @@ In Development
 
 ## Repo Forks
 
-### [Excel Postcode Sheet & Additional Development](https://github.com/eocooksley535/yandiya-cbm-library)
+### [Excel Postcode Sheet & Additional Development](https://github.com/eocooksley535/yandiya-cbm-library) (Stagnated Development)
 
 #### Contributers: Ethan Cooksley | Developers: Ethan Cooksley & Jack Macguire
 
