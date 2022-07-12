@@ -19,9 +19,8 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 #import yandiyacbm ALWAYS needs to be below import os and import sys ##################
 #######################################################################################
-from yandiyacbm import search_product, parameters, shipping_approx, extract ###########
+from yandiyacbm import search_product, parameter_generate, Packer, Bin, Item, select, pre_pack
 #######################################################################################
-from utils import startup
 
 def userInput(iterate: list, errors: list):
     errors[1] += 1
@@ -54,26 +53,33 @@ def userInput(iterate: list, errors: list):
 def generate(params: list):
     iterate = []
 
-    for l in range(len(params)):
-        v = params[l]
-        
-        i = parameters(v[0], v[1])
-        iterate.append(i)
+    for i in range(len(params)):
+        product = params[i]
+        formatted = parameter_generate(product[0], product[1])
+        iterate.append(formatted)
 
     return iterate
 
 def display(params: list):
-    for s in range(len(params)):
-        print(params[s])
-        print(shipping_approx(extract(params[s])))
-        print("==========")
+
+    for i in range(len(params)):
+        item = params[i]
+        for j in range(len(item)):
+            if j == 0:
+                 print(":::::::::::", item[j])
+            else:
+                print("====> ",item[j])
+
+        print("\n\n")
+    print("===========================================")
+    return
 
 def main():
 
-    try:
-        print(startup())
-    except:
-        print("\nerror. something went wrong")
+    # this is unnecessary but cool
+    e = open("main/cli-app/cli-app.txt", "r")
+    print(e.read())
+    e.close()
 
     try:
         extractedRows = userInput([], [0, 0])
@@ -81,15 +87,35 @@ def main():
         print("\nerror. something went wrong")
 
     try:
-        binpackInput = generate(extractedRows)
+        params = generate(extractedRows)
     except:
         print("\nerror. something went wrong")
 
     try:
-        display(binpackInput)
+        display(params)
+    except:
+        print("\nerror. something went wrong")
+
+    try:
+
+        packer = Packer()
+
+        packer.add_bin(Bin("standard-quarter", 1200, 1200, 800, 300))
+        packer.add_bin(Bin("standard-half", 1200, 1200, 1200, 600))
+        packer.add_bin(Bin("standard", 1200, 1200, 2200, 1200))
+        packer.add_bin(Bin("euro-quarter", 800, 1200, 800, 300))
+        packer.add_bin(Bin("euro-half", 800, 1200, 1200, 600))
+        packer.add_bin(Bin("euro", 800, 1200, 2200, 1200))
+
+        pre_pack(packer, params)
+
+        packer.pack()
+    
+        select(packer)
+
     except:
         print("\nerror. something went wrong")
 
 
-
-main()
+if __name__ == "__main__":
+   main()

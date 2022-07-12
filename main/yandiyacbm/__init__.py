@@ -43,15 +43,9 @@ Call the following functions in order to use the calculator effectively (in it's
 - ...
 """
 
-from yandiyacbm.search_product import search_product
-from yandiyacbm.parameters import parameters
-from yandiyacbm.misc import extract
-from yandiyacbm.shipping_approx import shipping_approx
-
-from yandiyacbm.packer import Packer
-from yandiyacbm.bin import Bin
-from yandiyacbm.item import Item
-from yandiyacbm.utils import select, orginal
+from yandiyacbm.excel_func import search_product, parameter_generate
+from yandiyacbm.py4dbp import Item, Bin, Packer
+from yandiyacbm.py4dbp_utils import select, orginal, pre_pack
 
 
 # TODO:

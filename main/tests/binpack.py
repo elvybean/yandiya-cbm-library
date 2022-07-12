@@ -1,3 +1,11 @@
+"""
+Author: Elvis Obero-Atkins
+Last Edited by: Elvis Obero-Atkins
+
+This py script is NOT REQUIRED for yandiya-cbm-library to function
+
+It is CLI python application designed to test the functions & classes in the binpack module
+"""
 #######################################################################################
 #import yandiyacbm as yandiya should not be up here! if it is move to other comment ###
 #######################################################################################
@@ -13,8 +21,11 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 from yandiyacbm import Packer, Bin, Item, select, orginal #############################
 #######################################################################################
+from tests import startup
 
 def main():
+    print(startup())
+
     packer = Packer()
 
     # Formatted values based on yandiyacbm
@@ -29,12 +40,11 @@ def main():
     packer.add_bin(Bin("euro-half", 800, 1200, 1200, 600))
     packer.add_bin(Bin("euro", 800, 1200, 2200, 1200))
 
-
-    packer.add_item(Item('IH35-W Inner Carton', 670.0, 660.0, 50.0, 4.78))
-    packer.add_item(Item('IH35-W Inner Carton', 670.0, 660.0, 50.0, 4.78))
+    #packer.add_item(Item('Test', 700.0, 710.0, 250.0, 1200.00))
     packer.add_item(Item('IH35-W Outer Carton', 700.0, 710.0, 250.0, 25.92))
     packer.add_item(Item('IH35-W Outer Carton', 700.0, 710.0, 250.0, 25.92))
-
+    packer.add_item(Item('IH35-W Inner Carton', 670.0, 660.0, 50.0, 4.78))
+    packer.add_item(Item('IH35-W Inner Carton', 670.0, 660.0, 50.0, 4.78))
 
 
     packer.pack()
@@ -45,4 +55,13 @@ def main():
     #for item in b.unfitted_items:
     #    print("====> ", item.string())
 
-main()
+    response = input(
+        "\nDo you want to test function again? y/n  ").capitalize()
+
+    if response == "N":
+            return 0
+    else:
+        return main()
+
+if __name__ == "__main__":
+   main()
