@@ -41,6 +41,7 @@ def search_product(parameters: str):
 
     return returnValue
 
+
 def parameter_generate(row: list, itemQuantity: int):  # legacy
     # Three possible outcomes; "x of Oyter Cartons", "x of Inner Cartons" and "x of Oyter Cartons AND x of Inner Cartons"
     if itemQuantity >= (int(row[13]) / 2):
@@ -74,10 +75,10 @@ def parameter_generate(row: list, itemQuantity: int):  # legacy
     # ['IH35-W', [2.0, 0.04422, 9.56, 670.0, 660.0, 50.0, 4.78], [2.0, 0.2485, 51.84, 700.0, 710.0, 250.0, 25.92]]
 
     # easiest solution would to be to get it into
-    #[['IH35-W Outer Carton', 700.0, 710.0, 250.0, 25.9], ['IH35-W Outer Carton', 700.0, 710.0, 250.0, 25.9]
+    # [['IH35-W Outer Carton', 700.0, 710.0, 250.0, 25.9], ['IH35-W Outer Carton', 700.0, 710.0, 250.0, 25.9]
     #                                                      , ['IH35-W Inner Carton', 670.0, 660.0, 50.0, 4.78], ['IH35-W Inner Carton', 670.0, 660.0, 50.0, 4.78]]
 
-    # This will later have to be seperated into another 
+    # This will later have to be seperated into another
 
     if innerCartons != 0:
         icList = [row[3] + " Inner Carton", row[4], row[5], row[6], row[7]]

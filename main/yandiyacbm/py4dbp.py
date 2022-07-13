@@ -1,3 +1,7 @@
+"""
+Author: Elvis Obero-Atkins
+Last Edited by: Elvis Obero-Atkins
+"""
 from yandiyacbm.py4dbp_maths import RotationType, Axis, intersect, set_to_decimal, MiscVars
 
 
@@ -20,10 +24,10 @@ class Item:
         self.number_of_decimals = number_of_decimals
 
     def string(self):
-        #return "%s(%sx%sx%s, weight: %s) pos(%s) rt(%s) cbm(%s)" % (
+        # return "%s(%sx%sx%s, weight: %s) pos(%s) rt(%s) cbm(%s)" % (
         #    self.name, self.width, self.height, self.depth, self.weight,
         #    self.position, self.rotation_type, self.get_cbm()
-        #)
+        # )
         return "%s(%sx%sx%s, weight: %s) cbm(%s)" % (
             self.name, self.width, self.height, self.depth, self.weight,
             self.get_cbm()

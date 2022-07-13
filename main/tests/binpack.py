@@ -19,9 +19,21 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 #import yandiyacbm ALWAYS needs to be below import os and import sys ##################
 #######################################################################################
-from yandiyacbm import Packer, Bin, Item, select, orginal #############################
+from yandiyacbm import Packer, Bin, Item, select ######################################
 #######################################################################################
 from tests import startup
+
+def orginal(packer: Packer):
+    for Bin in packer.bins:
+        print(":::::::::::", Bin.string())
+
+        print("FITTED ITEMS:")
+        for item in Bin.items:
+            print("====> ", item.string())
+
+        print("UNFITTED ITEMS:")
+        for item in Bin.unfitted_items:
+            print("====> ", item.string())
 
 def main():
     print(startup())

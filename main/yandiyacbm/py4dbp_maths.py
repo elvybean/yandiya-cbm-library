@@ -1,3 +1,7 @@
+"""
+Author: Elvis Obero-Atkins
+Last Edited by: Elvis Obero-Atkins
+"""
 from decimal import Decimal
 
 class MiscVars:
