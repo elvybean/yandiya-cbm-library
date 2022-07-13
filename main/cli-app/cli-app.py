@@ -23,13 +23,13 @@ from yandiyacbm import search_product, parameter_generate, Packer, Bin, Item, pa
 #######################################################################################
 
 
-def divider():
+def C_divider():
     e = open("main/cli-app/divider.txt", "r")
     print("\n", e.read())
     e.close()
 
 
-def userInput(iterate: list, errors: list):
+def C_userInput(iterate: list, errors: list):
     errors[1] += 1
 
     parameters = input(
@@ -54,10 +54,10 @@ def userInput(iterate: list, errors: list):
         else:
             return 0
     else:
-        return userInput(iterate, errors)
+        return C_userInput(iterate, errors)
 
 
-def generate(params: list):
+def C_generate(params: list):
     iterate = []
 
     for i in range(len(params)):
@@ -68,8 +68,8 @@ def generate(params: list):
     return iterate
 
 
-def display(params: list):
-    divider()
+def C_display(params: list):
+    C_divider()
     print("\nFormtted Data")
     for i in range(len(params)):
         item = params[i]
@@ -78,7 +78,7 @@ def display(params: list):
                 print("\n:::::::::::", item[j])
             else:
                 print("====> ", item[j])
-    divider()
+    C_divider()
     return
 
 
@@ -89,44 +89,30 @@ def main():
     print(e.read())
     e.close()
 
-    try:
-        extractedRows = userInput([], [0, 0])
-    except:
-        print("\nerror. something went wrong")
+    extractedRows = C_userInput([], [0, 0])
 
-    try:
-        params = generate(extractedRows)
-    except:
-        print("\nerror. something went wrong")
+    params = C_generate(extractedRows)
 
-    try:
-        display(params)
-    except:
-        print("\nerror. something went wrong")
+    C_display(params)
 
-    try:
-        packer = Packer()
-        initiate_pallets(packer)
-        pre_pack(packer, params)
-        packer.pack()
-        output = pallet_select(packer)
-        divider()
-        if output == False:
-            return
+    packer = Packer()
+    initiate_pallets(packer)
+    pre_pack(packer, params)
+    packer.pack()
+    output = pallet_select(packer)
+    C_divider()
+    if output == False:
+        return
 
-    except:
-        print("\nerror. something went wrong")
-
-    try:
+    while output != False:
         packer2 = Packer()
         initiate_pallets(packer2)
         re_pack(packer2, output)
         packer2.pack()
-        pallet_select(packer2)
-        divider()
-
-    except:
-        print("\nerror. something went wrong")
+        output = pallet_select(packer2)
+        C_divider()
+    if output == False:
+        return
 
 
 if __name__ == "__main__":

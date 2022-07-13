@@ -45,7 +45,7 @@ Call the following functions in order to use the calculator effectively (in it's
 
 from yandiyacbm.excel_func import search_product, parameter_generate
 from yandiyacbm.py4dbp import Item, Bin, Packer
-from yandiyacbm.py4dbp_utils import pallet_select, pre_pack, initiate_pallets, re_pack
+from yandiyacbm.py4dbp_utils import initiate_pallets, pallet_select, pre_pack, re_pack
 
 
 # TODO:
