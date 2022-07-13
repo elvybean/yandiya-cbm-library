@@ -217,5 +217,11 @@ class Packer:
 
 # new class called shippment or orders, add multiple packer outputs to it, this is foor storing packer objects
 class Order:
-    def __init__(self): 
-        return
+    def __init__(self):
+        self.packers = []
+        self.total_packers = 0
+
+    def add_packer(self, packer):
+        self.total_packers = len(self.packers) + 1
+
+        return self.packers.append(packer)
