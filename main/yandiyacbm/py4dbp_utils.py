@@ -31,6 +31,17 @@ def pre_pack(packer: Packer, params: list):
                     Item(details[0], details[1], details[2], details[3], details[4]))
     return packer
 
+def pallet_select_bg(packer: Packer):
+    num = 0
+    for Bin in packer.bins:
+        num += 1
+        returns = []
+        if len(Bin.unfitted_items) == 0:
+            return False
+        elif num == len(packer.bins):
+            for item in Bin.unfitted_items:
+                returns.append(item)
+            return returns
 
 def pallet_select(packer: Packer):
     num = 0
@@ -40,9 +51,7 @@ def pallet_select(packer: Packer):
 
         if len(Bin.unfitted_items) == 0:
             print("\nAppropriate bin found\n")
-
             print(":::::::::::", Bin.string())
-
             print("FITTED ITEMS:")
             for item in Bin.items:
                 print("====> ", item.string())
@@ -51,11 +60,9 @@ def pallet_select(packer: Packer):
         elif num == len(packer.bins):
             print("\nClosest bin found\n")
             print(":::::::::::", Bin.string())
-
             print("FITTED ITEMS:")
             for item in Bin.items:
                 print("====> ", item.string())
-
             print("UNFITTED ITEMS:")
             for item in Bin.unfitted_items:
                 returns.append(item)
