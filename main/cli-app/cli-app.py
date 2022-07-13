@@ -19,7 +19,7 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 #import yandiyacbm ALWAYS needs to be below import os and import sys ##################
 #######################################################################################
-from yandiyacbm import search_product, parameter_generate, Packer, Bin, Item, pallet_select, pre_pack, initiate_pallets, re_pack
+from yandiyacbm import search_product, parameter_generate, Packer, Bin, Item, pallet_select_prints, pre_pack, initiate_pallets, re_pack
 #######################################################################################
 
 
@@ -99,7 +99,7 @@ def main():
     initiate_pallets(packer)
     pre_pack(packer, params)
     packer.pack()
-    output = pallet_select(packer)
+    output = pallet_select_prints(packer)
     C_divider()
     if output == False:
         return
@@ -109,7 +109,7 @@ def main():
         initiate_pallets(packer2)
         re_pack(packer2, output)
         packer2.pack()
-        output = pallet_select(packer2)
+        output = pallet_select_prints(packer2)
         C_divider()
     if output == False:
         return

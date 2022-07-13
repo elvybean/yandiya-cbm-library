@@ -31,7 +31,7 @@ def pre_pack(packer: Packer, params: list):
                     Item(details[0], details[1], details[2], details[3], details[4]))
     return packer
 
-def pallet_select_bg(packer: Packer):
+def pallet_select(packer: Packer):
     num = 0
     for Bin in packer.bins:
         num += 1
@@ -43,7 +43,7 @@ def pallet_select_bg(packer: Packer):
                 returns.append(item)
             return returns
 
-def pallet_select(packer: Packer):
+def pallet_select_prints(packer: Packer):
     num = 0
     for Bin in packer.bins:
         num += 1

@@ -19,7 +19,7 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 #import yandiyacbm ALWAYS needs to be below import os and import sys ##################
 #######################################################################################
-from yandiyacbm import Packer, Bin, Item, pallet_select ###############################
+from yandiyacbm import Packer, Bin, Item, pallet_select_prints
 #######################################################################################
 from tests import startup
 
@@ -63,7 +63,7 @@ def main():
 
     packer.pack()
     #orginal(packer)
-    pallet_select(packer)
+    pallet_select_prints(packer)
 
     #print("UNFITTED ITEMS:")
     #for item in b.unfitted_items:
