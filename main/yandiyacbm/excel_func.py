@@ -5,8 +5,9 @@ Last Edited by: Elvis Obero-Atkins
 import openpyxl
 from openpyxl import Workbook
 
+from yandiyacbm.excel_utils import divider
 
-def search_product(parameters: str):
+def search_products(SearchParams: str):
     """searches a database document based on user input of a product number, barcode or sku
     Args:
         parameters (string): a product number, barcode or sku that the
@@ -19,30 +20,51 @@ def search_product(parameters: str):
         'main\database\yandiya-db.xlsx')
     records_table = yandiya_db.active
 
-    if len(parameters) == 5:
+    if len(SearchParams) == 5:
         search_column = records_table['C']  # sku
-    elif len(parameters) == 13:
+    elif len(SearchParams) == 13:
         search_column = records_table['B']  # barcode
     else:
         search_column = records_table['A']  # partNo
 
     requiredData = 0
     for cell in search_column:
-        if cell.value == parameters:
+        if cell.value == SearchParams:
             requiredData = records_table[cell.row]
             break
 
     if requiredData == 0:
         return 0
 
-    returnValue = []
+    extractedRows = []
     for cell in requiredData:
-        returnValue.append(cell.value)
+        extractedRows.append(cell.value)
 
-    return returnValue
+    return extractedRows
+
+def parameters_display(formattedData: list):
+    divider()
+    print("\nFormtted Data")
+    for i in range(len(formattedData)):
+        item = formattedData[i]
+        for j in range(len(item)):
+            if j == 0:
+                print("\n:::::::::::", item[j])
+            else:
+                print("====> ", item[j])
+    divider()
 
 
-def parameter_generate(row: list, itemQuantity: int):
+def parameters_generate(extractedRows: list):
+    formattedData = []
+    for i in range(len(extractedRows)):
+        product = extractedRows[i]
+        formatted = parameter_list(product[0], product[1])
+        formattedData.append(formatted)
+    return formattedData
+
+
+def parameter_list(row: list, itemQuantity: int):
     if itemQuantity >= (int(row[13]) / 2):
         if itemQuantity > int(row[13]):
 
@@ -62,16 +84,16 @@ def parameter_generate(row: list, itemQuantity: int):
         outerCartons = 0
         innerCartons = itemQuantity
 
-    output = [[row[3], row[0], itemQuantity]]
+    funcOutput = [[row[3], row[0], itemQuantity]]
 
     if innerCartons != 0:
         icList = [row[3] + " Inner Carton", row[4], row[5], row[6], row[7]]
         for i in range(int(innerCartons)):
-            output.append(icList)
+            funcOutput.append(icList)
 
     if outerCartons != 0:
         ocList = [row[3] + " Outer Carton", row[9], row[10], row[11], row[12]]
         for i in range(int(outerCartons)):
-            output.append(ocList)
+            funcOutput.append(ocList)
 
-    return output
+    return funcOutput

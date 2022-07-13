@@ -7,7 +7,7 @@ This py script is NOT REQUIRED for yandiya-cbm-library to function
 This is a CLI python application designed to interact with the yandiyacbm library.
 """
 #######################################################################################
-#import yandiyacbm as yandiya should not be up here! if it is move to other comment ###
+#import yandiyacbm as yandiya should not be up here! if it is move to other comment
 #######################################################################################
 import os
 import sys
@@ -17,19 +17,12 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 )
 sys.path.append(PROJECT_ROOT)
 #######################################################################################
-#import yandiyacbm ALWAYS needs to be below import os and import sys ##################
+#import yandiyacbm as yandiya ALWAYS needs to be below import os and import sys
 #######################################################################################
-from yandiyacbm import search_product, parameter_generate, Packer, Bin, Item, pallet_select_prints, pre_pack, initiate_pallets, re_pack
-#######################################################################################
+from yandiyacbm import search_products, parameters_generate, parameters_display, binpack_start_prints
 
 
-def C_divider():
-    e = open("main/cli-app/divider.txt", "r")
-    print("\n", e.read())
-    e.close()
-
-
-def C_userInput(iterate: list, errors: list):
+def cliapp_Input(iterate: list, errors: list):
     errors[1] += 1
 
     parameters = input(
@@ -37,7 +30,7 @@ def C_userInput(iterate: list, errors: list):
     productQuantity = int(input(
         "\nWhat's the quantity of the items that you need?  "))
 
-    productrow = search_product(parameters)
+    productrow = search_products(parameters)
 
     if productrow == 0:
         errors[0] += 1
@@ -54,32 +47,7 @@ def C_userInput(iterate: list, errors: list):
         else:
             return 0
     else:
-        return C_userInput(iterate, errors)
-
-
-def C_generate(params: list):
-    iterate = []
-
-    for i in range(len(params)):
-        product = params[i]
-        formatted = parameter_generate(product[0], product[1])
-        iterate.append(formatted)
-
-    return iterate
-
-
-def C_display(params: list):
-    C_divider()
-    print("\nFormtted Data")
-    for i in range(len(params)):
-        item = params[i]
-        for j in range(len(item)):
-            if j == 0:
-                print("\n:::::::::::", item[j])
-            else:
-                print("====> ", item[j])
-    C_divider()
-    return
+        return cliapp_Input(iterate, errors)
 
 
 def main():
@@ -89,31 +57,13 @@ def main():
     print(e.read())
     e.close()
 
-    extractedRows = C_userInput([], [0, 0])
+    extractedRows = cliapp_Input([], [0, 0])
 
-    params = C_generate(extractedRows)
+    params = parameters_generate(extractedRows)
 
-    C_display(params)
+    parameters_display(params)
 
-    packer = Packer()
-    initiate_pallets(packer)
-    pre_pack(packer, params)
-    packer.pack()
-    output = pallet_select_prints(packer)
-    C_divider()
-    if output == False:
-        return
-
-    while output != False:
-        packer2 = Packer()
-        initiate_pallets(packer2)
-        re_pack(packer2, output)
-        packer2.pack()
-        output = pallet_select_prints(packer2)
-        C_divider()
-    if output == False:
-        return
-
+    binpack_start_prints(params)
 
 if __name__ == "__main__":
     main()

@@ -3,7 +3,27 @@ Author: Elvis Obero-Atkins
 Last Edited by: Elvis Obero-Atkins
 """
 from yandiyacbm.py4dbp import Packer, Bin, Item
+from yandiyacbm.excel_utils import divider
 
+def binpack_start_prints(formattedData: list):
+    packer = Packer()
+    initiate_pallets(packer)
+    pre_pack(packer, formattedData)
+    packer.pack()
+    output = pallet_select_prints(packer)
+    divider()
+    if output == False:
+        return
+
+    while output != False:
+        packer2 = Packer()
+        initiate_pallets(packer2)
+        re_pack(packer2, output)
+        packer2.pack()
+        output = pallet_select_prints(packer2)
+        divider()
+    if output == False:
+        return
 
 def initiate_pallets(packer: Packer):
     packer.add_bin(Bin("standard-quarter", 1200, 1200, 800, 300))

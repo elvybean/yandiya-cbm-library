@@ -3,6 +3,9 @@ Author: Elvis Obero-Atkins
 Last Edited by: Elvis Obero-Atkins
 """
 
+def divider():
+    print("")
+    print("------------------------------------------------------------------------------------------------------------------------")
 
 def productdetails_headings():
     """returns the headings of the product-details sheet
