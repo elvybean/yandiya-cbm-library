@@ -75,19 +75,19 @@ def pallet_select(packer: Packer):
     num = 0
     for Bin in packer.bins:
         num += 1
-        returns = []
+        leftoverItems = []
         if len(Bin.unfitted_items) == 0:
             return False
         elif num == len(packer.bins):
             for item in Bin.unfitted_items:
-                returns.append(item)
-            return returns
+                leftoverItems.append(item)
+            return leftoverItems
 
 def pallet_select_prints(packer: Packer):
     num = 0
     for Bin in packer.bins:
         num += 1
-        returns = []
+        leftoverItems = []
 
         if len(Bin.unfitted_items) == 0:
             print("\nAppropriate bin found\n")
@@ -105,6 +105,6 @@ def pallet_select_prints(packer: Packer):
                 print("====> ", item.string())
             print("UNFITTED ITEMS:")
             for item in Bin.unfitted_items:
-                returns.append(item)
+                leftoverItems.append(item)
                 print("====> ", item.string())
-            return returns
+            return leftoverItems
