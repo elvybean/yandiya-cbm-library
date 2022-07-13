@@ -42,10 +42,9 @@ def search_product(parameters: str):
     return returnValue
 
 
-def parameter_generate(row: list, itemQuantity: int):  # legacy
-    # Three possible outcomes; "x of Oyter Cartons", "x of Inner Cartons" and "x of Oyter Cartons AND x of Inner Cartons"
+def parameter_generate(row: list, itemQuantity: int):
     if itemQuantity >= (int(row[13]) / 2):
-        if itemQuantity > int(row[13]):  # x of Outer Cartons
+        if itemQuantity > int(row[13]):
 
             remainderItems = itemQuantity % float(row[13])
             divisable = itemQuantity - remainderItems
@@ -54,31 +53,16 @@ def parameter_generate(row: list, itemQuantity: int):  # legacy
             if remainderItems >= (float(row[13]) / 2):
                 outerCartons += 1
                 innerCartons = 0
-            else:  # x of Oyter Cartons AND x of Inner Cartons
+            else:
                 innerCartons = remainderItems
         else:
             outerCartons = 1
             innerCartons = 0
-    else:  # x of Inner Cartons
+    else:
         outerCartons = 0
         innerCartons = itemQuantity
 
     output = [[row[3], row[0], itemQuantity]]
-
-    # this is the accepted format by packer()
-    # 'IH35-W Outer Carton', 700.0, 710.0, 250.0, 25.9
-    # 'IH35-W Outer Carton', 700.0, 710.0, 250.0, 25.9
-    # 'IH35-W Inner Carton', 670.0, 660.0, 50.0, 4.78
-    # 'IH35-W Inner Carton', 670.0, 660.0, 50.0, 4.78
-
-    # curretnly is in:
-    # ['IH35-W', [2.0, 0.04422, 9.56, 670.0, 660.0, 50.0, 4.78], [2.0, 0.2485, 51.84, 700.0, 710.0, 250.0, 25.92]]
-
-    # easiest solution would to be to get it into
-    # [['IH35-W Outer Carton', 700.0, 710.0, 250.0, 25.9], ['IH35-W Outer Carton', 700.0, 710.0, 250.0, 25.9]
-    #                                                      , ['IH35-W Inner Carton', 670.0, 660.0, 50.0, 4.78], ['IH35-W Inner Carton', 670.0, 660.0, 50.0, 4.78]]
-
-    # This will later have to be seperated into another
 
     if innerCartons != 0:
         icList = [row[3] + " Inner Carton", row[4], row[5], row[6], row[7]]
