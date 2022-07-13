@@ -19,7 +19,7 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 #import yandiyacbm ALWAYS needs to be below import os and import sys ##################
 #######################################################################################
-from yandiyacbm import Packer, Bin, Item, select ######################################
+from yandiyacbm import Packer, Bin, Item, pallet_select ###############################
 #######################################################################################
 from tests import startup
 
@@ -53,7 +53,9 @@ def main():
     packer.add_bin(Bin("euro", 800, 1200, 2200, 1200))
 
     #packer.add_item(Item('Test', 700.0, 710.0, 250.0, 1200.00))
-    packer.add_item(Item('IH35-W Outer Carton', 700.0, 710.0, 250.0, 25.92))
+    test = Item('IH35-W Outer Carton', 700.0, 710.0, 250.0, 25.92)
+
+    packer.add_item(test)
     packer.add_item(Item('IH35-W Outer Carton', 700.0, 710.0, 250.0, 25.92))
     packer.add_item(Item('IH35-W Inner Carton', 670.0, 660.0, 50.0, 4.78))
     packer.add_item(Item('IH35-W Inner Carton', 670.0, 660.0, 50.0, 4.78))
@@ -61,7 +63,7 @@ def main():
 
     packer.pack()
     #orginal(packer)
-    select(packer)
+    pallet_select(packer)
 
     #print("UNFITTED ITEMS:")
     #for item in b.unfitted_items:

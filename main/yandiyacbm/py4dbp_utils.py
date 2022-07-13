@@ -2,7 +2,23 @@
 Author: Elvis Obero-Atkins
 Last Edited by: Elvis Obero-Atkins
 """
-from yandiyacbm.py4dbp import Packer, Item
+from yandiyacbm.py4dbp import Packer, Bin, Item
+
+
+def initiate_pallets(packer: Packer):
+    packer.add_bin(Bin("standard-quarter", 1200, 1200, 800, 300))
+    packer.add_bin(Bin("standard-half", 1200, 1200, 1200, 600))
+    packer.add_bin(Bin("standard", 1200, 1200, 2200, 1200))
+    packer.add_bin(Bin("euro-quarter", 800, 1200, 800, 300))
+    packer.add_bin(Bin("euro-half", 800, 1200, 1200, 600))
+    packer.add_bin(Bin("euro", 800, 1200, 2200, 1200))
+    return packer
+
+
+def re_pack(packer: Packer, unfitted: list):
+    for item in unfitted:
+        packer.add_item(item)
+    return packer
 
 
 def pre_pack(packer: Packer, params: list):
@@ -16,22 +32,24 @@ def pre_pack(packer: Packer, params: list):
     return packer
 
 
-def select(packer: Packer):
+def pallet_select(packer: Packer):
     num = 0
     for Bin in packer.bins:
         num += 1
+        returns = []
+
         if len(Bin.unfitted_items) == 0:
-            print("Appropriate bin found\n")
+            print("\nAppropriate bin found\n")
 
             print(":::::::::::", Bin.string())
 
             print("FITTED ITEMS:")
             for item in Bin.items:
                 print("====> ", item.string())
-            return
+            return False
 
         elif num == len(packer.bins):
-            print("Closest bin found\n")
+            print("\nClosest bin found\n")
             print(":::::::::::", Bin.string())
 
             print("FITTED ITEMS:")
@@ -40,5 +58,6 @@ def select(packer: Packer):
 
             print("UNFITTED ITEMS:")
             for item in Bin.unfitted_items:
+                returns.append(item)
                 print("====> ", item.string())
-            return
+            return returns

@@ -19,8 +19,15 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 #import yandiyacbm ALWAYS needs to be below import os and import sys ##################
 #######################################################################################
-from yandiyacbm import search_product, parameter_generate, Packer, Bin, Item, select, pre_pack
+from yandiyacbm import search_product, parameter_generate, Packer, Bin, Item, pallet_select, pre_pack, initiate_pallets, re_pack
 #######################################################################################
+
+
+def divider():
+    e = open("main/cli-app/divider.txt", "r")
+    print("\n", e.read())
+    e.close()
+
 
 def userInput(iterate: list, errors: list):
     errors[1] += 1
@@ -29,7 +36,6 @@ def userInput(iterate: list, errors: list):
         "\nWhats the product number, barcode or sku of the item?  ")
     productQuantity = int(input(
         "\nWhat's the quantity of the items that you need?  "))
-
 
     productrow = search_product(parameters)
 
@@ -50,6 +56,7 @@ def userInput(iterate: list, errors: list):
     else:
         return userInput(iterate, errors)
 
+
 def generate(params: list):
     iterate = []
 
@@ -60,19 +67,20 @@ def generate(params: list):
 
     return iterate
 
-def display(params: list):
 
+def display(params: list):
+    divider()
+    print("\nFormtted Data")
     for i in range(len(params)):
         item = params[i]
         for j in range(len(item)):
             if j == 0:
-                 print(":::::::::::", item[j])
+                print("\n:::::::::::", item[j])
             else:
-                print("====> ",item[j])
-
-        print("\n\n")
-    print("===========================================")
+                print("====> ", item[j])
+    divider()
     return
+
 
 def main():
 
@@ -97,25 +105,29 @@ def main():
         print("\nerror. something went wrong")
 
     try:
-
         packer = Packer()
-
-        packer.add_bin(Bin("standard-quarter", 1200, 1200, 800, 300))
-        packer.add_bin(Bin("standard-half", 1200, 1200, 1200, 600))
-        packer.add_bin(Bin("standard", 1200, 1200, 2200, 1200))
-        packer.add_bin(Bin("euro-quarter", 800, 1200, 800, 300))
-        packer.add_bin(Bin("euro-half", 800, 1200, 1200, 600))
-        packer.add_bin(Bin("euro", 800, 1200, 2200, 1200))
-
+        initiate_pallets(packer)
         pre_pack(packer, params)
-
         packer.pack()
-    
-        select(packer)
+        output = pallet_select(packer)
+        divider()
+        if output == False:
+            return
+
+    except:
+        print("\nerror. something went wrong")
+
+    try:
+        packer2 = Packer()
+        initiate_pallets(packer2)
+        re_pack(packer2, output)
+        packer2.pack()
+        pallet_select(packer2)
+        divider()
 
     except:
         print("\nerror. something went wrong")
 
 
 if __name__ == "__main__":
-   main()
+    main()
