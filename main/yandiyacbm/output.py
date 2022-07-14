@@ -65,6 +65,7 @@ def pallet_select_prints(packer: Packer):
                 print("====> ", item.string())
             return leftoverItems
 
+
 def order_output(order: Order):
     for Packer in order.packers:
         for Bin in Packer.bins:
@@ -73,5 +74,3 @@ def order_output(order: Order):
                 print("FITTED ITEMS:")
                 for item in Bin.items:
                     print("====> ", item.string())
-
-

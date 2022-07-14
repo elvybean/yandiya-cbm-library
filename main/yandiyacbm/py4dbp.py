@@ -216,6 +216,8 @@ class Packer:
                     self.items.remove(item)
 
 # new class called shippment or orders, add multiple packer outputs to it, this is foor storing packer objects
+
+
 class Order:
     def __init__(self):
         self.packers = []

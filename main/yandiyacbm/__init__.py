@@ -17,5 +17,5 @@ from yandiyacbm.output import parameters_display, binpack_prints, pallet_select_
 
 
 # TODO:
-#- further refactor yandiyacbm to make it more professional, object oriented?
-#- remove other bins once correct bin is found
+# - further refactor yandiyacbm to make it more professional, object oriented?
+# - remove other bins once correct bin is found

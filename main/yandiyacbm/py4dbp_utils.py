@@ -64,5 +64,3 @@ def pallet_select(packer: Packer):
             for item in Bin.unfitted_items:
                 leftoverItems.append(item)
             return leftoverItems
-
-
