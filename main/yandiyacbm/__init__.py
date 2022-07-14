@@ -9,14 +9,13 @@ It also allows me to decompose the fucntions of the calculator
 into modules which is better programming practice
 """
 
-from yandiyacbm.excel_func import search_products, parameters_generate, divider, parameters_display
-#from yandiyacbm.excel_utils import divider
-#from yandiyacbm.py4dbp import Item, Bin, Packer
-from yandiyacbm.py4dbp_utils import binpack_start_prints#, initiate_pallets, pallet_select_prints, pre_pack, re_pack
+from yandiyacbm.excel_func import search_products, parameters_generate, parameter_list
+from yandiyacbm.excel_utils import productdetails_headings, palletdetails_headings
+from yandiyacbm.py4dbp import Order, Item, Bin, Packer
+from yandiyacbm.py4dbp_utils import binpack, initiate_pallets, pallet_select, pre_pack, re_pack
+from yandiyacbm.output import parameters_display, binpack_prints, pallet_select_prints, order_output
 
 
 # TODO:
-#- make output format of products in yandiyacbm equal to the input format of py4dbp
-#- further remove and refactor py4dbp so it contains only what is required.
-#- make py4dbp stop packing once it's found a compatible bin.
 #- further refactor yandiyacbm to make it more professional, object oriented?
+#- remove other bins once correct bin is found

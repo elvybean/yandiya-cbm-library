@@ -2,48 +2,29 @@
 Author: Elvis Obero-Atkins
 Last Edited by: Elvis Obero-Atkins
 """
-from yandiyacbm.py4dbp import Packer, Bin, Item
-from yandiyacbm.excel_utils import divider
+from yandiyacbm.py4dbp import Order, Packer, Bin, Item
 
-def binpack_start(formattedData: list):
+
+def binpack(formattedData: list):
+    order = Order()
     packer = Packer()
     initiate_pallets(packer)
     pre_pack(packer, formattedData)
     packer.pack()
     output = pallet_select(packer)
-    divider()
-    if output == False:
-        return
+    order.add_packer(packer)
 
     while output != False:
         packer2 = Packer()
         initiate_pallets(packer2)
         re_pack(packer2, output)
         packer2.pack()
+        order.add_packer(packer2)
         output = pallet_select(packer2)
-        divider()
-    if output == False:
-        return
 
-def binpack_start_prints(formattedData: list):
-    packer = Packer()
-    initiate_pallets(packer)
-    pre_pack(packer, formattedData)
-    packer.pack()
-    output = pallet_select_prints(packer)
-    divider()
     if output == False:
-        return
+        return order
 
-    while output != False:
-        packer2 = Packer()
-        initiate_pallets(packer2)
-        re_pack(packer2, output)
-        packer2.pack()
-        output = pallet_select_prints(packer2)
-        divider()
-    if output == False:
-        return
 
 def initiate_pallets(packer: Packer):
     packer.add_bin(Bin("standard-quarter", 1200, 1200, 800, 300))
@@ -71,6 +52,7 @@ def pre_pack(packer: Packer, params: list):
                     Item(details[0], details[1], details[2], details[3], details[4]))
     return packer
 
+
 def pallet_select(packer: Packer):
     num = 0
     for Bin in packer.bins:
@@ -83,28 +65,4 @@ def pallet_select(packer: Packer):
                 leftoverItems.append(item)
             return leftoverItems
 
-def pallet_select_prints(packer: Packer):
-    num = 0
-    for Bin in packer.bins:
-        num += 1
-        leftoverItems = []
 
-        if len(Bin.unfitted_items) == 0:
-            print("\nAppropriate bin found\n")
-            print(":::::::::::", Bin.string())
-            print("FITTED ITEMS:")
-            for item in Bin.items:
-                print("====> ", item.string())
-            return False
-
-        elif num == len(packer.bins):
-            print("\nClosest bin found\n")
-            print(":::::::::::", Bin.string())
-            print("FITTED ITEMS:")
-            for item in Bin.items:
-                print("====> ", item.string())
-            print("UNFITTED ITEMS:")
-            for item in Bin.unfitted_items:
-                leftoverItems.append(item)
-                print("====> ", item.string())
-            return leftoverItems

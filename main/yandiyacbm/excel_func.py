@@ -5,7 +5,6 @@ Last Edited by: Elvis Obero-Atkins
 import openpyxl
 from openpyxl import Workbook
 
-from yandiyacbm.excel_utils import divider
 
 def search_products(SearchParams: str):
     """searches a database document based on user input of a product number, barcode or sku
@@ -41,18 +40,6 @@ def search_products(SearchParams: str):
         extractedRows.append(cell.value)
 
     return extractedRows
-
-def parameters_display(formattedData: list):
-    divider()
-    print("\nFormtted Data")
-    for i in range(len(formattedData)):
-        item = formattedData[i]
-        for j in range(len(item)):
-            if j == 0:
-                print("\n:::::::::::", item[j])
-            else:
-                print("====> ", item[j])
-    divider()
 
 
 def parameters_generate(extractedRows: list):

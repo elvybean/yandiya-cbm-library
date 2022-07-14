@@ -19,7 +19,7 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 #import yandiyacbm as yandiya ALWAYS needs to be below import os and import sys
 #######################################################################################
-from yandiyacbm import search_products, parameters_generate, parameters_display, binpack_start_prints
+from yandiyacbm import search_products, parameters_generate, parameters_display, binpack, Order, order_output
 
 
 def cliapp_Input(iterate: list, errors: list):
@@ -63,7 +63,15 @@ def main():
 
     parameters_display(params)
 
-    binpack_start_prints(params)
+    try:
+        order = Order()
+        order = (binpack(params))
+
+        order_output(order)
+
+        print("Did work")
+    except:
+        print("Didn't work")
 
 if __name__ == "__main__":
     main()
