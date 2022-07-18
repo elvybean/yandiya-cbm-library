@@ -3,7 +3,7 @@ Author: Elvis Obero-Atkins
 Last Edited by: Elvis Obero-Atkins
 """
 from yandiyacbm.py4dbp import Order, Packer, Bin, Item
-
+from yandiyacbm.py4dbp_pallets import Pallets
 
 def binpack(formattedData: list):
     order = Order()
@@ -24,16 +24,8 @@ def binpack(formattedData: list):
 
     if output == False:
         return order
-
-
-def initiate_pallets(packer: Packer):
-    packer.add_bin(Bin("standard-quarter", 1200, 1200, 800, 300))
-    packer.add_bin(Bin("standard-half", 1200, 1200, 1200, 600))
-    packer.add_bin(Bin("standard", 1200, 1200, 2200, 1200))
-    packer.add_bin(Bin("euro-quarter", 800, 1200, 800, 300))
-    packer.add_bin(Bin("euro-half", 800, 1200, 1200, 600))
-    packer.add_bin(Bin("euro", 800, 1200, 2200, 1200))
-    return packer
+    else:  # error handling
+        return False
 
 
 def re_pack(packer: Packer, unfitted: list):
@@ -64,3 +56,13 @@ def pallet_select(packer: Packer):
             for item in Bin.unfitted_items:
                 leftoverItems.append(item)
             return leftoverItems
+            
+
+def initiate_pallets(packer: Packer):
+    packer.add_bin(Pallets.standard_quarter)
+    packer.add_bin(Pallets.standard_half)
+    packer.add_bin(Pallets.standard)
+    packer.add_bin(Pallets.euro_quarter)
+    packer.add_bin(Pallets.euro_half)
+    packer.add_bin(Pallets.euro)
+    return packer

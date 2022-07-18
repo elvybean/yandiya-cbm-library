@@ -19,7 +19,7 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 #import yandiyacbm ALWAYS needs to be below import os and import sys ##################
 #######################################################################################
-from yandiyacbm import Packer, Bin, Item, pallet_select_prints
+from yandiyacbm import Order, Packer, Bin, Item, pallet_select_prints, order_output
 #######################################################################################
 from tests import startup
 
