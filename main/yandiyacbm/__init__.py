@@ -16,7 +16,7 @@ from yandiyacbm.py4dbp import Order, Item, Bin, Packer
 from yandiyacbm.py4dbp_utils import binpack, initiate_pallets, pallet_select, pre_pack, re_pack
 from yandiyacbm.py4dbp_pallets import Pallets
 
-from yandiyacbm.output import parameters_display, binpack_prints, pallet_select_prints, order_output
+from yandiyacbm.output import parameters_display, binpack_prints, pallet_select_prints, order_display
 
 
 # TODO:

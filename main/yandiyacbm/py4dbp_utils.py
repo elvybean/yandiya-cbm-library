@@ -5,6 +5,7 @@ Last Edited by: Elvis Obero-Atkins
 from yandiyacbm.py4dbp import Order, Packer, Bin, Item
 from yandiyacbm.py4dbp_pallets import Pallets
 
+
 def binpack(formattedData: list):
     order = Order()
     packer = Packer()
@@ -41,7 +42,9 @@ def pre_pack(packer: Packer, params: list):
             if j != 0:
                 details = items[j]
                 packer.add_item(
-                    Item(details[0], details[1], details[2], details[3], details[4]))
+                    Item(details[0], details[1],
+                         details[2], details[3], details[4])
+                )
     return packer
 
 
@@ -56,7 +59,7 @@ def pallet_select(packer: Packer):
             for item in Bin.unfitted_items:
                 leftoverItems.append(item)
             return leftoverItems
-            
+
 
 def initiate_pallets(packer: Packer):
     packer.add_bin(Pallets.standard_quarter)
