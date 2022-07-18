@@ -19,7 +19,7 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 #import yandiyacbm ALWAYS needs to be below import os and import sys ##################
 #######################################################################################
-from yandiyacbm import Order, Packer, Bin, Item, pallet_select_prints, order_output
+from yandiyacbm import Order, Packer, Bin, Item, order_output
 #######################################################################################
 from tests import startup
 
@@ -63,11 +63,10 @@ def main():
 
     packer.pack()
     #orginal(packer)
-    pallet_select_prints(packer)
 
-    #print("UNFITTED ITEMS:")
-    #for item in b.unfitted_items:
-    #    print("====> ", item.string())
+    order = Order()
+    order.add_packer(packer)
+    order_output(packer)
 
     response = input(
         "\nDo you want to test function again? y/n  ").capitalize()
