@@ -2,23 +2,19 @@
 Author: Elvis Obero-Atkins
 Last Edited by: Elvis Obero-Atkins
 
-This is the __init__.py script, it is what enables the ability to make the cbm library - 
-which previously was all contained in the file cbmcalculator.py into a local package
-
-It also allows me to decompose the fucntions of the calculator 
-into modules which is better programming practice
+This is the __init__.py module, it is what enables the ability to make the what was 
+previously a singular file called cbmcalculator.py that contained all the functions
+into a local package called yandiyacbm
 """
 
-from yandiyacbm.excel_func import search_products, parameters_generate, parameter_list
+from yandiyacbm.excel_func import search_products, multiple_row_format, row_format
 from yandiyacbm.excel_utils import productdetails_headings, palletdetails_headings
 
-from yandiyacbm.py4dbp import Order, Item, Bin, Packer
-from yandiyacbm.py4dbp_utils import binpack, initiate_pallets, pallet_select, pre_pack, re_pack
-from yandiyacbm.py4dbp_pallets import Pallets
+from yandiyacbm.py4dbp import Item, Bin, Packer, Order
+from yandiyacbm.py4dbp_utils import initiate_pallets, pre_pack, pallet_select, pallet_purge, re_pack
 
-from yandiyacbm.output import parameters_display, binpack_prints, pallet_select_prints, order_display
+from yandiyacbm.display import excelrows_display, formattedData_display, order_display, divider
 
 
 # TODO:
 # - further refactor yandiyacbm to make it more professional, object oriented?
-# - remove other bins once correct bin is found

@@ -24,10 +24,10 @@ class Item:
         self.number_of_decimals = number_of_decimals
 
     def string(self):
-        #return "%s(%sx%sx%s, weight: %s) pos(%s) rt(%s) cbm(%s)" % (
+        # return "%s(%sx%sx%s, weight: %s) pos(%s) rt(%s) cbm(%s)" % (
         #    self.name, self.width, self.height, self.depth, self.weight,
         #    self.position, self.rotation_type, self.get_cbm()
-        #)
+        # )
         return "%s(%sx%sx%s, weight: %s) cbm(%s)" % (
             self.name, self.width, self.height, self.depth, self.weight,
             self.get_cbm()
@@ -65,6 +65,9 @@ class Bin:
         self.items = []
         self.unfitted_items = []
         self.number_of_decimals = MiscVars.DEFAULT_NUMBER_OF_DECIMALS
+        #FIXME: potential fix? ################################
+        self.bin_def = [name, width, height, depth, max_weight]
+        #######################################################
 
     def format_numbers(self, number_of_decimals):
         self.width = set_to_decimal(self.width, number_of_decimals)
@@ -133,23 +136,26 @@ class Bin:
 class Packer:
     def __init__(self):
         self.bins = []
+        self.total_bins = 0
         self.items = []
         self.unfit_items = []
         self.total_items = 0
 
     def add_bin(self, bin):
+        self.total_bins = len(self.items) + 1
         return self.bins.append(bin)
 
     def remove_bin(self, bin):
-        #if bin in self.bins():
-        #  place = self.bins.index(bin)
-        #  return self.bins.remove(bin, place)
+        self.total_bins = len(self.items) - 1
         return self.bins.remove(bin)
 
     def add_item(self, item):
         self.total_items = len(self.items) + 1
-
         return self.items.append(item)
+
+    def remove_item(self, item):
+        self.total_items = len(self.items) - 1
+        return self.items.remove(item)
 
     def pack_to_bin(self, bin, item):
         fitted = False
@@ -221,8 +227,6 @@ class Packer:
                 for item in bin.items:
                     self.items.remove(item)
 
-# new class called shippment or orders, add multiple packer outputs to it, this is for storing packer objects
-
 
 class Order:
     def __init__(self):
@@ -231,5 +235,4 @@ class Order:
 
     def add_packer(self, packer):
         self.total_packers = len(self.packers) + 1
-
         return self.packers.append(packer)

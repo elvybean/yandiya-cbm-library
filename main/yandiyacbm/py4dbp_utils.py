@@ -3,30 +3,15 @@ Author: Elvis Obero-Atkins
 Last Edited by: Elvis Obero-Atkins
 """
 from yandiyacbm.py4dbp import Order, Packer, Bin, Item
-from yandiyacbm.py4dbp_pallets import Pallets
 
 
-def binpack(formattedData: list):
-    order = Order()
-    packer = Packer()
-    initiate_pallets(packer)
-    pre_pack(packer, formattedData)
-    packer.pack()
-    output = pallet_select(packer)
-    order.add_packer(packer)
-
-    while output != False:
-        packer2 = Packer()
-        initiate_pallets(packer2)
-        re_pack(packer2, output)
-        packer2.pack()
-        order.add_packer(packer2)
-        output = pallet_select(packer2)
-
-    if output == False:
-        return order
-    else:  # error handling
-        return False
+class Pallets:
+    standard_quarter = Bin("standard-quarter", 1200, 1200, 800, 300)
+    standard_half = Bin("standard-half", 1200, 1200, 1200, 600)
+    standard = Bin("standard", 1200, 1200, 2200, 1200)
+    euro_quarter = Bin("euro-quarter", 800, 1200, 800, 300)
+    euro_half = Bin("euro-half", 800, 1200, 1200, 600)
+    euro = Bin("euro", 800, 1200, 2200, 1200)
 
 
 def re_pack(packer: Packer, unfitted: list):
@@ -54,11 +39,23 @@ def pallet_select(packer: Packer):
         num += 1
         leftoverItems = []
         if len(Bin.unfitted_items) == 0:
-            return False
+            return [False, Bin]
         elif num == len(packer.bins):
             for item in Bin.unfitted_items:
                 leftoverItems.append(item)
-            return leftoverItems
+            return [leftoverItems, Bin]
+
+
+def pallet_purge(packer: Packer, choosen_bin: Bin):
+    for Bin in packer.bins:
+        if Bin.name != choosen_bin.name and packer.total_bins != 1:
+            packer.remove_bin(Bin)
+    return packer
+    # problem: due to pallets' Bin Object names starting with either 'euro' or 'standard' 
+    # pallet_purge() only 'purges' half of pallets from packer not all but 1
+    # problem (2): created bin_def value in Bin class and used it to compare the 
+    # iterated 'Bin' object in pallet_purge() and the 'choosen_bin' object but the 
+    # same issue persists as only half of the pallets are purged
 
 
 def initiate_pallets(packer: Packer):

@@ -19,7 +19,7 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 #import yandiyacbm as yandiya ALWAYS needs to be below import os and import sys
 #######################################################################################
-from yandiyacbm import search_products, parameters_generate, parameters_display, binpack, Order, order_display
+from yandiyacbm import search_products, multiple_row_format, excelrows_display, formattedData_display, Order, Packer, initiate_pallets, pre_pack, pallet_select, pallet_purge, re_pack, order_display
 
 
 def cliapp_Input(iterate: list, errors: list):
@@ -58,20 +58,32 @@ def main():
     e.close()
 
     extractedRows = cliapp_Input([], [0, 0])
+    excelrows_display(extractedRows)
 
-    params = parameters_generate(extractedRows)
+    formattedData = multiple_row_format(extractedRows)
+    formattedData_display(formattedData)
 
-    parameters_display(params)
+    order = Order()
+    packer = Packer()
+    initiate_pallets(packer)
+    pre_pack(packer, formattedData)
+    packer.pack()
 
-    try:
-        order = Order()
-        order = (binpack(params))
+    returnValues = pallet_select(packer)
+    pallet_purge(packer, returnValues[1])
+    order.add_packer(packer)
 
-        order_display(order)
+    while returnValues[0] != False:
+        packerIterated = Packer()
+        initiate_pallets(packerIterated)
+        re_pack(packerIterated, returnValues[0])
+        packerIterated.pack()
+        
+        returnValues = pallet_select(packerIterated)
+        pallet_purge(packerIterated, returnValues[1])
+        order.add_packer(packerIterated)
 
-        print("Did work")
-    except:
-        print("Didn't work")
+    order_display(order)
 
 if __name__ == "__main__":
     main()

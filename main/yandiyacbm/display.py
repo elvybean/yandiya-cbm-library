@@ -3,10 +3,16 @@ from yandiyacbm.py4dbp_utils import initiate_pallets, pre_pack, re_pack
 
 
 def divider():
-    print("\n------------------------------------------------------------------------------------------------------------------------")
+    print("\n------------------------------------------------------------------------------------------------------------------------\n")
 
+def excelrows_display(excelrows: list):
+    divider()
+    print("\nExcel Row Data")
+    for i in range(len(excelrows)):
+        row = excelrows[i]
+        print("\n",row)
 
-def parameters_display(formattedData: list):
+def formattedData_display(formattedData: list):
     divider()
     print("\nFormtted Data")
     for i in range(len(formattedData)):
@@ -19,10 +25,12 @@ def parameters_display(formattedData: list):
     divider()
 
 def order_display(order: Order):
+    print("\nOrder with Products fitted into pallets")
     for Packer in order.packers:
         for Bin in Packer.bins:
             #if len(Bin.unfitted_items) == 0:
-            print(":::::::::::", Bin.string())
+            print("\n:::::::::::", Bin.string())
             print("FITTED ITEMS:")
             for item in Bin.items:
                 print("====> ", item.string())
+    divider()            

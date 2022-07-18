@@ -42,16 +42,16 @@ def search_products(SearchParams: str):
     return extractedRows
 
 
-def parameters_generate(extractedRows: list):
+def multiple_row_format(extractedRows: list):
     formattedData = []
     for i in range(len(extractedRows)):
         product = extractedRows[i]
-        formatted = parameter_list(product[0], product[1])
+        formatted = row_format(product[0], product[1])
         formattedData.append(formatted)
     return formattedData
 
 
-def parameter_list(row: list, itemQuantity: int):
+def row_format(row: list, itemQuantity: int):
     if itemQuantity >= (int(row[13]) / 2):
         if itemQuantity > int(row[13]):
 
