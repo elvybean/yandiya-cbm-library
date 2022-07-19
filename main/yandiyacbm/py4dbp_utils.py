@@ -14,10 +14,24 @@ class Pallets:
     euro = Bin("euro", 800, 1200, 2200, 1200)
 
 
+"""
 def re_pack(packer: Packer, unfitted: list):
     for item in unfitted:
         packer.add_item(item)
     return packer
+
+def unfitted_products(packer: Packer):
+    iterate = 0
+    for Bin in packer.bins:
+        iterate += 1
+        if len(Bin.unfitted_items) == 0: #finds the first bin that fits
+            return False
+        if iterate == len(packer.bins): #finds the bin of best fit (the last one)
+            leftoverItems = []
+            for item in Bin.unfitted_items:
+                leftoverItems.append(item)
+            return leftoverItems
+"""
 
 
 def pre_pack(packer: Packer, params: list):
@@ -33,29 +47,66 @@ def pre_pack(packer: Packer, params: list):
     return packer
 
 
-def pallet_select(packer: Packer):
-    num = 0
-    for Bin in packer.bins:
-        num += 1
-        leftoverItems = []
-        if len(Bin.unfitted_items) == 0:
-            return [False, Bin]
-        elif num == len(packer.bins):
-            for item in Bin.unfitted_items:
-                leftoverItems.append(item)
-            return [leftoverItems, Bin]
+def re_pack(newPacker: Packer, oldPacker: Packer):
+    for item in oldPacker.unfit_items:
+        newPacker.add_item(item)
+    return newPacker
 
 
-def pallet_purge(packer: Packer, choosen_bin: Bin):
-    for Bin in packer.bins:
-        if Bin.name != choosen_bin.name and packer.total_bins != 1:
-            packer.remove_bin(Bin)
+"""
+# ^ comment out the above line to use the 
+# better versions of functions which will be fixed and 
+# used instead of the placeholders below this DocString
+
+def unfitted_items(packer: Packer):
+    if len(packer.unfit_items) != 0:
+        return False #returns False because all items are not fitted
+    else:
+        return True # returns True because all items are fitted
+
+def bin_purge(packer: Packer):
+    print(len(packer.unfit_items)) #testing
+    print(len(packer.bins)) #testing
+    if len(packer.unfit_items) != 0:
+        i = 0
+        for Bin in packer.bins:
+            i += 1
+            print("i  is: ", i) #testing
+            if i != len(packer.bins):
+                print("if i != len(packer.bins) called") #testing
+                packer.remove_bin(Bin)
+    else: #if len(packer.unfit_items) == 0
+        j = 0
+        for Bin in packer.bins:
+            j += 1
+            if j != 1: 
+                print("if j != 1: called") #testing
+                packer.remove_bin(Bin)
     return packer
-    # problem: due to pallets' Bin Object names starting with either 'euro' or 'standard' 
-    # pallet_purge() only 'purges' half of pallets from packer not all but 1
-    # problem (2): created bin_def value in Bin class and used it to compare the 
-    # iterated 'Bin' object in pallet_purge() and the 'choosen_bin' object but the 
-    # same issue persists as only half of the pallets are purged
+
+"""
+
+def unfitted_items(packer: Packer):
+    for Bin in packer.bins:
+        if len(Bin.unfitted_items) != 0:
+            return False #returns False because all items are not fitted
+        else:
+            return True # returns True because all items are fitted
+
+
+def bin_purge(packer: Packer):
+    newPacker = Packer()
+    iterate = 0
+    for Bin in packer.bins:
+        iterate += 1
+        if len(Bin.unfitted_items) == 0:  # finds the first bin that fits
+            newPacker.add_bin(Bin)
+            return newPacker
+        if iterate == len(packer.bins):  # finds the bin of best fit (the last one)
+            newPacker.add_bin(Bin)
+            return newPacker
+
+# """
 
 
 def initiate_pallets(packer: Packer):
