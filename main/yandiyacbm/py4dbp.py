@@ -142,17 +142,9 @@ class Packer:
         self.total_bins = len(self.items) + 1
         return self.bins.append(bin)
 
-    def remove_bin(self, bin):
-        self.total_bins = len(self.items) - 1
-        return self.bins.remove(bin)
-
     def add_item(self, item):
         self.total_items = len(self.items) + 1
         return self.items.append(item)
-
-    def remove_item(self, item):
-        self.total_items = len(self.items) - 1
-        return self.items.remove(item)
 
     def pack_to_bin(self, bin, item):
         fitted = False

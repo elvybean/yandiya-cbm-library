@@ -56,6 +56,7 @@ def main():
     e.close()
 
     extractedRows = cliapp_Input([], [0, 0])
+    extractedRows = cliapp_Input([], [0, 0]) #cli-app func
     excelrows_display(extractedRows)
 
     formattedData = multiple_row_format(extractedRows)
@@ -64,22 +65,15 @@ def main():
     order = Order()
     packer = Packer()
     initiate_pallets(packer)
-    pre_pack(packer, formattedData)
+    packer = pre_pack(packer, formattedData)
     packer.pack()
 
-    returnValues = pallet_select(packer)
-    pallet_purge(packer, returnValues[1])
+    packer = bin_purge(packer)
+
     order.add_packer(packer)
 
-    while returnValues[0] != False:
-        packerIterated = Packer()
-        initiate_pallets(packerIterated)
-        re_pack(packerIterated, returnValues[0])
-        packerIterated.pack()
-        
-        returnValues = pallet_select(packerIterated)
-        pallet_purge(packerIterated, returnValues[1])
-        order.add_packer(packerIterated)
+    if unfitted_products(packer) == True:
+        order = cliapp_iterate(order, packer) # cli-app func
 
     order_display(order)
 
