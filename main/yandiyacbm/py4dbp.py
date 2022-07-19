@@ -141,6 +141,10 @@ class Packer:
     def add_bin(self, bin):
         self.total_bins = len(self.items) + 1
         return self.bins.append(bin)
+    
+    def remove_bin(self, bin):
+        self.total_bins = len(self.items) - 1
+        return self.bins.remove(bin)
 
     def add_item(self, item):
         self.total_items = len(self.items) + 1
