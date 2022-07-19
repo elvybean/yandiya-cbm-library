@@ -7,14 +7,14 @@ def divider():
 
 def excelrows_display(excelrows: list):
     divider()
-    print("Excel Row Data")
+    print("excel row data and item quanity")
     for i in range(len(excelrows)):
         row = excelrows[i]
         print("\n",row)
     divider()
 
 def formattedData_display(formattedData: list):
-    print("Formtted Data")
+    print("excel row data in the format of Item class objects")
     for i in range(len(formattedData)):
         item = formattedData[i]
         for j in range(len(item)):
@@ -25,7 +25,7 @@ def formattedData_display(formattedData: list):
     divider()
 
 def order_display(order: Order):
-    print("Order with Products fitted into pallets")
+    print("Order class object with Products (Item class objects) fitted onto pallets (Bin class objects)")
     for Packer in order.packers:
         for Bin in Packer.bins:
             print("\n:::::::::::", Bin.string())

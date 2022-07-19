@@ -19,29 +19,28 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 from yandiyacbm import search_products, multiple_row_format, excelrows_display, formattedData_display, Order, Packer, initiate_pallets, pre_pack, bin_purge, unfit_items, re_pack, order_display
 
-def cliapp_iterate(order: Order, input: list, bool: bool):
-    print("iterate")
+def cli_iterate(order: Order, input: list, bool: bool):
     packer = Packer()
-    initiate_pallets(packer)
 
+    initiate_pallets(packer)
     if bool == True:
         packer = pre_pack(packer, input)
     else:
         packer = re_pack(packer, input) 
-
     packer.pack()
-    packer = bin_purge(packer)
 
+    packer = bin_purge(packer)
     unfitted = unfit_items(packer)
 
     order.add_packer(packer)
 
-    if unfitted != False:
-        return cliapp_iterate(order, unfitted, False)
-    else:
+    if unfitted == False:
         return order
+    else:
+        return cli_iterate(order, unfitted, False)
 
-def cliapp_Input(iterate: list, errors: list):
+
+def cli_input(iterate: list, errors: list):
     errors[1] += 1
 
     parameters = input(
@@ -64,7 +63,7 @@ def cliapp_Input(iterate: list, errors: list):
         else:
             return 0
     else:
-        return cliapp_Input(iterate, errors)
+        return cli_input(iterate, errors)
 
 
 def main():
@@ -74,7 +73,7 @@ def main():
     print(e.read())
     e.close()
 
-    extractedRows = cliapp_Input([], [0, 0]) #cli-app func
+    extractedRows = cli_input([], [0, 0]) #cli-app func
     if extractedRows == [] or extractedRows == 0:
         return 0
     excelrows_display(extractedRows)
@@ -84,7 +83,7 @@ def main():
 
     order = Order()
 
-    order = cliapp_iterate(order, formattedData, True) # cli-app func
+    order = cli_iterate(order, formattedData, True) # cli-app func
 
     order_display(order)
 
