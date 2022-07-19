@@ -3,8 +3,6 @@ Author: Elvis Obero-Atkins
 Last Edited by: Elvis Obero-Atkins
 
 This py script is NOT REQUIRED for yandiya-cbm-library to function
-
-This is a CLI python application designed to interact with the yandiyacbm library.
 """
 #######################################################################################
 #import yandiyacbm as yandiya should not be up here! if it is move to other comment

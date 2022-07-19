@@ -65,9 +65,6 @@ class Bin:
         self.items = []
         self.unfitted_items = []
         self.number_of_decimals = MiscVars.DEFAULT_NUMBER_OF_DECIMALS
-        #FIXME: potential fix? ################################
-        self.bin_def = [name, width, height, depth, max_weight]
-        #######################################################
 
     def format_numbers(self, number_of_decimals):
         self.width = set_to_decimal(self.width, number_of_decimals)
