@@ -19,19 +19,18 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 from yandiyacbm import search_products, multiple_row_format, excelrows_display, formattedData_display, Order, Packer, initiate_pallets, pre_pack, bin_purge, unfit_items, re_pack, order_display
 
-def cliapp_iterate(order: Order, packer: Packer):
-    print("iterate fucntion used")
-    packerIterated = Packer()
-    initiate_pallets(packerIterated)
+def cliapp_iterate(order: Order, list: list):
+    packer = Packer()
+    initiate_pallets(packer)
 
-    packerIterated = re_pack(packerIterated, packer)
-    packerIterated.pack()
+    packer = re_pack(packer, packer) | packer = pre_pack(packer, formattedData)
+    packer.pack()
 
-    packerIterated = bin_purge(packerIterated)
-    order.add_packer(packerIterated)
+    packer = bin_purge(packer)
+    order.add_packer(packer)
 
-    if unfit_items(packerIterated) == False:
-        return cliapp_iterate(order, packerIterated)
+    if unfit_items(packer) == False:
+        return cliapp_iterate(order, list)
     else:
         return order
 
@@ -44,7 +43,6 @@ def cliapp_Input(iterate: list, errors: list):
         "\nWhat's the quantity of the items that you need?  "))
 
     productrow = search_products(parameters)
-
     if productrow == 0:
         errors[0] += 1
         print("\nerror. either incorrect input or item does not exist  ")
@@ -53,7 +51,6 @@ def cliapp_Input(iterate: list, errors: list):
 
     repeat = input(
         "\nDo you want to search for another item? y/n  ").capitalize()
-
     if repeat == "N":
         if not errors[0] > errors[1]:
             return iterate
@@ -79,18 +76,8 @@ def main():
     formattedData_display(formattedData)
 
     order = Order()
-    packer = Packer()
-    initiate_pallets(packer)
 
-    packer = pre_pack(packer, formattedData)
-    packer.pack()
-
-    packer = bin_purge(packer)
-    order.add_packer(packer)
-    
-    if unfit_items(packer) == False:
-        print("if statement used")
-        order = cliapp_iterate(order, packer) # cli-app func
+    order = cliapp_iterate(order, formattedData) # cli-app func
 
     order_display(order)
 
