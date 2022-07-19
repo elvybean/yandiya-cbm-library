@@ -16,10 +16,10 @@ def unfit_items(packer: Packer):
         if len(Bin.unfitted_items) == 0:  # finds the first bin that fits
             return False
         if iterate == len(packer.bins):  # finds the bin of best fit (the last one)
-            leftoverItems = []
+            unfitted = []
             for item in Bin.unfitted_items:
-                leftoverItems.append(item)
-            return leftoverItems
+                unfitted.append(item)
+            return unfitted
 
 
 # better versions of functions which will be fixed and

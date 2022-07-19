@@ -2,7 +2,7 @@
 Author: Elvis Obero-Atkins
 Last Edited by: Elvis Obero-Atkins
 """
-from yandiyacbm.py4dbp import Order, Packer, Bin, Item
+from yandiyacbm.py4dbp import Packer, Bin, Item
 
 
 class Pallets:
@@ -27,19 +27,38 @@ def pre_pack(packer: Packer, formattedData: list):
     return packer
 
 
-def re_pack():
+def re_pack(packer: Packer, unfitted: list):
     #needs to 're_pack' the unfitted item objects - will take the input as a list
-    return 0
+    for item in unfitted:
+        packer.add_item(item)
+    return packer
 
 
-def unfit_items():
+def unfit_items(packer: Packer):
     #needs to 'package' Bin.unfitted_items into a list to be repacked
-    return 0
+    iterate = 0
+    for Bin in packer.bins:
+        iterate += 1
+        if len(Bin.unfitted_items) == 0:  # finds the first bin that fits
+            return False
+        if iterate == len(packer.bins):  # finds the bin of best fit (the last one)
+            unfitted = []
+            for item in Bin.unfitted_items:
+                unfitted.append(item)
+            return unfitted
 
 
-def bin_purge():
-    #needs to remove all bins but the bin of best fit
-    return 0
+def bin_purge(packer: Packer):
+    newPacker = Packer()
+    iterate = 0
+    for Bin in packer.bins:
+        iterate += 1
+        if len(Bin.unfitted_items) == 0:  # finds the first bin that fits
+            newPacker.add_bin(Bin)
+            return newPacker
+        if iterate == len(packer.bins):  # finds the bin of best fit (the last one)
+            newPacker.add_bin(Bin)
+            return newPacker
 
 
 def initiate_pallets(packer: Packer):
