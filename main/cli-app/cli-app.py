@@ -17,8 +17,23 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 #import yandiyacbm as yandiya ALWAYS needs to be below import os and import sys
 #######################################################################################
-from yandiyacbm import search_products, multiple_row_format, excelrows_display, formattedData_display, Order, Packer, initiate_pallets, pre_pack, pallet_select, pallet_purge, re_pack, order_display
+from yandiyacbm import search_products, multiple_row_format, excelrows_display, formattedData_display, Order, Packer, initiate_pallets, pre_pack, bin_purge, unfitted_items, re_pack, order_display
 
+def cliapp_iterate(order: Order, packer: Packer):
+    print("iterate fucntion used")
+    packerIterated = Packer()
+    initiate_pallets(packerIterated)
+
+    packerIterated = re_pack(packerIterated, packer)
+    packerIterated.pack()
+
+    packerIterated = bin_purge(packerIterated)
+    order.add_packer(packerIterated)
+
+    if unfitted_items(packerIterated) == False:
+        return cliapp_iterate(order, packerIterated)
+    else:
+        return order
 
 def cliapp_Input(iterate: list, errors: list):
     errors[1] += 1
@@ -55,8 +70,9 @@ def main():
     print(e.read())
     e.close()
 
-    extractedRows = cliapp_Input([], [0, 0])
     extractedRows = cliapp_Input([], [0, 0]) #cli-app func
+    if extractedRows == [] or extractedRows == 0:
+        return 0
     excelrows_display(extractedRows)
 
     formattedData = multiple_row_format(extractedRows)
@@ -65,14 +81,15 @@ def main():
     order = Order()
     packer = Packer()
     initiate_pallets(packer)
+
     packer = pre_pack(packer, formattedData)
     packer.pack()
 
     packer = bin_purge(packer)
-
     order.add_packer(packer)
-
-    if unfitted_products(packer) == True:
+    
+    if unfitted_items(packer) == False:
+        print("if statement used")
         order = cliapp_iterate(order, packer) # cli-app func
 
     order_display(order)

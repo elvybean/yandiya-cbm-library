@@ -25,11 +25,15 @@ def formattedData_display(formattedData: list):
     divider()
 
 def order_display(order: Order):
-    print("\nOrder with Products fitted into pallets")
+    print("Order with Products fitted into pallets")
     for Packer in order.packers:
         for Bin in Packer.bins:
             print("\n:::::::::::", Bin.string())
             print("FITTED ITEMS:")
             for item in Bin.items:
                 print("====> ", item.string())
+            if len(Bin.unfitted_items) != 0:
+                print("UNFITTED ITEMS:")
+                for item in Bin.unfitted_items:
+                    print("====> ", item.string())
     divider()            
