@@ -14,12 +14,12 @@ class Pallets:
     euro = Bin("euro", 800, 1200, 2200, 1200)
 
 
-def pre_pack(packer: Packer, params: list):
-    for i in range(len(params)):
-        items = params[i]
-        for j in range(len(items)):
+def pre_pack(packer: Packer, formattedData: list):
+    for i in range(len(formattedData)):
+        product = formattedData[i]
+        for j in range(len(product)):
             if j != 0:
-                details = items[j]
+                details = product[j]
                 packer.add_item(
                     Item(details[0], details[1],
                          details[2], details[3], details[4])

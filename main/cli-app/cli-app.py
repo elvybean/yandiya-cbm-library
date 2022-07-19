@@ -23,7 +23,7 @@ def cliapp_iterate(order: Order, list: list):
     packer = Packer()
     initiate_pallets(packer)
 
-    packer = re_pack(packer, packer) | packer = pre_pack(packer, formattedData)
+    packer = re_pack(packer, packer) | packer = pre_pack(packer, list)
     packer.pack()
 
     packer = bin_purge(packer)
