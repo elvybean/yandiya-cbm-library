@@ -17,7 +17,7 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 #import yandiyacbm as yandiya ALWAYS needs to be below import os and import sys
 #######################################################################################
-from yandiyacbm import search_products, multiple_row_format, excelrows_display, formattedData_display, Order, Packer, initiate_pallets, pre_pack, bin_purge, unfitted_items, re_pack, order_display
+from yandiyacbm import search_products, multiple_row_format, excelrows_display, formattedData_display, Order, Packer, initiate_pallets, pre_pack, bin_purge, unfit_items, re_pack, order_display
 
 def cliapp_iterate(order: Order, packer: Packer):
     print("iterate fucntion used")
@@ -30,7 +30,7 @@ def cliapp_iterate(order: Order, packer: Packer):
     packerIterated = bin_purge(packerIterated)
     order.add_packer(packerIterated)
 
-    if unfitted_items(packerIterated) == False:
+    if unfit_items(packerIterated) == False:
         return cliapp_iterate(order, packerIterated)
     else:
         return order
@@ -88,7 +88,7 @@ def main():
     packer = bin_purge(packer)
     order.add_packer(packer)
     
-    if unfitted_items(packer) == False:
+    if unfit_items(packer) == False:
         print("if statement used")
         order = cliapp_iterate(order, packer) # cli-app func
 

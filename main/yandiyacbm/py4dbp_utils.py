@@ -14,26 +14,6 @@ class Pallets:
     euro = Bin("euro", 800, 1200, 2200, 1200)
 
 
-"""
-def re_pack(packer: Packer, unfitted: list):
-    for item in unfitted:
-        packer.add_item(item)
-    return packer
-
-def unfitted_products(packer: Packer):
-    iterate = 0
-    for Bin in packer.bins:
-        iterate += 1
-        if len(Bin.unfitted_items) == 0: #finds the first bin that fits
-            return False
-        if iterate == len(packer.bins): #finds the bin of best fit (the last one)
-            leftoverItems = []
-            for item in Bin.unfitted_items:
-                leftoverItems.append(item)
-            return leftoverItems
-"""
-
-
 def pre_pack(packer: Packer, params: list):
     for i in range(len(params)):
         items = params[i]
@@ -54,11 +34,30 @@ def re_pack(newPacker: Packer, oldPacker: Packer):
 
 
 """
+def re_pack(packer: Packer, unfitted: list):
+    for item in unfitted:
+        packer.add_item(item)
+    return packer
+
+def unfit_items(packer: Packer):
+    iterate = 0
+    for Bin in packer.bins:
+        iterate += 1
+        if len(Bin.unfitted_items) == 0: #finds the first bin that fits
+            return False
+        if iterate == len(packer.bins): #finds the bin of best fit (the last one)
+            leftoverItems = []
+            for item in Bin.unfitted_items:
+                leftoverItems.append(item)
+            return leftoverItems
+"""
+
+"""
 # ^ comment out the above line to use the 
 # better versions of functions which will be fixed and 
 # used instead of the placeholders below this DocString
 
-def unfitted_items(packer: Packer):
+def unfit_items(packer: Packer):
     if len(packer.unfit_items) != 0:
         return False #returns False because all items are not fitted
     else:
@@ -86,12 +85,13 @@ def bin_purge(packer: Packer):
 
 """
 
-def unfitted_items(packer: Packer):
+
+def unfit_items(packer: Packer):
     for Bin in packer.bins:
         if len(Bin.unfitted_items) != 0:
-            return False #returns False because all items are not fitted
+            return False  # returns False because all items are not fitted
         else:
-            return True # returns True because all items are fitted
+            return True  # returns True because all items are fitted
 
 
 def bin_purge(packer: Packer):

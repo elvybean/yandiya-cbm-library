@@ -11,7 +11,7 @@ from yandiyacbm.excel_func import search_products, multiple_row_format
 from yandiyacbm.excel_utils import productdetails_headings, palletdetails_headings
 
 from yandiyacbm.py4dbp import Item, Bin, Packer, Order
-from yandiyacbm.py4dbp_utils import initiate_pallets, pre_pack, bin_purge, unfitted_items, re_pack
+from yandiyacbm.py4dbp_utils import initiate_pallets, pre_pack, bin_purge, unfit_items, re_pack
 
 from yandiyacbm.display import excelrows_display, formattedData_display, order_display, divider
 
