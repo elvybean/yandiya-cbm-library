@@ -1,3 +1,7 @@
+"""
+Author: Elvis Obero-Atkins
+Last Edited by: Elvis Obero-Atkins
+"""
 from yandiyacbm.py4dbp_maths import RotationType, Axis, intersect, set_to_decimal, MiscVars
 
 
@@ -20,10 +24,10 @@ class Item:
         self.number_of_decimals = number_of_decimals
 
     def string(self):
-        #return "%s(%sx%sx%s, weight: %s) pos(%s) rt(%s) cbm(%s)" % (
+        # return "%s(%sx%sx%s, weight: %s) pos(%s) rt(%s) cbm(%s)" % (
         #    self.name, self.width, self.height, self.depth, self.weight,
         #    self.position, self.rotation_type, self.get_cbm()
-        #)
+        # )
         return "%s(%sx%sx%s, weight: %s) cbm(%s)" % (
             self.name, self.width, self.height, self.depth, self.weight,
             self.get_cbm()
@@ -129,16 +133,21 @@ class Bin:
 class Packer:
     def __init__(self):
         self.bins = []
+        self.total_bins = 0
         self.items = []
         self.unfit_items = []
         self.total_items = 0
 
     def add_bin(self, bin):
+        self.total_bins = len(self.items) + 1
         return self.bins.append(bin)
+    
+    def remove_bin(self, bin):
+        self.total_bins = len(self.items) - 1
+        return self.bins.remove(bin)
 
     def add_item(self, item):
         self.total_items = len(self.items) + 1
-
         return self.items.append(item)
 
     def pack_to_bin(self, bin, item):
@@ -210,3 +219,13 @@ class Packer:
             if distribute_items:
                 for item in bin.items:
                     self.items.remove(item)
+
+
+class Order:
+    def __init__(self):
+        self.packers = []
+        self.total_packers = 0
+
+    def add_packer(self, packer):
+        self.total_packers = len(self.packers) + 1
+        return self.packers.append(packer)

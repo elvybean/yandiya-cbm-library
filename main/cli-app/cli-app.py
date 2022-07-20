@@ -3,11 +3,9 @@ Author: Elvis Obero-Atkins
 Last Edited by: Elvis Obero-Atkins
 
 This py script is NOT REQUIRED for yandiya-cbm-library to function
-
-This is a CLI python application designed to interact with the yandiyacbm library.
 """
 #######################################################################################
-#import yandiyacbm as yandiya should not be up here! if it is move to other comment ###
+#import yandiyacbm as yandiya should not be up here! if it is move to other comment
 #######################################################################################
 import os
 import sys
@@ -17,12 +15,32 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
 )
 sys.path.append(PROJECT_ROOT)
 #######################################################################################
-#import yandiyacbm ALWAYS needs to be below import os and import sys ##################
+#import yandiyacbm as yandiya ALWAYS needs to be below import os and import sys
 #######################################################################################
-from yandiyacbm import search_product, parameter_generate, Packer, Bin, Item, select, pre_pack
-#######################################################################################
+from yandiyacbm import search_products, multiple_row_format, excelrows_display, formattedData_display, Order, Packer, initiate_pallets, pre_pack, bin_purge, unfit_items, re_pack, order_display
 
-def userInput(iterate: list, errors: list):
+def cli_iterate(order: Order, input: list, bool: bool):
+    packer = Packer()
+
+    initiate_pallets(packer)
+    if bool == True:
+        packer = pre_pack(packer, input)
+    else:
+        packer = re_pack(packer, input) 
+    packer.pack()
+
+    packer = bin_purge(packer)
+    unfitted = unfit_items(packer)
+
+    order.add_packer(packer)
+
+    if unfitted == False:
+        return order
+    else:
+        return cli_iterate(order, unfitted, False)
+
+
+def cli_input(iterate: list, errors: list):
     errors[1] += 1
 
     parameters = input(
@@ -30,9 +48,7 @@ def userInput(iterate: list, errors: list):
     productQuantity = int(input(
         "\nWhat's the quantity of the items that you need?  "))
 
-
-    productrow = search_product(parameters)
-
+    productrow = search_products(parameters)
     if productrow == 0:
         errors[0] += 1
         print("\nerror. either incorrect input or item does not exist  ")
@@ -41,38 +57,14 @@ def userInput(iterate: list, errors: list):
 
     repeat = input(
         "\nDo you want to search for another item? y/n  ").capitalize()
-
     if repeat == "N":
         if not errors[0] > errors[1]:
             return iterate
         else:
             return 0
     else:
-        return userInput(iterate, errors)
+        return cli_input(iterate, errors)
 
-def generate(params: list):
-    iterate = []
-
-    for i in range(len(params)):
-        product = params[i]
-        formatted = parameter_generate(product[0], product[1])
-        iterate.append(formatted)
-
-    return iterate
-
-def display(params: list):
-
-    for i in range(len(params)):
-        item = params[i]
-        for j in range(len(item)):
-            if j == 0:
-                 print(":::::::::::", item[j])
-            else:
-                print("====> ",item[j])
-
-        print("\n\n")
-    print("===========================================")
-    return
 
 def main():
 
@@ -81,41 +73,19 @@ def main():
     print(e.read())
     e.close()
 
-    try:
-        extractedRows = userInput([], [0, 0])
-    except:
-        print("\nerror. something went wrong")
+    extractedRows = cli_input([], [0, 0]) #cli-app func
+    if extractedRows == [] or extractedRows == 0:
+        return 0
+    excelrows_display(extractedRows)
 
-    try:
-        params = generate(extractedRows)
-    except:
-        print("\nerror. something went wrong")
+    formattedData = multiple_row_format(extractedRows)
+    formattedData_display(formattedData)
 
-    try:
-        display(params)
-    except:
-        print("\nerror. something went wrong")
+    order = Order()
 
-    try:
+    order = cli_iterate(order, formattedData, True) # cli-app func
 
-        packer = Packer()
-
-        packer.add_bin(Bin("standard-quarter", 1200, 1200, 800, 300))
-        packer.add_bin(Bin("standard-half", 1200, 1200, 1200, 600))
-        packer.add_bin(Bin("standard", 1200, 1200, 2200, 1200))
-        packer.add_bin(Bin("euro-quarter", 800, 1200, 800, 300))
-        packer.add_bin(Bin("euro-half", 800, 1200, 1200, 600))
-        packer.add_bin(Bin("euro", 800, 1200, 2200, 1200))
-
-        pre_pack(packer, params)
-
-        packer.pack()
-    
-        select(packer)
-
-    except:
-        print("\nerror. something went wrong")
-
+    order_display(order)
 
 if __name__ == "__main__":
-   main()
+    main()

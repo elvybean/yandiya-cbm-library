@@ -1,43 +1,71 @@
-from yandiyacbm.py4dbp import Packer, Item
+"""
+Author: Elvis Obero-Atkins
+Last Edited by: Elvis Obero-Atkins
+"""
+from yandiyacbm.py4dbp import Packer, Bin, Item
 
-def pre_pack(packer: Packer, params: list):
-    for i in range(len(params)):
-        items = params[i]
-        for j in range(len(items)):
+
+class Pallets:
+    standard_quarter = Bin("standard-quarter", 1200, 1200, 800, 300)
+    standard_half = Bin("standard-half", 1200, 1200, 1200, 600)
+    standard = Bin("standard", 1200, 1200, 2200, 1200)
+    euro_quarter = Bin("euro-quarter", 800, 1200, 800, 300)
+    euro_half = Bin("euro-half", 800, 1200, 1200, 600)
+    euro = Bin("euro", 800, 1200, 2200, 1200)
+
+
+def pre_pack(packer: Packer, formattedData: list):
+    for i in range(len(formattedData)):
+        product = formattedData[i]
+        for j in range(len(product)):
             if j != 0:
-                details = items[j]
-                name = str(details[0])
-                width = float(details[1])
-                height = float(details[2])
-                depth = float(details[3])
-                weight = float(details[4])
-                packer.add_item(Item(name, width, height, depth, weight))
-                #Item(details[0], details[1], details[2], details[3], details[4])
-
+                details = product[j]
+                packer.add_item(
+                    Item(details[0], details[1],
+                         details[2], details[3], details[4])
+                )
     return packer
 
 
-def select(packer: Packer):
+def re_pack(packer: Packer, unfitted: list):
+    #needs to 're_pack' the unfitted item objects - will take the input as a list
+    for item in unfitted:
+        packer.add_item(item)
+    return packer
+
+
+def unfit_items(packer: Packer):
+    #needs to 'package' Bin.unfitted_items into a list to be repacked
+    iterate = 0
     for Bin in packer.bins:
-        if len(Bin.unfitted_items) == 0:
-            print("Appropriate bin found\n")
+        iterate += 1
+        if len(Bin.unfitted_items) == 0:  # finds the first bin that fits
+            return False
+        if iterate == len(packer.bins):  # finds the bin of best fit (the last one)
+            unfitted = []
+            for item in Bin.unfitted_items:
+                unfitted.append(item)
+            return unfitted
 
-            print(":::::::::::", Bin.string())
 
-            print("FITTED ITEMS:")
-            for item in Bin.items:
-                print("====> ", item.string())
-            return
-
-def orginal(packer: Packer):
+def bin_purge(packer: Packer):
+    newPacker = Packer()
+    iterate = 0
     for Bin in packer.bins:
-        print(":::::::::::", Bin.string())
+        iterate += 1
+        if len(Bin.unfitted_items) == 0:  # finds the first bin that fits
+            newPacker.add_bin(Bin)
+            return newPacker
+        if iterate == len(packer.bins):  # finds the bin of best fit (the last one)
+            newPacker.add_bin(Bin)
+            return newPacker
 
-        print("FITTED ITEMS:")
-        for item in Bin.items:
-            print("====> ", item.string())
 
-        print("UNFITTED ITEMS:")
-        for item in Bin.unfitted_items:
-            print("====> ", item.string())
-            
+def initiate_pallets(packer: Packer):
+    packer.add_bin(Pallets.standard_quarter)
+    packer.add_bin(Pallets.standard_half)
+    packer.add_bin(Pallets.standard)
+    packer.add_bin(Pallets.euro_quarter)
+    packer.add_bin(Pallets.euro_half)
+    packer.add_bin(Pallets.euro)
+    return packer

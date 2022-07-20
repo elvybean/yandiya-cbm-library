@@ -19,9 +19,21 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 #import yandiyacbm ALWAYS needs to be below import os and import sys ##################
 #######################################################################################
-from yandiyacbm import Packer, Bin, Item, select, orginal #############################
+from yandiyacbm import Order, Packer, Bin, Item, order_output
 #######################################################################################
 from tests import startup
+
+def orginal(packer: Packer):
+    for Bin in packer.bins:
+        print(":::::::::::", Bin.string())
+
+        print("FITTED ITEMS:")
+        for item in Bin.items:
+            print("====> ", item.string())
+
+        print("UNFITTED ITEMS:")
+        for item in Bin.unfitted_items:
+            print("====> ", item.string())
 
 def main():
     print(startup())
@@ -41,7 +53,9 @@ def main():
     packer.add_bin(Bin("euro", 800, 1200, 2200, 1200))
 
     #packer.add_item(Item('Test', 700.0, 710.0, 250.0, 1200.00))
-    packer.add_item(Item('IH35-W Outer Carton', 700.0, 710.0, 250.0, 25.92))
+    test = Item('IH35-W Outer Carton', 700.0, 710.0, 250.0, 25.92)
+
+    packer.add_item(test)
     packer.add_item(Item('IH35-W Outer Carton', 700.0, 710.0, 250.0, 25.92))
     packer.add_item(Item('IH35-W Inner Carton', 670.0, 660.0, 50.0, 4.78))
     packer.add_item(Item('IH35-W Inner Carton', 670.0, 660.0, 50.0, 4.78))
@@ -49,11 +63,10 @@ def main():
 
     packer.pack()
     #orginal(packer)
-    select(packer)
 
-    #print("UNFITTED ITEMS:")
-    #for item in b.unfitted_items:
-    #    print("====> ", item.string())
+    order = Order()
+    order.add_packer(packer)
+    order_output(packer)
 
     response = input(
         "\nDo you want to test function again? y/n  ").capitalize()

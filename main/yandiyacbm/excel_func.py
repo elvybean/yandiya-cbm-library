@@ -6,7 +6,7 @@ import openpyxl
 from openpyxl import Workbook
 
 
-def search_product(parameters: str):
+def search_products(SearchParams: str):
     """searches a database document based on user input of a product number, barcode or sku
     Args:
         parameters (string): a product number, barcode or sku that the
@@ -19,32 +19,41 @@ def search_product(parameters: str):
         'main\database\yandiya-db.xlsx')
     records_table = yandiya_db.active
 
-    if len(parameters) == 5:
+    if len(SearchParams) == 5:
         search_column = records_table['C']  # sku
-    elif len(parameters) == 13:
+    elif len(SearchParams) == 13:
         search_column = records_table['B']  # barcode
     else:
         search_column = records_table['A']  # partNo
 
     requiredData = 0
     for cell in search_column:
-        if cell.value == parameters:
+        if cell.value == SearchParams:
             requiredData = records_table[cell.row]
             break
 
     if requiredData == 0:
         return 0
 
-    returnValue = []
+    extractedRows = []
     for cell in requiredData:
-        returnValue.append(cell.value)
+        extractedRows.append(cell.value)
 
-    return returnValue
+    return extractedRows
 
-def parameter_generate(row: list, itemQuantity: int):  # legacy
-    # Three possible outcomes; "x of Oyter Cartons", "x of Inner Cartons" and "x of Oyter Cartons AND x of Inner Cartons"
+
+def multiple_row_format(extractedRows: list):
+    formattedData = []
+    for i in range(len(extractedRows)):
+        product = extractedRows[i]
+        formatted = row_format(product[0], product[1])
+        formattedData.append(formatted)
+    return formattedData
+
+
+def row_format(row: list, itemQuantity: int):
     if itemQuantity >= (int(row[13]) / 2):
-        if itemQuantity > int(row[13]):  # x of Outer Cartons
+        if itemQuantity > int(row[13]):
 
             remainderItems = itemQuantity % float(row[13])
             divisable = itemQuantity - remainderItems
@@ -53,40 +62,25 @@ def parameter_generate(row: list, itemQuantity: int):  # legacy
             if remainderItems >= (float(row[13]) / 2):
                 outerCartons += 1
                 innerCartons = 0
-            else:  # x of Oyter Cartons AND x of Inner Cartons
+            else:
                 innerCartons = remainderItems
         else:
             outerCartons = 1
             innerCartons = 0
-    else:  # x of Inner Cartons
+    else:
         outerCartons = 0
         innerCartons = itemQuantity
 
-    output = [[row[3], row[0], itemQuantity]]
-
-    # this is the accepted format by packer()
-    # 'IH35-W Outer Carton', 700.0, 710.0, 250.0, 25.9
-    # 'IH35-W Outer Carton', 700.0, 710.0, 250.0, 25.9
-    # 'IH35-W Inner Carton', 670.0, 660.0, 50.0, 4.78
-    # 'IH35-W Inner Carton', 670.0, 660.0, 50.0, 4.78
-
-    # curretnly is in:
-    # ['IH35-W', [2.0, 0.04422, 9.56, 670.0, 660.0, 50.0, 4.78], [2.0, 0.2485, 51.84, 700.0, 710.0, 250.0, 25.92]]
-
-    # easiest solution would to be to get it into
-    #[['IH35-W Outer Carton', 700.0, 710.0, 250.0, 25.9], ['IH35-W Outer Carton', 700.0, 710.0, 250.0, 25.9]
-    #                                                      , ['IH35-W Inner Carton', 670.0, 660.0, 50.0, 4.78], ['IH35-W Inner Carton', 670.0, 660.0, 50.0, 4.78]]
-
-    # This will later have to be seperated into another 
+    funcOutput = [[row[3], row[0], itemQuantity]]
 
     if innerCartons != 0:
         icList = [row[3] + " Inner Carton", row[4], row[5], row[6], row[7]]
         for i in range(int(innerCartons)):
-            output.append(icList)
+            funcOutput.append(icList)
 
     if outerCartons != 0:
         ocList = [row[3] + " Outer Carton", row[9], row[10], row[11], row[12]]
         for i in range(int(outerCartons)):
-            output.append(ocList)
+            funcOutput.append(ocList)
 
-    return output
+    return funcOutput

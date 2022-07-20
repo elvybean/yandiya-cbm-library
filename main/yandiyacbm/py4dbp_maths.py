@@ -1,8 +1,14 @@
+"""
+Author: Elvis Obero-Atkins
+Last Edited by: Elvis Obero-Atkins
+"""
 from decimal import Decimal
+
 
 class MiscVars:
     DEFAULT_NUMBER_OF_DECIMALS = 3
     START_POSITION = [0, 0, 0]
+
 
 class RotationType:
     RT_WHD = 0
@@ -21,6 +27,7 @@ class Axis:
     DEPTH = 2
 
     ALL = [WIDTH, HEIGHT, DEPTH]
+
 
 def rect_intersect(item1, item2, x, y):
     d1 = item1.get_dimension()
