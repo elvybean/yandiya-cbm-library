@@ -19,23 +19,18 @@ sys.path.append(PROJECT_ROOT)
 #######################################################################################
 from yandiyacbm import search_products, multiple_row_format, excelrows_display, formattedData_display, Order, Packer, initiate_pallets, pre_pack, bin_purge, unfit_items, re_pack, order_display
 
-def cli_iterate(order: Order, input: list, path: bool):
+def cli_iterate(order: Order, input: list):
     packer = Packer()
 
-    initiate_pallets(packer)
-    if path == True:
-        packer = pre_pack(packer, input)
-    else:
-        packer = re_pack(packer, input) 
+    packer = re_pack(packer, input) 
     packer.pack()
 
     packer = bin_purge(packer)
     unfitted = unfit_items(packer)
-
     order.add_packer(packer)
 
     if unfitted != False:
-        cli_iterate(order, unfitted, False)
+        cli_iterate(order, unfitted)
     else:
         return order
 
@@ -82,8 +77,21 @@ def main():
     formattedData_display(formattedData)
 
     order = Order()
+    packer = Packer()
 
-    order = cli_iterate(order, formattedData, True) # cli-app func
+    initiate_pallets(packer)
+    packer = pre_pack(packer, input)
+    packer.pack()
+
+    packer = bin_purge(packer)
+    unfitted = unfit_items(packer)
+    order.add_packer(packer)
+
+    if unfitted != False:
+        order = cli_iterate(order, unfitted)
+
+
+    order = cli_iterate(order, formattedData) # cli-app func
 
     order_display(order)
 

@@ -49,6 +49,7 @@ def unfit_items(packer: Packer):
 
 
 def bin_purge(packer: Packer):
+    #needs to remove non-optimal bin objects (pallets) from packer
     newPacker = Packer()
     iterate = 0
     for Bin in packer.bins:
