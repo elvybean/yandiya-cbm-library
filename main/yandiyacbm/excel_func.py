@@ -16,7 +16,7 @@ def search_products(SearchParams: str):
         int: 0 (if row cannot be found in database)
     """
     yandiya_db = openpyxl.load_workbook(
-        'main\database\yandiya-db.xlsx')
+        'database\yandiya-db.xlsx')
     records_table = yandiya_db.active
 
     if len(SearchParams) == 5:

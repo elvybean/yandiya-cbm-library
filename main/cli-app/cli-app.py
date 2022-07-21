@@ -69,7 +69,7 @@ def cli_input(iterate: list, errors: list):
 def main():
 
     # this is unnecessary but cool
-    e = open("main/cli-app/cli-app.txt", "r")
+    e = open("cli-app/cli-app.txt", "r")
     print(e.read())
     e.close()
 
