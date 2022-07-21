@@ -23,7 +23,7 @@ def unfit_items(packer: Packer):
 
 
 # better versions of functions which will be fixed and
-# used instead of the placeholders below this DocString
+# used instead of the placeholders below this comment
 
 def unfit_items(packer: Packer):
     if len(packer.unfit_items) != 0:

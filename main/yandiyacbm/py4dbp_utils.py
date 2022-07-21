@@ -14,6 +14,16 @@ class Pallets:
     euro = Bin("euro", 800, 1200, 2200, 1200)
 
 
+def initiate_pallets(packer: Packer):
+    packer.add_bin(Pallets.standard_quarter)
+    packer.add_bin(Pallets.standard_half)
+    packer.add_bin(Pallets.standard)
+    packer.add_bin(Pallets.euro_quarter)
+    packer.add_bin(Pallets.euro_half)
+    packer.add_bin(Pallets.euro)
+    return packer
+
+
 def pre_pack(packer: Packer, formattedData: list):
     for i in range(len(formattedData)):
         product = formattedData[i]
@@ -28,14 +38,14 @@ def pre_pack(packer: Packer, formattedData: list):
 
 
 def re_pack(packer: Packer, unfitted: list):
-    #needs to 're_pack' the unfitted item objects - will take the input as a list
+    # needs to 're_pack' the unfitted item objects - will take the input as a list
     for item in unfitted:
         packer.add_item(item)
     return packer
 
 
 def unfit_items(packer: Packer):
-    #needs to 'package' Bin.unfitted_items into a list to be repacked
+    # needs to 'package' Bin.unfitted_items into a list to be repacked
     iterate = 0
     for Bin in packer.bins:
         iterate += 1
@@ -49,7 +59,7 @@ def unfit_items(packer: Packer):
 
 
 def bin_purge(packer: Packer):
-    #needs to remove non-optimal bin objects (pallets) from packer
+    # needs to remove non-optimal bin objects (pallets) from packer
     newPacker = Packer()
     iterate = 0
     for Bin in packer.bins:
@@ -60,13 +70,3 @@ def bin_purge(packer: Packer):
         if iterate == len(packer.bins):  # finds the bin of best fit (the last one)
             newPacker.add_bin(Bin)
             return newPacker
-
-
-def initiate_pallets(packer: Packer):
-    packer.add_bin(Pallets.standard_quarter)
-    packer.add_bin(Pallets.standard_half)
-    packer.add_bin(Pallets.standard)
-    packer.add_bin(Pallets.euro_quarter)
-    packer.add_bin(Pallets.euro_half)
-    packer.add_bin(Pallets.euro)
-    return packer

@@ -22,7 +22,8 @@ from yandiyacbm import search_products, multiple_row_format, excelrows_display, 
 def cli_iterate(order: Order, input: list):
     packer = Packer()
 
-    packer = re_pack(packer, input) 
+    initiate_pallets(packer)
+    re_pack(packer, input) 
     packer.pack()
 
     packer = bin_purge(packer)
@@ -80,7 +81,7 @@ def main():
     packer = Packer()
 
     initiate_pallets(packer)
-    packer = pre_pack(packer, input)
+    pre_pack(packer, input)
     packer.pack()
 
     packer = bin_purge(packer)
@@ -89,7 +90,6 @@ def main():
 
     if unfitted != False:
         order = cli_iterate(order, unfitted)
-
 
     order = cli_iterate(order, formattedData) # cli-app func
 
